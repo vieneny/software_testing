@@ -20,12 +20,12 @@ def load(name: str) -> dict:
 def test_generated_bank_counts_and_required_answer_fields() -> None:
     payload = load("questions.json")
     questions = payload["questions"]
-    assert len(questions) == 485
+    assert len(questions) == 470
     assert payload["statistics"]["reviewed_core_questions"] == 172
-    assert payload["statistics"]["curated_questions"] == 313
+    assert payload["statistics"]["curated_questions"] == 298
     assert payload["statistics"]["by_origin"] == {
         "curated-2026": 24,
-        "legacy-2025-reviewed": 175,
+        "legacy-2025-reviewed": 160,
         "reviewed-core": 172,
         "xiaolincoding-reviewed": 62,
         "supplemental-reviewed": 52,
@@ -37,6 +37,7 @@ def test_generated_bank_counts_and_required_answer_fields() -> None:
     for question in questions:
         assert question["title"]
         assert question["focus"]
+        assert question["answer_strategy"]
         assert question["answer"]
         assert question["explanation"]
         assert question["level"] in {"入门", "进阶", "高级"}
@@ -154,17 +155,16 @@ def test_module_appendices_do_not_leak_into_the_last_core_question() -> None:
 
 def test_every_legacy_item_has_a_traceable_disposition() -> None:
     coverage = load("legacy-coverage.json")
-    assert coverage["statistics"]["total"] == 495
+    assert coverage["statistics"]["total"] == 320
     assert coverage["statistics"]["by_source"] == {
-        "outline-draft": 175,
         "outline-revision": 160,
         "answer-draft": 160,
     }
-    assert len(coverage["items"]) == 495
-    assert len({item["id"] for item in coverage["items"]}) == 495
-    assert coverage["statistics"]["strong_semantic_matches"] == 495
+    assert len(coverage["items"]) == 320
+    assert len({item["id"] for item in coverage["items"]}) == 320
+    assert coverage["statistics"]["strong_semantic_matches"] == 320
     assert coverage["statistics"]["candidate_assignments_review_required"] == 0
-    assert coverage["statistics"]["mapped_to_answer"] == 495
+    assert coverage["statistics"]["mapped_to_answer"] == 320
     assert coverage["statistics"]["unmapped"] == 0
     assert coverage["statistics"]["coverage_rate"] == 1.0
     for item in coverage["items"]:
@@ -288,24 +288,25 @@ def test_build_outputs_are_current() -> None:
     assert result.returncode == 0, result.stderr
 
 
-def test_first_2025_edition_is_complete_reviewed_and_traceable() -> None:
+def test_reviewed_2025_revision_is_complete_and_traceable() -> None:
     source = load("legacy-2025-reviewed.json")
     questions = source["questions"]
     assert source["collection"]["source_commit"] == (
         "d0a8cfde75fe43c3abd7919e91c72bb7f3c15823"
     )
-    assert len(questions) == 175
+    assert len(questions) == 160
     assert {question["origin"] for question in questions} == {
         "legacy-2025-reviewed"
     }
     assert all(question["source_ids"] == ["github-first-commit-2025"] for question in questions)
     assert all(len(re.sub(r"\s+", "", question["answer"])) >= 120 for question in questions)
+    assert all(len(re.sub(r"\s+", "", question["answer_strategy"])) >= 120 for question in questions)
     assert all(question["explanation"] for question in questions)
     coverage = load("legacy-coverage.json")
-    first_edition = [item for item in coverage["items"] if item["source_id"] == "outline-draft"]
-    assert len(first_edition) == 175
-    assert all(item["mapping_status"] == "strong-semantic-match" for item in first_edition)
-    assert all(item["canonical_question_id"].startswith("legacy-2025-") for item in first_edition)
+    revision = [item for item in coverage["items"] if item["source_id"] == "outline-revision"]
+    assert len(revision) == 160
+    assert all(item["mapping_status"] == "strong-semantic-match" for item in revision)
+    assert all(item["canonical_question_id"].startswith("legacy-2025-") for item in revision)
 
 
 def test_reviewed_2025_and_offline_generators_are_current() -> None:
@@ -322,6 +323,7 @@ def test_reviewed_2025_and_offline_generators_are_current() -> None:
 
     offline = BANK_DIR / "offline" / "软件测试离线题库.html"
     text = offline.read_text(encoding="utf-8")
-    assert '"questionCount":485' in text
-    assert "2025 第一版" in text
+    assert '"questionCount":470' in text
+    assert "2025 优化修订版" in text
+    assert "答题思路" in text
     assert "后续整理：核心模块" in text

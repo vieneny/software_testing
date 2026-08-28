@@ -27,7 +27,7 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 BANK_ROOT = REPO_ROOT / "apps" / "interview-bank"
 DATA_DIR = BANK_ROOT / "data"
 HISTORY_DIR = REPO_ROOT / "docs" / "08-求职备考" / "04-面试题库" / "历史资料"
-OUTLINE_PATH = HISTORY_DIR / "大纲面试题-优化初稿-2525年10月23日.md"
+OUTLINE_PATH = HISTORY_DIR / "大纲面试题-优化修订稿-2525年10月24日.md"
 HTML_PATH = HISTORY_DIR / "面试题答案-粗稿-1.0版.html"
 OUTPUT_PATH = DATA_DIR / "legacy-2025-reviewed.json"
 COMMIT_SHA = "d0a8cfde75fe43c3abd7919e91c72bb7f3c15823"
@@ -309,6 +309,37 @@ def infer_kind(section: str, title: str) -> str:
     return "知识题"
 
 
+def answer_strategy(question: str, section: str, kind: str) -> str:
+    """Build a reusable speaking plan that stays distinct from the model answer."""
+    if kind == "项目题":
+        return (
+            f"回答“{question}”时，先界定这是不是本人真实经历；若只是练习，明确说明使用公开或虚构项目。"
+            "按 STAR 展开：用两三句话交代系统目标、用户和约束，只陈述自己负责的范围；再说明面对的质量风险与任务目标；"
+            "随后按需求澄清、测试设计、数据准备、执行取证、缺陷协作和回归发布描述行动；最后用可核验的报告、缺陷、代码或复盘说明结果。"
+            "表达时区分团队成果与个人贡献，具体数字必须能解释口径和来源，并在结尾补充没有覆盖的风险及下一步改进。"
+        )
+    if kind == "行为题" or section == "职业规划":
+        return (
+            f"回答“{question}”时采用“事实—原因—证据—下一步”结构。先直接给出与问题有关的真实现状或选择，"
+            "再解释形成该选择的原因，避免评价他人或前雇主；随后列出自己确实完成且可展示的学习记录、代码、测试报告或复盘作为证据；"
+            "最后说明下一阶段的具体目标、时间范围和衡量方式。涉及薪资、离职、加班或个人安排时只提供岗位决策所需信息，"
+            "保持专业边界，不背模板、不虚构履历，也不把练习项目包装成商业经历。"
+        )
+    if kind == "场景题":
+        return (
+            f"回答“{question}”时先澄清测试对象、目标用户、入口、成功标准、依赖和限制条件，避免立即罗列测试点。"
+            "接着建立测试模型，从功能流程、状态迁移、数据边界、权限、并发、异常恢复、兼容性、性能、安全和可用性中选择相关维度；"
+            "按用户影响、发生概率和可发现性排序，先覆盖高风险主链路，再扩展组合。说明数据与环境准备、执行顺序以及界面、接口、数据库、日志或指标证据，"
+            "最后总结已覆盖范围、残余风险和需要继续确认的问题。"
+        )
+    return (
+        f"回答“{question}”时先用一两句话给出准确的定义或结论，并说明适用条件，避免只背关键词。"
+        "然后按“组成或机制—执行步骤—验证证据”展开：解释关键概念之间的关系，给出能在合成环境复现的操作或测试方法，"
+        "再说明应观察的界面、请求响应、数据库状态、日志、指标或报告。若结论受协议、工具版本、数据规模或并发条件影响，要明确这些边界；"
+        "最后补充一个常见误区和一个可继续追问的实践点，使回答同时包含原理、落地与风险。"
+    )
+
+
 def build_payload() -> dict[str, Any]:
     outline = parse_outline()
     html_answers = parse_html_answers()
@@ -359,12 +390,13 @@ def build_payload() -> dict[str, Any]:
             "module_id": module_id,
             "origin": "legacy-2025-reviewed",
             "position": 20_000 + item.index,
-            "title": f"2025 初版 {item.index:03d}｜{item.question}",
+            "title": f"2025 优化修订版 {item.index:03d}｜{item.question}",
             "level": "进阶" if kind in {"场景题", "项目题"} else "入门",
             "kind": kind,
             "roles": MODULE_ROLES[module_id],
-            "tags": [item.section, "2025 第一版", "历史题整理"],
+            "tags": [item.section, "2025 优化修订版", "历史题整理"],
             "focus": clean_text(focus),
+            "answer_strategy": answer_strategy(item.question, item.section, kind),
             "answer": clean_text(answer),
             "explanation": clean_text(explanation),
             "followups": followups or ["追问：如何用证据证明结论？"],
@@ -384,14 +416,14 @@ def build_payload() -> dict[str, Any]:
             raise ValueError(f"{question['id']} 含禁止发布内容")
         questions.append(question)
 
-    if len(questions) != 175:
-        raise ValueError(f"2025 第一版预期 175 题，实际生成 {len(questions)} 题")
+    if len(questions) != 160:
+        raise ValueError(f"2025 优化修订版预期 160 题，实际生成 {len(questions)} 题")
     return {
         "schema_version": "1.0",
         "updated_at": UPDATED_AT,
         "collection": {
             "id": "github-first-edition-2025",
-            "title": "2025 第一版软件测试面试题（已净化并补全答案）",
+            "title": "2025 优化修订版软件测试面试题（已净化并补全答案与答题思路）",
             "source_commit": COMMIT_SHA,
             "question_count": len(questions),
             "answer_policy": "旧答案只作线索；发布内容使用现行评审答案或安全回答框架，项目与行为题不复用他人经历。",
@@ -399,7 +431,7 @@ def build_payload() -> dict[str, Any]:
         "sources": [
             {
                 "id": "github-first-commit-2025",
-                "title": "software_testing 的 2025 第一版根提交",
+                "title": "software_testing 的 2025 优化修订版历史题库",
                 "url": f"https://github.com/vieneny/software_testing/commit/{COMMIT_SHA}",
                 "platform": "GitHub 公开历史提交",
                 "accessed_at": UPDATED_AT,
@@ -426,7 +458,7 @@ def main() -> int:
             return 1
     else:
         OUTPUT_PATH.write_text(expected, encoding="utf-8")
-    print(f"2025 第一版整理完成：{len(payload['questions'])} 题")
+    print(f"2025 优化修订版整理完成：{len(payload['questions'])} 题")
     return 0
 
 

@@ -90,7 +90,7 @@ const activeFilterCount = computed(
 
 function originLabel(origin: string): string {
   const labels: Record<string, string> = {
-    'legacy-2025-reviewed': '2025 第一版（已复核）',
+    'legacy-2025-reviewed': '2025 优化修订版',
     'reviewed-core': '核心模块评审题',
     'curated-2026': '2026 公开趋势重构题',
     'supplemental-reviewed': '补充评审题',

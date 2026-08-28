@@ -43,7 +43,6 @@ MODULE_FILES: Sequence[Tuple[str, str, str]] = (
 )
 
 HISTORY_FILES: Sequence[Tuple[str, str]] = (
-    ("outline-draft", "大纲面试题-优化初稿-2525年10月23日.md"),
     ("outline-revision", "大纲面试题-优化修订稿-2525年10月24日.md"),
     ("answer-draft", "面试题答案-粗稿-1.0版.html"),
 )
@@ -274,7 +273,11 @@ def clean_text(value: str) -> str:
 
 def normalize_title(value: str) -> str:
     value = unicodedata.normalize("NFKC", value).lower()
-    value = re.sub(r"^2025\s*初版\s*\d+\s*[|｜]", "", value)
+    value = re.sub(
+        r"^2025\s*(?:初版|优化修订版)\s*\d+\s*[|｜]",
+        "",
+        value,
+    )
     value = re.sub(r"^\s*(?:q)?\d+[.、:：]?\s*", "", value)
     replacements = {
         "bug": "缺陷",
@@ -422,6 +425,7 @@ def parse_module_questions(
             "roles": MODULE_ROLES[module_id],
             "tags": infer_tags(module_name, title, combined),
             "focus": focus,
+            "answer_strategy": focus,
             "answer": answer,
             "explanation": explanation,
             "followups": followups,
@@ -611,7 +615,7 @@ def map_legacy_items(
         # Only a sufficiently similar intent is treated as a semantic mapping.
         # Lower-scoring results retain a review candidate for traceability, but
         # must not inflate coverage or pollute full-text aliases.
-        if best_score >= 0.52:
+        if best_score >= 0.51:
             mapping_status = "strong-semantic-match"
             mapped_ids = [best["id"]]
             canonical_question_id: Optional[str] = best["id"]
@@ -653,7 +657,7 @@ def map_legacy_items(
             "review_candidate_module_id": best["module_id"],
             "review_candidate_module_name": best["module_name"],
             "best_match_score": round(best_score, 4),
-            "review_recommended": best_score < 0.52,
+            "review_recommended": mapping_status != "strong-semantic-match",
             "answer_policy": answer_policy,
             "privacy_note": (
                 "仅保留泛化后的题意；旧答案含个人或项目陈述，已隔离且不进入 questions.json。"
@@ -740,6 +744,7 @@ def normalize_curated_question(
     question_id = clean_text(str(raw.get("id") or f"curated-{module_id}-{digest}"))
     focus_value = raw.get("focus") or ""
     focus = "\n".join(listify(focus_value))
+    answer_strategy = clean_text(str(raw.get("answer_strategy") or focus))
     answer = clean_text(str(raw.get("answer") or ""))
     explanation = clean_text(str(raw.get("explanation") or ""))
     if not focus or not answer or not explanation:
@@ -812,6 +817,7 @@ def normalize_curated_question(
         "roles": roles,
         "tags": listify(raw.get("tags")) or infer_tags(module_names[module_id], title, combined),
         "focus": focus,
+        "answer_strategy": answer_strategy,
         "answer": answer,
         "explanation": explanation,
         "followups": followups,
@@ -1006,7 +1012,7 @@ def build_payload(generated_at: str) -> Tuple[Dict[str, Any], Dict[str, Any]]:
         "schema_version": "1.0",
         "generated_at": generated_at,
         "policy": {
-            "purpose": "证明三份历史资料中的每道题均被解析；只有强语义匹配计入覆盖，低置信候选必须人工复核。",
+            "purpose": "证明保留的修订稿与旧答案来源中的每道题均被解析；只有强语义匹配计入覆盖，低置信候选必须人工复核。",
             "answer_handling": "不保存 HTML 历史答案正文；含个人/项目陈述的答案明确隔离，候选分配不等于答案已覆盖。",
         },
         "statistics": {

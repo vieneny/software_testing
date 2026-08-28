@@ -14,6 +14,7 @@ const question: Question = {
   roles: ['软件测试'],
   tags: ['风险'],
   focus: '风险意识',
+  answerStrategy: '先给结论，再说明测试能够提供的证据和不能证明的边界。',
   answer: '不能。测试是在明确范围内提供质量与风险证据。',
   explanation: '有限输入无法穷举全部状态。',
   followups: ['如何提高测试信心？'],
@@ -44,6 +45,10 @@ describe('QuestionCard', () => {
     await revealButton.trigger('click')
 
     expect(wrapper.find('[data-testid="answer-content"]').exists()).toBe(true)
+    expect(wrapper.text()).toContain('答题思路')
+    expect(wrapper.text().indexOf('答题思路')).toBeLessThan(
+      wrapper.text().indexOf('参考答案'),
+    )
     expect(wrapper.text()).toContain('测试是在明确范围内提供质量与风险证据')
     expect(wrapper.find('a[href]').exists()).toBe(false)
     expect(wrapper.get('details[open] summary').text()).toBe('原理与实践解释')

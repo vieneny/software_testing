@@ -11,6 +11,7 @@ export interface Question {
   roles: string[]
   tags: string[]
   focus: string
+  answerStrategy: string
   answer: string
   explanation: string
   followups: string[]

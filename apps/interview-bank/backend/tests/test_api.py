@@ -7,18 +7,18 @@ def test_health_meta_modules_and_sources(client: TestClient) -> None:
     health = client.get("/api/v1/health")
     assert health.status_code == 200
     assert health.json()["status"] == "ok"
-    assert health.json()["question_count"] == 485
-    assert health.json()["legacy_coverage_count"] == 495
+    assert health.json()["question_count"] == 470
+    assert health.json()["legacy_coverage_count"] == 320
 
     meta = client.get("/api/v1/meta").json()
     assert meta["statistics"]["reviewed_core_questions"] == 172
-    assert meta["statistics"]["curated_questions"] == 313
+    assert meta["statistics"]["curated_questions"] == 298
     assert "privacy_policy" not in meta
     assert meta["facets"]["roles"]["性能测试"] >= 59
 
     modules = client.get("/api/v1/modules").json()
     assert modules["total"] == 10
-    assert sum(item["question_count"] for item in modules["items"]) == 485
+    assert sum(item["question_count"] for item in modules["items"]) == 470
 
     sources = client.get("/api/v1/sources").json()
     assert sources["total"] == 101
@@ -101,9 +101,12 @@ def test_question_filter_pagination_and_detail(client: TestClient) -> None:
             "page_size": 100,
         },
     ).json()
-    assert first_edition["total"] == 175
+    assert first_edition["total"] == 160
     assert len(first_edition["items"]) == 100
-    assert all(item["answer"] and item["explanation"] for item in first_edition["items"])
+    assert all(
+        item["answer"] and item["answer_strategy"] and item["explanation"]
+        for item in first_edition["items"]
+    )
 
     question_id = full["items"][0]["id"]
     detail = client.get(f"/api/v1/questions/{question_id}")
@@ -157,17 +160,21 @@ def test_legacy_coverage_is_queryable_but_old_answers_are_not_exposed(
         "/api/v1/questions",
         params={"q": "无法重现的BUG", "page_size": 20},
     ).json()
-    assert "legacy-2025-012" in {
-        item["id"] for item in strong_legacy_search["items"]
-    }
+    assert any(
+        item["origin"] == "legacy-2025-reviewed"
+        and "无法重现" in item["title"]
+        for item in strong_legacy_search["items"]
+    )
 
     first_edition_search = client.get(
         "/api/v1/questions",
         params={"q": "杯子功能测试思路", "page_size": 20},
     ).json()
-    assert "legacy-2025-061" in {
-        item["id"] for item in first_edition_search["items"]
-    }
+    assert any(
+        item["origin"] == "legacy-2025-reviewed"
+        and "杯子" in item["title"]
+        for item in first_edition_search["items"]
+    )
 
 
 def test_progress_is_persisted_and_merged(client: TestClient) -> None:

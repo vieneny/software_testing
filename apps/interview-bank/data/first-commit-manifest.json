@@ -7,16 +7,6 @@
   "tracked": false,
   "files": [
     {
-      "name": "README.md",
-      "bytes": 319,
-      "sha256": "35086B1EF94924C681C31579A4AE25F7512A9834395C1B5BDE46F0B9686AF312"
-    },
-    {
-      "name": "大纲面试题_优化_v0_2525.10.23.md",
-      "bytes": 9334,
-      "sha256": "0446FB3A89641E2F311F39EF727C635CCEB6303CA5C232782822314998B48A87"
-    },
-    {
       "name": "大纲面试题_优化_v1_2525.10.24.md",
       "bytes": 8616,
       "sha256": "AD2C7B93EB9F12C9377274E0F83CCFCF97B40464E1373B7E901F4EE37DCB7353"

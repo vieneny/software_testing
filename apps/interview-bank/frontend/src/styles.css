@@ -701,6 +701,11 @@ textarea:hover {
   border-left: 3px solid var(--green);
 }
 
+.answer-panel--strategy {
+  border-left: 4px solid #d49a1f;
+  background: #f4f7ea;
+}
+
 .answer-panel--caution {
   border-color: #ead8ba;
   background: #fffaf0;

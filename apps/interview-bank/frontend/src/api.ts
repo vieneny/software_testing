@@ -95,6 +95,9 @@ export function normalizeQuestion(raw: unknown): Question {
     roles: asStringList(item.roles ?? item.role),
     tags: asStringList(item.tags),
     focus: asString(item.focus ?? item.key_points ?? item.interview_focus),
+    answerStrategy: asString(
+      item.answer_strategy ?? item.answerStrategy ?? item.focus ?? item.key_points,
+    ),
     answer: asString(item.answer ?? item.reference_answer),
     explanation: asString(item.explanation ?? item.principle ?? item.practice),
     followups: asStringList(item.followups ?? item.follow_up ?? item.common_followups),

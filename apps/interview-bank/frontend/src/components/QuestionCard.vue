@@ -63,7 +63,7 @@ async function toggleAnswer() {
 
 function originLabel(origin: string): string {
   const labels: Record<string, string> = {
-    'legacy-2025-reviewed': '2025 第一版（已复核）',
+    'legacy-2025-reviewed': '2025 优化修订版',
     'xiaolincoding-reviewed': '小林 Coding 资料原创重构题',
     'supplemental-reviewed': '补充评审题',
     'curated-2026': '2026 公开资料增补题',
@@ -150,6 +150,13 @@ function originLabel(origin: string): string {
       data-testid="answer-content"
       tabindex="-1"
     >
+      <section
+        v-if="question.answerStrategy"
+        class="answer-panel answer-panel--strategy"
+      >
+        <h3>答题思路</h3>
+        <SafeMarkdown :content="question.answerStrategy" />
+      </section>
       <section v-if="question.answer" class="answer-panel answer-panel--primary">
         <h3>参考答案</h3>
         <SafeMarkdown :content="question.answer" />

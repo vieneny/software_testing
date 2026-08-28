@@ -28,6 +28,7 @@ function makeQuestion(index: number): Question {
     roles: ['软件测试'],
     tags: ['质量'],
     focus: '回答边界',
+    answerStrategy: '先给结论，再按依据、步骤、证据和边界组织回答。',
     answer: '参考答案需要说明结论、依据、执行步骤和残余风险。',
     explanation: '解释答案为什么成立，以及结论在哪些边界内有效。',
     followups: ['如何取证？'],

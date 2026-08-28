@@ -20,6 +20,7 @@ DEFAULT_REPORT = BANK_ROOT / "data" / "题库逐题质量审计.json"
 REVIEW_FIELDS = (
     "title",
     "focus",
+    "answer_strategy",
     "scenario",
     "answer",
     "explanation",
@@ -87,6 +88,7 @@ def validate_question(
         for field in (
             "title",
             "focus",
+            "answer_strategy",
             "scenario",
             "answer",
             "explanation",
@@ -99,6 +101,7 @@ def validate_question(
     )
     source_ids = question.get("source_ids", [])
     answer = str(question.get("answer", "")).strip()
+    answer_strategy = str(question.get("answer_strategy", "")).strip()
     explanation = str(question.get("explanation", "")).strip()
     checks = {
         "required_fields_complete": all(
@@ -113,6 +116,7 @@ def validate_question(
                 "roles",
                 "tags",
                 "focus",
+                "answer_strategy",
                 "answer",
                 "explanation",
                 "followups",
@@ -123,6 +127,11 @@ def validate_question(
             )
         ),
         "answer_has_working_depth": normalized_length(answer) >= 120,
+        "answer_strategy_present": bool(answer_strategy),
+        "reviewed_2025_strategy_has_working_depth": (
+            question.get("origin") != "legacy-2025-reviewed"
+            or normalized_length(answer_strategy) >= 120
+        ),
         "explanation_has_reasoning_depth": normalized_length(explanation) >= 60,
         "answer_and_explanation_are_distinct": answer != explanation,
         "followups_and_pitfalls_present": bool(question.get("followups"))
@@ -214,6 +223,9 @@ def build_report(bank_path: Path) -> tuple[dict[str, Any], list[str]]:
                 "title": question.get("title", ""),
                 "content_hash": stable_hash(reviewed_payload),
                 "answer_chars": normalized_length(str(question.get("answer", ""))),
+                "answer_strategy_chars": normalized_length(
+                    str(question.get("answer_strategy", ""))
+                ),
                 "explanation_chars": normalized_length(
                     str(question.get("explanation", ""))
                 ),
@@ -235,6 +247,7 @@ def build_report(bank_path: Path) -> tuple[dict[str, Any], list[str]]:
         "accuracy_boundary": "自动化门禁不能替代技术事实的人工审校；人工审校方法与变更摘要见面试题库质量审校说明。",
         "thresholds": {
             "answer_non_whitespace_characters_min": 120,
+            "reviewed_2025_answer_strategy_non_whitespace_characters_min": 120,
             "explanation_non_whitespace_characters_min": 60,
         },
         "summary": {

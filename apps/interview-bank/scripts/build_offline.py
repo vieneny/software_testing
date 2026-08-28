@@ -15,7 +15,7 @@ DATA_PATH = BANK_ROOT / "data" / "questions.json"
 OUTPUT_PATH = BANK_ROOT / "offline" / "软件测试离线题库.html"
 
 ORIGIN_LABELS = {
-    "legacy-2025-reviewed": "2025 第一版",
+    "legacy-2025-reviewed": "2025 优化修订版",
     "reviewed-core": "后续整理：核心模块",
     "curated-2026": "后续整理：2026 公开趋势",
     "supplemental-reviewed": "后续整理：补充评审",
@@ -94,6 +94,8 @@ def render(payload: dict) -> str:
     .answer {{ border-top: 1px solid #d8dfdb; padding: 18px; }}
     .answer h3 {{ font-size: 14px; margin: 18px 0 7px; color: #173f35; }}
     .answer h3:first-child {{ margin-top: 0; }}
+    .strategy {{ margin: 0 0 18px; padding: 14px 16px; border-left: 4px solid #d69a13; background: #f4f7ea; }}
+    .strategy h3 {{ margin: 0 0 7px; color: #173f35; }}
     .prose {{ margin: 0; white-space: pre-wrap; line-height: 1.75; overflow-wrap: anywhere; }}
     .list {{ margin: 0; padding-left: 20px; line-height: 1.7; }}
     .bookmark {{ margin-top: 16px; border-radius: 4px; }}
@@ -153,7 +155,7 @@ def render(payload: dict) -> str:
         if (state.bookmark === 'saved' && !saved.has(question.id)) return false;
         const query = state.query.trim().toLowerCase();
         if (!query) return true;
-        return [question.title, question.answer, question.explanation, ...(question.tags || [])].join(' ').toLowerCase().includes(query);
+        return [question.title, question.answer_strategy, question.answer, question.explanation, ...(question.tags || [])].join(' ').toLowerCase().includes(query);
       }};
       const sourceButtons = () => {{
         const groups = [{{id:'',label:'全部来源',count:bank.questionCount}}, ...bank.groups];
@@ -163,7 +165,7 @@ def render(payload: dict) -> str:
       const questionHtml = question => {{
         const followups = (question.followups || []).map(item => `<li>${{escape(item)}}</li>`).join('');
         const pitfalls = (question.pitfalls || []).map(item => `<li>${{escape(item)}}</li>`).join('');
-        return `<details><summary><span class="meta"><span class="chip">${{escape(labels[question.origin] || question.origin)}}</span><span class="chip">${{escape(question.module_name)}}</span><span class="chip">${{escape(question.level)}}</span><span class="chip">${{escape(question.kind)}}</span></span><span class="question-title">${{escape(question.title)}}</span><span class="focus">面试官在看：${{escape(question.focus)}}</span></summary><div class="answer"><h3>参考答案</h3><p class="prose">${{escape(question.answer)}}</p><h3>原理与实践解释</h3><p class="prose">${{escape(question.explanation)}}</p>${{followups ? `<h3>常见追问</h3><ul class="list">${{followups}}</ul>` : ''}}${{pitfalls ? `<h3>常见误区</h3><ul class="list">${{pitfalls}}</ul>` : ''}}<button type="button" class="bookmark ${{saved.has(question.id) ? 'active' : ''}}" data-id="${{escape(question.id)}}">${{saved.has(question.id) ? '取消收藏' : '收藏题目'}}</button></div></details>`;
+        return `<details><summary><span class="meta"><span class="chip">${{escape(labels[question.origin] || question.origin)}}</span><span class="chip">${{escape(question.module_name)}}</span><span class="chip">${{escape(question.level)}}</span><span class="chip">${{escape(question.kind)}}</span></span><span class="question-title">${{escape(question.title)}}</span><span class="focus">面试官在看：${{escape(question.focus)}}</span></summary><div class="answer"><section class="strategy"><h3>答题思路</h3><p class="prose">${{escape(question.answer_strategy || question.focus)}}</p></section><h3>参考答案</h3><p class="prose">${{escape(question.answer)}}</p><h3>原理与实践解释</h3><p class="prose">${{escape(question.explanation)}}</p>${{followups ? `<h3>常见追问</h3><ul class="list">${{followups}}</ul>` : ''}}${{pitfalls ? `<h3>常见误区</h3><ul class="list">${{pitfalls}}</ul>` : ''}}<button type="button" class="bookmark ${{saved.has(question.id) ? 'active' : ''}}" data-id="${{escape(question.id)}}">${{saved.has(question.id) ? '取消收藏' : '收藏题目'}}</button></div></details>`;
       }};
       const render = () => {{
         sourceButtons();

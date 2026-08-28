@@ -23,6 +23,7 @@ def valid_question() -> dict:
         "roles": ["软件测试"],
         "tags": ["状态机"],
         "focus": "状态、权限、并发与审计证据",
+        "answer_strategy": "先澄清审批对象和角色，再按状态、事件、守卫条件、异常恢复和审计证据组织回答。",
         "scenario": {
             "background": "从零构造的审批系统",
             "task": "验证合法和非法状态迁移",
