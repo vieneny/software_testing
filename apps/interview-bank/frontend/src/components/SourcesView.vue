@@ -87,22 +87,22 @@ onMounted(async () => {
       <div>
         <p class="kicker">标准校验 · 来源追溯 · 覆盖审计</p>
         <h1 id="source-title">资料来源与覆盖情况</h1>
-        <p>查看题目使用的标准、官方工具文档、本地来源快照与历史资料覆盖映射。</p>
+        <p>查看题目使用的标准、官方工具文档、本地来源快照与个人整理最新版覆盖情况。</p>
       </div>
     </div>
 
     <section v-if="legacyCoverage" class="legacy-audit card-surface" aria-labelledby="legacy-title">
       <div class="legacy-audit__copy">
-        <p class="kicker">历史资料迁移审计</p>
-        <h2 id="legacy-title">{{ legacyCoverage.mappedToAnswer }} / {{ legacyCoverage.total }} 条通过强语义匹配</h2>
+        <p class="kicker">个人整理最新版覆盖审计</p>
+        <h2 id="legacy-title">{{ legacyCoverage.mappedToAnswer }} / {{ legacyCoverage.total }} 道已关联详细答案</h2>
         <p>
-          待人工复核 {{ legacyCoverage.unmapped }} 条；未纳入现行题库 {{ legacyCoverage.isolatedAnswers }} 条。
-          只有强语义匹配的题意进入现行题历史别名；低置信候选不计覆盖，也不参与搜索。
+          待人工复核 {{ legacyCoverage.unmapped }} 道。
+          只有强语义匹配的题意进入搜索索引，低置信候选不计覆盖。
         </p>
       </div>
-      <div class="legacy-audit__rate" aria-label="历史资料强语义匹配率">
+      <div class="legacy-audit__rate" aria-label="个人整理最新版覆盖率">
         <strong>{{ Math.round(legacyCoverage.coverageRate * 100) }}%</strong>
-        <span>强语义匹配率</span>
+        <span>覆盖率</span>
       </div>
     </section>
 

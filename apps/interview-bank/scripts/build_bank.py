@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
-"""Build the interview question bank from reviewed Markdown and legacy material.
-
-This script intentionally keeps legacy HTML answers out of the public question bank.
-The legacy files are parsed only to prove per-item coverage and to map their question
-intent to the reviewed, generic answers in the ten current modules.
-"""
+"""Build the interview question bank from reviewed Markdown and curated data."""
 
 from __future__ import annotations
 
@@ -18,7 +13,6 @@ import sys
 import unicodedata
 from dataclasses import dataclass
 from datetime import date
-from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
@@ -43,12 +37,11 @@ MODULE_FILES: Sequence[Tuple[str, str, str]] = (
 )
 
 HISTORY_FILES: Sequence[Tuple[str, str]] = (
-    ("outline-revision", "大纲面试题-优化修订稿-2525年10月24日.md"),
-    ("answer-draft", "面试题答案-粗稿-1.0版.html"),
+    ("personal-latest-outline", "个人整理最新版题库.md"),
 )
 
 CURATED_FILES: Sequence[str] = (
-    "legacy-2025-reviewed.json",
+    "personal-latest-reviewed.json",
     "curated-2026.json",
     "supplemental-backend-questions.json",
     "supplemental-ui-performance-questions.json",
@@ -66,8 +59,7 @@ MODULE_APPENDIX_HEADING = re.compile(r"^##\s+\S")
 OUTLINE_ITEM = re.compile(r"^\s*(\d+)\.\s+(.+?)\s*$")
 
 # These strings must never enter the generated public bank or coverage artifact.
-# They represent a named-company claim and a risky production-data instruction in
-# the old draft. The old source remains an input file but is quarantined.
+# They represent claims that must not enter the generated public bank.
 FORBIDDEN_PUBLIC_PATTERNS: Sequence[re.Pattern[str]] = (
     re.compile(r"\u5ea6\u5c0f\u6ee1"),
     re.compile(r"\u751f\u4ea7\u73af\u5883\u8131\u654f\u6570\u636e"),
@@ -100,16 +92,6 @@ SECTION_MODULE_HINTS: Dict[str, str] = {
     "测试管理": "08",
     "抓包与网络协议": "04",
     "职业规划": "10",
-}
-
-HTML_SECTION_NAMES: Dict[str, str] = {
-    "theory": "测试理论",
-    "thinking": "测试思维与场景",
-    "project": "项目相关",
-    "cases": "测试用例设计",
-    "management": "测试管理",
-    "network": "抓包与网络协议",
-    "career": "职业规划",
 }
 
 MODULE_ROLES: Dict[str, List[str]] = {
@@ -274,7 +256,7 @@ def clean_text(value: str) -> str:
 def normalize_title(value: str) -> str:
     value = unicodedata.normalize("NFKC", value).lower()
     value = re.sub(
-        r"^2025\s*(?:初版|优化修订版)\s*\d+\s*[|｜]",
+        r"^个人整理最新版\s*\d+\s*[|｜]",
         "",
         value,
     )
@@ -458,83 +440,6 @@ def parse_module_questions(
     return questions
 
 
-class LegacyHTMLParser(HTMLParser):
-    """Extract section, question and risk flags without exporting old answers."""
-
-    def __init__(self, source_id: str, source_file: str) -> None:
-        super().__init__(convert_charrefs=True)
-        self.source_id = source_id
-        self.source_file = source_file
-        self.items: List[LegacyItem] = []
-        self.section = "未分类"
-        self.section_id = ""
-        self.depth = 0
-        self.collecting: Optional[str] = None
-        self.collect_depth = -1
-        self.buffer: List[str] = []
-        self.pending_question = ""
-        self.answer_sensitive = False
-
-    @staticmethod
-    def _attrs(attrs: List[Tuple[str, Optional[str]]]) -> Dict[str, str]:
-        return {key: value or "" for key, value in attrs}
-
-    def handle_starttag(
-        self, tag: str, attrs: List[Tuple[str, Optional[str]]]
-    ) -> None:
-        if tag == "div":
-            self.depth += 1
-            values = self._attrs(attrs)
-            classes = set(values.get("class", "").split())
-            if "section" in classes:
-                self.section_id = values.get("id", "")
-                self.section = HTML_SECTION_NAMES.get(self.section_id, self.section_id or "未分类")
-            if "question" in classes:
-                self.collecting = "question"
-                self.collect_depth = self.depth
-                self.buffer = []
-            elif "answer" in classes:
-                self.collecting = "answer"
-                self.collect_depth = self.depth
-                self.buffer = []
-                self.answer_sensitive = self.section in {"项目相关", "职业规划"}
-        elif self.collecting == "answer" and tag in {"p", "li", "br", "tr", "h3", "h4"}:
-            self.buffer.append("\n")
-
-    def handle_data(self, data: str) -> None:
-        if self.collecting:
-            self.buffer.append(data)
-            if self.collecting == "answer":
-                text = "".join(self.buffer)
-                if has_forbidden_public_text(text) or any(term in text for term in PERSONAL_OR_PROJECT_TERMS):
-                    self.answer_sensitive = True
-
-    def handle_endtag(self, tag: str) -> None:
-        if tag != "div":
-            return
-        if self.collecting and self.depth == self.collect_depth:
-            value = clean_text("".join(self.buffer))
-            if self.collecting == "question":
-                self.pending_question = re.sub(r"^\s*\d+[.、]\s*", "", value)
-            elif self.pending_question:
-                self.items.append(
-                    LegacyItem(
-                        source_id=self.source_id,
-                        source_file=self.source_file,
-                        source_type="html-answer-draft",
-                        index=len(self.items) + 1,
-                        section=self.section,
-                        question=safe_question_text(self.pending_question),
-                        answer_has_sensitive_claim=self.answer_sensitive,
-                    )
-                )
-                self.pending_question = ""
-            self.collecting = None
-            self.collect_depth = -1
-            self.buffer = []
-        self.depth -= 1
-
-
 def parse_outline(source_id: str, file_name: str) -> List[LegacyItem]:
     path = HISTORY_DIR / file_name
     section = "未分类"
@@ -557,8 +462,7 @@ def parse_outline(source_id: str, file_name: str) -> List[LegacyItem]:
                 index=len(items) + 1,
                 section=section,
                 question=question,
-                answer_has_sensitive_claim=section in {"项目相关", "职业规划"}
-                or any(term in question for term in PERSONAL_OR_PROJECT_TERMS),
+                answer_has_sensitive_claim=False,
             )
         )
     return items
@@ -567,14 +471,7 @@ def parse_outline(source_id: str, file_name: str) -> List[LegacyItem]:
 def parse_legacy_items() -> List[LegacyItem]:
     all_items: List[LegacyItem] = []
     for source_id, file_name in HISTORY_FILES:
-        path = HISTORY_DIR / file_name
-        if path.suffix == ".md":
-            all_items.extend(parse_outline(source_id, file_name))
-        else:
-            parser = LegacyHTMLParser(source_id, file_name)
-            parser.feed(path.read_text(encoding="utf-8"))
-            parser.close()
-            all_items.extend(parser.items)
+        all_items.extend(parse_outline(source_id, file_name))
     return all_items
 
 
@@ -627,11 +524,7 @@ def map_legacy_items(
             mapped_ids = []
             canonical_question_id = None
         coverage_id = f"{item.source_id}-{item.index:03d}"
-        answer_policy = (
-            "legacy-answer-isolated-personal-or-project-claim"
-            if item.answer_has_sensitive_claim
-            else "legacy-answer-not-published-use-reviewed-answer"
-        )
+        answer_policy = "reviewed-answer-in-personal-latest-bank"
         record = {
             "id": coverage_id,
             "source_id": item.source_id,
@@ -659,14 +552,7 @@ def map_legacy_items(
             "best_match_score": round(best_score, 4),
             "review_recommended": mapping_status != "strong-semantic-match",
             "answer_policy": answer_policy,
-            "privacy_note": (
-                "仅保留泛化后的题意；旧答案含个人或项目陈述，已隔离且不进入 questions.json。"
-                if item.answer_has_sensitive_claim
-                else (
-                    "旧答案不直接发布；强语义匹配时使用已评审正式题答案，"
-                    "否则保留候选项等待人工复核。"
-                )
-            ),
+            "privacy_note": "题目大纲只用于覆盖校验；答案使用个人整理最新版中的评审内容。",
         }
         validate_public_text(json.dumps(record, ensure_ascii=False), coverage_id)
         coverage.append(record)
@@ -796,7 +682,7 @@ def normalize_curated_question(
         raise ValueError(f"{question_id} 的 kind 无效：{kind}")
     origin = clean_text(str(raw.get("origin") or "curated-2026"))
     if origin not in {
-        "legacy-2025-reviewed",
+        "personal-latest-reviewed",
         "curated-2026",
         "supplemental-reviewed",
         "xiaolincoding-reviewed",
@@ -853,15 +739,15 @@ def normalize_sources(
             "platform": "本地文档",
             "url": None,
             "accessed_at": generated_at,
-            "usage": "正式题目与详细答案的唯一历史合并落点。",
+            "usage": "正式题目与详细答案的统一合并落点。",
         },
         {
-            "id": "local-legacy-material",
-            "title": "本仓库历史面试资料",
+            "id": "personal-latest-outline",
+            "title": "个人整理最新版题目大纲",
             "platform": "本地文档",
             "url": None,
             "accessed_at": generated_at,
-            "usage": "仅用于逐题覆盖映射；历史答案不直接发布。",
+            "usage": "用于逐题覆盖校验；详细答案使用个人整理最新版评审数据。",
         },
     ]
     seen = {source["id"] for source in sources}
@@ -982,10 +868,7 @@ def build_payload(generated_at: str) -> Tuple[Dict[str, Any], Dict[str, Any]]:
     }
     mapped_count = sum(bool(item["mapped_question_ids"]) for item in coverage)
     review_required_count = len(coverage) - mapped_count
-    isolated_count = sum(
-        item["answer_policy"] == "legacy-answer-isolated-personal-or-project-claim"
-        for item in coverage
-    )
+    isolated_count = 0
     payload = {
         "schema_version": "1.0",
         "generated_at": generated_at,
@@ -1012,8 +895,8 @@ def build_payload(generated_at: str) -> Tuple[Dict[str, Any], Dict[str, Any]]:
         "schema_version": "1.0",
         "generated_at": generated_at,
         "policy": {
-            "purpose": "证明保留的修订稿与旧答案来源中的每道题均被解析；只有强语义匹配计入覆盖，低置信候选必须人工复核。",
-            "answer_handling": "不保存 HTML 历史答案正文；含个人/项目陈述的答案明确隔离，候选分配不等于答案已覆盖。",
+            "purpose": "证明个人整理最新版大纲中的每道题均已解析并映射到已审校题库。",
+            "answer_handling": "个人整理最新版评审数据是详细答案与答题思路的唯一来源。",
         },
         "statistics": {
             "total": len(coverage),

@@ -15,7 +15,7 @@ DATA_PATH = BANK_ROOT / "data" / "questions.json"
 OUTPUT_PATH = BANK_ROOT / "offline" / "软件测试离线题库.html"
 
 ORIGIN_LABELS = {
-    "legacy-2025-reviewed": "2025 优化修订版",
+    "personal-latest-reviewed": "个人整理最新版",
     "reviewed-core": "后续整理：核心模块",
     "curated-2026": "后续整理：2026 公开趋势",
     "supplemental-reviewed": "后续整理：补充评审",

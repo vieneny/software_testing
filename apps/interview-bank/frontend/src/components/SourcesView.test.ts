@@ -36,8 +36,8 @@ describe('SourcesView', () => {
       unmapped: 0,
       isolatedAnswers: 0,
       coverageRate: 1,
-      purpose: '历史资料审计',
-      answerHandling: '仅保留泛化后的题意。',
+      purpose: '个人整理最新版覆盖审计',
+      answerHandling: '使用已审校答案。',
     })
 
     const wrapper = mount(SourcesView, {

@@ -63,7 +63,7 @@ async function toggleAnswer() {
 
 function originLabel(origin: string): string {
   const labels: Record<string, string> = {
-    'legacy-2025-reviewed': '2025 优化修订版',
+    'personal-latest-reviewed': '个人整理最新版',
     'xiaolincoding-reviewed': '小林 Coding 资料原创重构题',
     'supplemental-reviewed': '补充评审题',
     'curated-2026': '2026 公开资料增补题',

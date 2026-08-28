@@ -129,7 +129,7 @@ def validate_question(
         "answer_has_working_depth": normalized_length(answer) >= 120,
         "answer_strategy_present": bool(answer_strategy),
         "reviewed_2025_strategy_has_working_depth": (
-            question.get("origin") != "legacy-2025-reviewed"
+            question.get("origin") != "personal-latest-reviewed"
             or normalized_length(answer_strategy) >= 120
         ),
         "explanation_has_reasoning_depth": normalized_length(explanation) >= 60,

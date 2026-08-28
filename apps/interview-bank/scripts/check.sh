@@ -14,7 +14,7 @@ if [[ ! -x "${PYTHON_BIN}" || ! -x "${PYTEST_BIN}" ]]; then
 fi
 
 echo "检查生成数据与源文档一致..."
-"${PYTHON_BIN}" "${SCRIPT_DIR}/build_legacy_2025.py" --check
+"${PYTHON_BIN}" "${SCRIPT_DIR}/build_personal_latest.py" --check
 "${PYTHON_BIN}" "${SCRIPT_DIR}/build_bank.py" --check
 "${PYTHON_BIN}" "${SCRIPT_DIR}/build_offline.py" --check
 

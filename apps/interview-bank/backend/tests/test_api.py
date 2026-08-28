@@ -8,7 +8,7 @@ def test_health_meta_modules_and_sources(client: TestClient) -> None:
     assert health.status_code == 200
     assert health.json()["status"] == "ok"
     assert health.json()["question_count"] == 470
-    assert health.json()["legacy_coverage_count"] == 320
+    assert health.json()["legacy_coverage_count"] == 160
 
     meta = client.get("/api/v1/meta").json()
     assert meta["statistics"]["reviewed_core_questions"] == 172
@@ -96,7 +96,7 @@ def test_question_filter_pagination_and_detail(client: TestClient) -> None:
     first_edition = client.get(
         "/api/v1/questions",
         params={
-            "origin": "legacy-2025-reviewed",
+            "origin": "personal-latest-reviewed",
             "include_answer": "true",
             "page_size": 100,
         },
@@ -138,12 +138,12 @@ def test_search_covers_answers_and_natural_chinese_wording(client: TestClient) -
     }
 
 
-def test_legacy_coverage_is_queryable_but_old_answers_are_not_exposed(
+def test_personal_latest_coverage_is_queryable(
     client: TestClient,
 ) -> None:
     response = client.get(
         "/api/v1/legacy-coverage",
-        params={"source_id": "answer-draft", "page_size": 200},
+        params={"source_id": "personal-latest-outline", "page_size": 200},
     )
     assert response.status_code == 200
     payload = response.json()
@@ -151,8 +151,8 @@ def test_legacy_coverage_is_queryable_but_old_answers_are_not_exposed(
     assert len(payload["items"]) == 160
     assert all("question_intent" in item for item in payload["items"])
     assert all("answer" not in item for item in payload["items"])
-    assert any(
-        item["answer_policy"] == "legacy-answer-isolated-personal-or-project-claim"
+    assert all(
+        item["answer_policy"] == "reviewed-answer-in-personal-latest-bank"
         for item in payload["items"]
     )
 
@@ -161,7 +161,7 @@ def test_legacy_coverage_is_queryable_but_old_answers_are_not_exposed(
         params={"q": "无法重现的BUG", "page_size": 20},
     ).json()
     assert any(
-        item["origin"] == "legacy-2025-reviewed"
+        item["origin"] == "personal-latest-reviewed"
         and "无法重现" in item["title"]
         for item in strong_legacy_search["items"]
     )
@@ -171,7 +171,7 @@ def test_legacy_coverage_is_queryable_but_old_answers_are_not_exposed(
         params={"q": "杯子功能测试思路", "page_size": 20},
     ).json()
     assert any(
-        item["origin"] == "legacy-2025-reviewed"
+        item["origin"] == "personal-latest-reviewed"
         and "杯子" in item["title"]
         for item in first_edition_search["items"]
     )

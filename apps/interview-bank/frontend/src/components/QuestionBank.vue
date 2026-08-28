@@ -25,7 +25,7 @@ const defaultMeta: Meta = {
   levels: ['入门', '进阶', '高级'],
   kinds: ['知识题', '场景题', '项目题', '行为题', '实操题'],
   origins: [
-    'legacy-2025-reviewed',
+    'personal-latest-reviewed',
     'reviewed-core',
     'curated-2026',
     'supplemental-reviewed',
@@ -90,7 +90,7 @@ const activeFilterCount = computed(
 
 function originLabel(origin: string): string {
   const labels: Record<string, string> = {
-    'legacy-2025-reviewed': '2025 优化修订版',
+    'personal-latest-reviewed': '个人整理最新版',
     'reviewed-core': '核心模块评审题',
     'curated-2026': '2026 公开趋势重构题',
     'supplemental-reviewed': '补充评审题',
@@ -263,9 +263,9 @@ onMounted(() => {
       <div>
         <span class="history-banner__mark">迁移</span>
         <p>
-          <strong>历史资料已逐题解析，匹配结论从严计算</strong>
-          {{ legacyCoverage.mappedToAnswer }} / {{ legacyCoverage.total }} 条题目意图通过强语义匹配，
-          {{ legacyCoverage.unmapped }} 条保留候选并等待人工复核；{{ legacyCoverage.isolatedAnswers }} 条旧答案未纳入现行题库。
+          <strong>个人整理最新版已完成逐题覆盖校验</strong>
+          {{ legacyCoverage.mappedToAnswer }} / {{ legacyCoverage.total }} 道题已关联详细答案，
+          {{ legacyCoverage.unmapped }} 道仍需人工复核。
         </p>
       </div>
       <span>只有强语义匹配的历史题关键词会进入现行题搜索</span>

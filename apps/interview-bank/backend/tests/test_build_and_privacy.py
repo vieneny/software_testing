@@ -25,7 +25,7 @@ def test_generated_bank_counts_and_required_answer_fields() -> None:
     assert payload["statistics"]["curated_questions"] == 298
     assert payload["statistics"]["by_origin"] == {
         "curated-2026": 24,
-        "legacy-2025-reviewed": 160,
+        "personal-latest-reviewed": 160,
         "reviewed-core": 172,
         "xiaolincoding-reviewed": 62,
         "supplemental-reviewed": 52,
@@ -153,18 +153,17 @@ def test_module_appendices_do_not_leak_into_the_last_core_question() -> None:
         assert "## 版本敏感点" not in reviewed_text
 
 
-def test_every_legacy_item_has_a_traceable_disposition() -> None:
+def test_every_personal_latest_item_has_a_traceable_disposition() -> None:
     coverage = load("legacy-coverage.json")
-    assert coverage["statistics"]["total"] == 320
+    assert coverage["statistics"]["total"] == 160
     assert coverage["statistics"]["by_source"] == {
-        "outline-revision": 160,
-        "answer-draft": 160,
+        "personal-latest-outline": 160,
     }
-    assert len(coverage["items"]) == 320
-    assert len({item["id"] for item in coverage["items"]}) == 320
-    assert coverage["statistics"]["strong_semantic_matches"] == 320
+    assert len(coverage["items"]) == 160
+    assert len({item["id"] for item in coverage["items"]}) == 160
+    assert coverage["statistics"]["strong_semantic_matches"] == 160
     assert coverage["statistics"]["candidate_assignments_review_required"] == 0
-    assert coverage["statistics"]["mapped_to_answer"] == 320
+    assert coverage["statistics"]["mapped_to_answer"] == 160
     assert coverage["statistics"]["unmapped"] == 0
     assert coverage["statistics"]["coverage_rate"] == 1.0
     for item in coverage["items"]:
@@ -191,10 +190,7 @@ def test_every_legacy_item_has_a_traceable_disposition() -> None:
                 f"{index:02d}" for index in range(1, 11)
             }
             assert item["review_recommended"] is True
-        assert item["answer_policy"] in {
-            "legacy-answer-isolated-personal-or-project-claim",
-            "legacy-answer-not-published-use-reviewed-answer",
-        }
+        assert item["answer_policy"] == "reviewed-answer-in-personal-latest-bank"
         assert "answer" not in item
 
     expected_modules = {
@@ -219,7 +215,7 @@ def test_every_legacy_item_has_a_traceable_disposition() -> None:
 def test_generated_public_artifacts_contain_no_quarantined_text() -> None:
     artifact_names = [
         "questions.json",
-        "legacy-2025-reviewed.json",
+        "personal-latest-reviewed.json",
         "legacy-coverage.json",
         "supplemental-backend-questions.json",
         "supplemental-ui-performance-questions.json",
@@ -243,7 +239,7 @@ def test_generated_public_artifacts_contain_no_quarantined_text() -> None:
         "\u4e2a\u4eba\u7ecf\u9a8c\uff1a",
     )
     assert not [term for term in forbidden if term in combined]
-    assert "legacy-answer-isolated-personal-or-project-claim" in combined
+    assert "reviewed-answer-in-personal-latest-bank" in combined
 
 
 def test_curated_sources_are_traceable() -> None:
@@ -266,7 +262,7 @@ def test_curated_sources_are_traceable() -> None:
         for question in xiaolin_questions
     )
     public = [source for source in sources.values() if source["url"]]
-    assert len(public) == 99
+    assert len(public) == 98
     assert all(source["url"].startswith("https://") for source in public)
     assert all(source["accessed_at"] for source in public)
 
@@ -288,29 +284,33 @@ def test_build_outputs_are_current() -> None:
     assert result.returncode == 0, result.stderr
 
 
-def test_reviewed_2025_revision_is_complete_and_traceable() -> None:
-    source = load("legacy-2025-reviewed.json")
+def test_personal_latest_bank_is_complete_and_traceable() -> None:
+    source = load("personal-latest-reviewed.json")
     questions = source["questions"]
     assert source["collection"]["source_commit"] == (
         "d0a8cfde75fe43c3abd7919e91c72bb7f3c15823"
     )
     assert len(questions) == 160
     assert {question["origin"] for question in questions} == {
-        "legacy-2025-reviewed"
+        "personal-latest-reviewed"
     }
-    assert all(question["source_ids"] == ["github-first-commit-2025"] for question in questions)
+    assert all(question["source_ids"] == ["personal-latest-reviewed"] for question in questions)
     assert all(len(re.sub(r"\s+", "", question["answer"])) >= 120 for question in questions)
     assert all(len(re.sub(r"\s+", "", question["answer_strategy"])) >= 120 for question in questions)
     assert all(question["explanation"] for question in questions)
     coverage = load("legacy-coverage.json")
-    revision = [item for item in coverage["items"] if item["source_id"] == "outline-revision"]
+    revision = [
+        item
+        for item in coverage["items"]
+        if item["source_id"] == "personal-latest-outline"
+    ]
     assert len(revision) == 160
     assert all(item["mapping_status"] == "strong-semantic-match" for item in revision)
     assert all(item["canonical_question_id"].startswith("legacy-2025-") for item in revision)
 
 
-def test_reviewed_2025_and_offline_generators_are_current() -> None:
-    scripts = ("build_legacy_2025.py", "build_offline.py")
+def test_personal_latest_and_offline_generators_are_current() -> None:
+    scripts = ("build_personal_latest.py", "build_offline.py")
     for script in scripts:
         result = subprocess.run(
             [sys.executable, str(BANK_DIR / "scripts" / script), "--check"],
@@ -324,6 +324,6 @@ def test_reviewed_2025_and_offline_generators_are_current() -> None:
     offline = BANK_DIR / "offline" / "软件测试离线题库.html"
     text = offline.read_text(encoding="utf-8")
     assert '"questionCount":470' in text
-    assert "2025 优化修订版" in text
+    assert "个人整理最新版" in text
     assert "答题思路" in text
     assert "后续整理：核心模块" in text
