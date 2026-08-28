@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo Shop</title>
+    <style>
+      :root { color-scheme: light; font-family: system-ui, sans-serif; }
+      body { margin: 0; background: #f5f7fb; color: #172033; }
+      main { max-width: 760px; margin: 48px auto; padding: 0 20px; }
+      ul { list-style: none; padding: 0; display: grid; gap: 12px; }
+      li { background: white; border: 1px solid #dbe2ef; border-radius: 12px; padding: 18px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+      h1 { margin-bottom: 6px; }
+      .price { color: #41506a; }
+      button { border: 0; border-radius: 8px; padding: 10px 14px; background: #275efe; color: white; cursor: pointer; }
+      button:disabled { opacity: .6; cursor: progress; }
+      #status { min-height: 24px; padding: 12px 0; font-weight: 600; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Demo Shop</h1>
+      <p>这是用于公开测试练习的虚构商店，数据不会持久化。</p>
+      <p id="status" role="status" aria-live="polite">正在加载商品……</p>
+      <ul id="products" aria-label="商品列表"></ul>
+    </main>
+    <script>
+      const statusNode = document.querySelector('#status');
+      const productsNode = document.querySelector('#products');
+
+      const formatPrice = (cents) => `¥${(cents / 100).toFixed(2)}`;
+
+      async function buy(product, button) {
+        button.disabled = true;
+        statusNode.textContent = '正在创建订单……';
+        try {
+          const response = await fetch('/api/orders', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Idempotency-Key': crypto.randomUUID(),
+            },
+            body: JSON.stringify({ items: [{ product_id: product.id, quantity: 1 }] }),
+          });
+          const body = await response.json();
+          if (!response.ok) throw new Error(body.detail || `HTTP ${response.status}`);
+          statusNode.textContent = `订单创建成功 #${body.id}，金额 ${formatPrice(body.total_cents)}`;
+        } catch (error) {
+          statusNode.textContent = `下单失败：${error.message}`;
+        } finally {
+          button.disabled = false;
+        }
+      }
+
+      async function loadProducts() {
+        try {
+          const response = await fetch('/api/products');
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          const products = await response.json();
+          for (const product of products) {
+            const item = document.createElement('li');
+            const description = document.createElement('span');
+            description.innerHTML = `<strong>${product.name}</strong><br><span class="price">${formatPrice(product.price_cents)}</span>`;
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.textContent = `购买 ${product.name}`;
+            button.addEventListener('click', () => buy(product, button));
+            item.append(description, button);
+            productsNode.append(item);
+          }
+          statusNode.textContent = `已加载 ${products.length} 件商品`;
+        } catch (error) {
+          statusNode.textContent = `加载失败：${error.message}`;
+        }
+      }
+
+      loadProducts();
+    </script>
+  </body>
+</html>

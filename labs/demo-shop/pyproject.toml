@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "software-testing-demo-shop"
+version = "0.1.0"
+description = "Synthetic application for software testing learning labs"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.110,<1",
+  "uvicorn>=0.29,<1",
+]
+
+[project.optional-dependencies]
+test = [
+  "jsonschema>=4.21,<5",
+  "pytest>=8,<10",
+  "requests>=2.31,<3",
+]
+ui = [
+  "pytest-playwright>=0.5,<1",
+]
+performance = [
+  "locust>=2.24,<3",
+]
+
+[tool.setuptools]
+packages = ["app"]
+
+[tool.setuptools.package-data]
+app = ["static/*.html"]
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-markers"
+testpaths = ["tests"]
+python_files = ["test_*.py", "测试_*.py"]
+markers = [
+  "api: HTTP API tests that require the local demo service",
+  "ui: browser tests that require Playwright and the local demo service",
+  "ai: deterministic evaluation-harness tests",
+]

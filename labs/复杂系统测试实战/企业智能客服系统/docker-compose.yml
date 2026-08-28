@@ -1,0 +1,86 @@
+name: smart-customer-service-lab
+
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-customer_service}
+      MYSQL_USER: ${MYSQL_USER:-customer_service}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-customer_service_dev}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root_dev_only}
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    volumes:
+      - customer-service-mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -p$${MYSQL_ROOT_PASSWORD} --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  redis:
+    image: redis:7.4-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "${REDIS_PUBLIC_PORT:-6379}:6379"
+    volumes:
+      - customer-service-redis:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  ai-middleware:
+    build:
+      context: ../人工智能中间件
+    environment:
+      APP_ENV: ${APP_ENV:-development}
+      AI_PROVIDER: ${AI_PROVIDER:-mock}
+    ports:
+      - "${AI_PUBLIC_PORT:-8091}:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  backend:
+    build:
+      context: ./backend
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DB_URL: jdbc:mysql://mysql:3306/${MYSQL_DATABASE:-customer_service}?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      DB_USERNAME: ${MYSQL_USER:-customer_service}
+      DB_PASSWORD: ${MYSQL_PASSWORD:-customer_service_dev}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      AI_BASE_URL: ${AI_BASE_URL:-http://ai-middleware:8000}
+      AI_SUGGESTION_PATH: ${AI_SUGGESTION_PATH:-/api/v1/customer-service/suggest}
+      AI_CONNECT_TIMEOUT: ${AI_CONNECT_TIMEOUT:-2s}
+      AI_READ_TIMEOUT: ${AI_READ_TIMEOUT:-20s}
+      DEMO_DATA_ENABLED: ${DEMO_DATA_ENABLED:-true}
+    ports:
+      - "${BACKEND_PORT:-8080}:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - http://localhost:8080/api/health | grep -q UP"]
+      interval: 8s
+      timeout: 4s
+      retries: 20
+      start_period: 20s
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "${FRONTEND_PORT:-5173}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  customer-service-mysql:
+  customer-service-redis:

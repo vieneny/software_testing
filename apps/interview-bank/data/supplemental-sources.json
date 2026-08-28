@@ -1,0 +1,78 @@
+{
+  "updated_at": "2026-07-29",
+  "questions": [],
+  "sources": [
+    {
+      "id": "python-control-flow-docs",
+      "title": "Python 3 控制流与简单语句官方文档",
+      "platform": "Python 官方文档",
+      "url": "https://docs.python.org/3/reference/simple_stmts.html",
+      "accessed_at": "2026-07-29",
+      "note": "核验 break、continue、return、finally 和生成器相关语义。"
+    },
+    {
+      "id": "selenium-docs",
+      "title": "Selenium Overview 官方文档",
+      "platform": "Selenium 官方文档",
+      "url": "https://www.selenium.dev/documentation/overview/",
+      "accessed_at": "2026-07-29",
+      "note": "核验 WebDriver、IDE、Grid 及浏览器驱动边界。"
+    },
+    {
+      "id": "android-adb-docs",
+      "title": "Android Debug Bridge 官方文档",
+      "platform": "Android Developers",
+      "url": "https://developer.android.com/tools/adb",
+      "accessed_at": "2026-07-29",
+      "note": "核验 ADB 客户端、服务端、设备守护进程和常用诊断能力。"
+    },
+    {
+      "id": "android-performance-docs",
+      "title": "Android App Performance 官方文档",
+      "platform": "Android Developers",
+      "url": "https://developer.android.com/topic/performance/measuring-performance",
+      "accessed_at": "2026-07-29",
+      "note": "核验渲染、卡顿、内存、耗电和性能取证方法。"
+    },
+    {
+      "id": "jmeter-docs",
+      "title": "Apache JMeter User Manual",
+      "platform": "Apache 官方文档",
+      "url": "https://jmeter.apache.org/usermanual/",
+      "accessed_at": "2026-07-29",
+      "note": "核验非 GUI 执行、CSV 参数化、断言、结果文件和分布式执行注意事项。"
+    },
+    {
+      "id": "mysql-84-docs",
+      "title": "MySQL 8.4 Reference Manual",
+      "platform": "MySQL 官方文档",
+      "url": "https://dev.mysql.com/doc/refman/8.4/en/",
+      "accessed_at": "2026-07-29",
+      "note": "核验 InnoDB、B-tree、聚簇索引、锁、事务与死锁处理。"
+    },
+    {
+      "id": "kafka-docs",
+      "title": "Apache Kafka 官方文档",
+      "platform": "Apache Kafka",
+      "url": "https://kafka.apache.org/documentation/",
+      "accessed_at": "2026-07-29",
+      "note": "核验分区内顺序、复制、生产者幂等与端到端处理边界。"
+    },
+    {
+      "id": "redis-docs",
+      "title": "Redis Open Source 官方文档",
+      "platform": "Redis 官方文档",
+      "url": "https://redis.io/docs/latest/develop/",
+      "accessed_at": "2026-07-29",
+      "note": "核验 TTL、淘汰、持久化、缓存命中和失效场景。"
+    },
+    {
+      "id": "pytest-docs",
+      "title": "pytest 官方文档",
+      "platform": "pytest 官方文档",
+      "url": "https://docs.pytest.org/en/stable/",
+      "accessed_at": "2026-07-29",
+      "note": "核验 fixture、参数化、标记、失败报告和清理机制。"
+    }
+  ]
+}

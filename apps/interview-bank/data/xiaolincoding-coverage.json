@@ -1,0 +1,533 @@
+{
+  "schema_version": "1.0",
+  "source_title": "小林 Coding 测试与测试开发资料覆盖审计",
+  "source_url": "https://xiaolincoding.com/interview/",
+  "accessed_at": "2026-07-29",
+  "summary": "共核对 5 个直接测试入口与 16 个测试开发支撑专题。站内汇总页标注 1,143 题，本次按当前页面问题标题实际识别 1,111 题；两种口径分别保留。直接题库用于发现候选题，支撑专题按岗位能力映射；答案均经过去重、原创重写与技术事实校验。",
+  "documents": [
+    {
+      "document_id": "xiaolincoding-testdev-navigation",
+      "title": "测试开发面试题全攻略",
+      "module": "直接题库 · 学习导航",
+      "url": "https://xiaolincoding.com/interview/test_dev.html",
+      "source_chars": 3929,
+      "declared_question_count": 0,
+      "observed_question_count": 0,
+      "coverage_mode": "navigation-reviewed",
+      "question_ids": [
+        "2026-fundamentals-coverage-metric",
+        "2026-functional-approval-state-machine",
+        "2026-automation-new-api-ci",
+        "2026-performance-tail-latency",
+        "core-08-13"
+      ],
+      "quality_notes": [
+        "该页是五方向学习导航，不把栏目说明伪计为面试题。",
+        "用于校验业务测试、Python/Java 自动化、性能与测开基础是否缺项。"
+      ]
+    },
+    {
+      "document_id": "xiaolincoding-business-testing",
+      "title": "业务测试面试题",
+      "module": "直接题库 · 业务测试",
+      "url": "https://xiaolincoding.com/interview/business_testing.html",
+      "source_chars": 36544,
+      "declared_question_count": 154,
+      "observed_question_count": 148,
+      "coverage_mode": "direct-bank-reviewed",
+      "question_ids": [
+        "xiaolin-business-session-based-exploration",
+        "xiaolin-business-web-login-state-security",
+        "xiaolin-business-cart-merge-pricing",
+        "xiaolin-business-web-vitals-current",
+        "xiaolin-business-app-permission-lifecycle",
+        "xiaolin-business-push-deeplink-matrix",
+        "xiaolin-business-app-offline-sync",
+        "xiaolin-business-jsbridge-contract-security",
+        "xiaolin-business-h5-white-screen-triage",
+        "xiaolin-business-pwa-cache-update",
+        "xiaolin-business-h5-responsive-keyboard-safearea",
+        "xiaolin-business-miniprogram-dual-thread",
+        "xiaolin-business-miniprogram-auth-login",
+        "xiaolin-business-miniprogram-entry-lifecycle",
+        "xiaolin-business-miniprogram-subpackage-performance",
+        "xiaolin-business-miniprogram-release-environment",
+        "xiaolin-business-graphql-testing",
+        "xiaolin-business-download-api"
+      ],
+      "quality_notes": [
+        "逐题盘点测试基础、Web、App、H5、小程序和接口六章后再与现行题库去重。",
+        "补入内容集中在状态矩阵、移动生命周期、小程序、PWA、GraphQL 与故障证据链。",
+        "固定退出标准、固定性能阈值和仅按 HTTP 状态判断成功等口径均未采纳。"
+      ]
+    },
+    {
+      "document_id": "xiaolincoding-python-automation",
+      "title": "Python 自动化测试面试题",
+      "module": "直接题库 · 自动化测试",
+      "url": "https://xiaolincoding.com/interview/python_automation.html",
+      "source_chars": 38037,
+      "declared_question_count": 63,
+      "observed_question_count": 60,
+      "coverage_mode": "direct-bank-reviewed",
+      "question_ids": [
+        "core-05-05",
+        "core-05-08",
+        "core-05-10",
+        "core-05-12",
+        "core-05-14",
+        "core-05-15",
+        "core-05-16",
+        "core-05-17",
+        "core-06-03",
+        "core-06-04",
+        "core-06-06",
+        "core-06-08",
+        "core-06-10",
+        "core-06-11",
+        "core-06-16",
+        "core-06-17",
+        "core-06-18",
+        "core-06-19",
+        "core-06-20",
+        "xiaolin-automation-java-python-tradeoff",
+        "xiaolin-automation-retry-governance-java",
+        "xiaolin-automation-java-api-module-architecture"
+      ],
+      "quality_notes": [
+        "接口、Web 和 App 三章的大多数 Python/pytest/Appium 主题已被现行题库覆盖，保留映射而不重复造题。",
+        "新增题只补语言选型、重试治理和跨语言框架分层等缺口。",
+        "启动时长、重试次数和环境重置均按项目基线设计，不使用跨项目固定数字。"
+      ]
+    },
+    {
+      "document_id": "xiaolincoding-java-automation",
+      "title": "Java 自动化测试面试题",
+      "module": "直接题库 · 自动化测试",
+      "url": "https://xiaolincoding.com/interview/java_automation.html",
+      "source_chars": 16594,
+      "declared_question_count": 63,
+      "observed_question_count": 60,
+      "coverage_mode": "direct-bank-reviewed",
+      "question_ids": [
+        "xiaolin-automation-restassured-httpclient-choice",
+        "xiaolin-automation-restassured-spec-filter",
+        "xiaolin-automation-java-httpclient-timeout-retry",
+        "xiaolin-automation-restassured-assertion-depth",
+        "xiaolin-automation-junit-testng-choice",
+        "xiaolin-automation-junit-extension-lifecycle",
+        "xiaolin-automation-junit-parameterized-dynamic",
+        "xiaolin-automation-maven-surefire-failsafe",
+        "xiaolin-automation-maven-gradle-choice",
+        "xiaolin-automation-wiremock-mockwebserver-choice",
+        "xiaolin-automation-wiremock-fault-contract",
+        "xiaolin-automation-junit-testng-parallel-model",
+        "xiaolin-automation-java-parallel-context",
+        "xiaolin-automation-testcontainers-lifecycle",
+        "xiaolin-automation-jacoco-coverage-boundary",
+        "xiaolin-automation-java-python-tradeoff",
+        "xiaolin-automation-retry-governance-java",
+        "xiaolin-automation-java-ci-reproducible",
+        "xiaolin-automation-java-api-module-architecture",
+        "core-06-13",
+        "core-06-14",
+        "core-06-15",
+        "core-06-16",
+        "core-06-17",
+        "core-06-18",
+        "core-06-19",
+        "core-06-20"
+      ],
+      "quality_notes": [
+        "重点补入 REST Assured、JUnit/TestNG、WireMock、构建生命周期、并行隔离、Testcontainers 和 JaCoCo。",
+        "Selenium/Appium 通用部分映射到现行 UI 自动化题，避免因语言不同复制相同测试思想。",
+        "删除“万能验证码”等不安全做法，不把框架选择、等待时间或执行速度写成绝对结论。"
+      ]
+    },
+    {
+      "document_id": "xiaolincoding-performance-testing",
+      "title": "性能测试面试题",
+      "module": "直接题库 · 性能测试",
+      "url": "https://xiaolincoding.com/interview/performance_testing.html",
+      "source_chars": 25298,
+      "declared_question_count": 105,
+      "observed_question_count": 100,
+      "coverage_mode": "direct-bank-reviewed",
+      "question_ids": [
+        "xiaolin-performance-jmeter-distributed-validity",
+        "xiaolin-performance-jmeter-pacing-timers",
+        "xiaolin-performance-jmeter-thread-group-workload",
+        "xiaolin-performance-jmeter-nongui-results",
+        "xiaolin-performance-load-generator-bottleneck",
+        "xiaolin-performance-linux-use-red-triage",
+        "xiaolin-performance-linux-disk-io",
+        "xiaolin-performance-network-bottleneck-evidence",
+        "xiaolin-performance-jvm-gc-correlation",
+        "xiaolin-performance-memory-growth-classification",
+        "xiaolin-performance-thread-dump-diagnosis",
+        "xiaolin-performance-thread-pool-experiment",
+        "xiaolin-performance-db-pool-diagnosis",
+        "xiaolin-performance-mysql-cpu-lock-plan",
+        "xiaolin-performance-db-direct-vs-e2e",
+        "xiaolin-performance-trace-latency-decomposition",
+        "xiaolin-performance-load-balancer-skew",
+        "xiaolin-performance-error-inflection",
+        "xiaolin-performance-tuning-experiment-design",
+        "xiaolin-performance-jvm-tuning-boundaries",
+        "xiaolin-performance-logging-overhead",
+        "xiaolin-performance-monitoring-report-reproducibility"
+      ],
+      "quality_notes": [
+        "逐题核对 JMeter、基础、监控、瓶颈和调优五章，并与现有性能题去重。",
+        "新增内容要求客户端、网关、服务、JVM、主机和数据层使用统一时间轴形成证据。",
+        "线程池、连接池、堆比例、分位数和资源阈值都必须绑定版本、负载与实验，不套固定公式。"
+      ]
+    },
+    {
+      "document_id": "xiaolincoding-java",
+      "title": "Java 基础面试题",
+      "module": "测开基础 · Java 与 JVM",
+      "url": "https://xiaolincoding.com/interview/java.html",
+      "source_chars": 64804,
+      "declared_question_count": 83,
+      "observed_question_count": 79,
+      "coverage_mode": "supporting-topic-mapping",
+      "question_ids": [
+        "xiaolin-automation-java-python-tradeoff",
+        "xiaolin-automation-junit-extension-lifecycle",
+        "xiaolin-automation-java-parallel-context",
+        "xiaolin-automation-threadpool-hang-diagnosis",
+        "core-08-15"
+      ],
+      "quality_notes": [
+        "作为 Java 测试开发的语言基础补充，重点映射异常、反射、注解、I/O 和设计边界。",
+        "不把整套开发岗八股题重复导入测试题库；只保留与测试代码、排障和被测系统理解直接相关的能力。"
+      ]
+    },
+    {
+      "document_id": "xiaolincoding-java-collections",
+      "title": "Java 集合面试题",
+      "module": "测开基础 · Java 与 JVM",
+      "url": "https://xiaolincoding.com/interview/collections.html",
+      "source_chars": 43393,
+      "declared_question_count": 50,
+      "observed_question_count": 50,
+      "coverage_mode": "supporting-topic-mapping",
+      "question_ids": [
+        "xiaolin-automation-collection-selection-result-aggregation",
+        "xiaolin-automation-java-parallel-context",
+        "core-05-01"
+      ],
+      "quality_notes": [
+        "面向测试结果聚合、去重、索引和并发共享场景解释 List、Set、Map、Queue 选型。",
+        "实现细节需绑定当前 JDK 文档，不背诵无使用场景的数据结构结论。"
+      ]
+    },
+    {
+      "document_id": "xiaolincoding-java-concurrency",
+      "title": "Java 并发编程面试题",
+      "module": "测开基础 · Java 与 JVM",
+      "url": "https://xiaolincoding.com/interview/juc.html",
+      "source_chars": 77570,
+      "declared_question_count": 68,
+      "observed_question_count": 68,
+      "coverage_mode": "supporting-topic-mapping",
+      "question_ids": [
+        "xiaolin-automation-threadpool-hang-diagnosis",
+        "xiaolin-automation-java-parallel-context",
+        "xiaolin-automation-junit-testng-parallel-model",
+        "xiaolin-performance-thread-dump-diagnosis",
+        "xiaolin-performance-thread-pool-experiment"
+      ],
+      "quality_notes": [
+        "用于测试套件并行、线程池卡死、线程安全和被测服务饱和问题的诊断。",
+        "并行执行框架、JVM 线程池与性能压测的并发模型分开解释。"
+      ]
+    },
+    {
+      "document_id": "xiaolincoding-jvm",
+      "title": "Java 虚拟机面试题",
+      "module": "测开基础 · Java 与 JVM",
+      "url": "https://xiaolincoding.com/interview/jvm.html",
+      "source_chars": 26022,
+      "declared_question_count": 40,
+      "observed_question_count": 37,
+      "coverage_mode": "supporting-topic-mapping",
+      "question_ids": [
+        "xiaolin-automation-jvm-gc-evidence",
+        "xiaolin-performance-jvm-gc-correlation",
+        "xiaolin-performance-memory-growth-classification",
+        "xiaolin-performance-jvm-tuning-boundaries"
+      ],
+      "quality_notes": [
+        "只把内存、GC、类加载和取证映射到稳定性与性能诊断。",
+        "收集器、默认参数与诊断工具按实际 JDK 版本核对，不使用固定堆比例或万能 GC 选择。"
+      ]
+    },
+    {
+      "document_id": "xiaolincoding-spring",
+      "title": "Spring 面试题",
+      "module": "测开基础 · Java 与 JVM",
+      "url": "https://xiaolincoding.com/interview/spring.html",
+      "source_chars": 51651,
+      "declared_question_count": 60,
+      "observed_question_count": 60,
+      "coverage_mode": "supporting-topic-mapping",
+      "question_ids": [
+        "core-04-08",
+        "core-04-15",
+        "core-08-06",
+        "core-08-07",
+        "xiaolin-automation-testcontainers-lifecycle"
+      ],
+      "quality_notes": [
+        "用于理解 Spring Boot 被测系统的 Web、事务、依赖、数据访问和微服务边界。",
+        "面试题库保留测试策略与故障场景，不扩展成 Spring 开发八股镜像。"
+      ]
+    },
+    {
+      "document_id": "xiaolincoding-mysql",
+      "title": "MySQL 面试题",
+      "module": "测开基础 · 数据与中间件",
+      "url": "https://xiaolincoding.com/interview/mysql.html",
+      "source_chars": 52088,
+      "declared_question_count": 94,
+      "observed_question_count": 94,
+      "coverage_mode": "supporting-topic-mapping",
+      "question_ids": [
+        "core-03-10",
+        "core-03-11",
+        "core-03-12",
+        "core-03-13",
+        "supplemental-backend-mysql-deadlock-test",
+        "xiaolin-performance-db-pool-diagnosis",
+        "xiaolin-performance-mysql-cpu-lock-plan",
+        "xiaolin-performance-db-direct-vs-e2e"
+      ],
+      "quality_notes": [
+        "映射 SQL 校验、事务隔离、死锁、执行计划、连接池和数据库性能诊断。",
+        "索引、日志、锁与优化器行为以对应 MySQL 版本官方文档和可复现实验为准。"
+      ]
+    },
+    {
+      "document_id": "xiaolincoding-redis",
+      "title": "Redis 面试题",
+      "module": "测开基础 · 数据与中间件",
+      "url": "https://xiaolincoding.com/interview/redis.html",
+      "source_chars": 38479,
+      "declared_question_count": 48,
+      "observed_question_count": 48,
+      "coverage_mode": "supporting-topic-mapping",
+      "question_ids": [
+        "supplemental-redis-failure-patterns",
+        "core-04-15",
+        "core-07-10",
+        "xiaolin-performance-memory-growth-classification"
+      ],
+      "quality_notes": [
+        "映射缓存穿透、击穿、雪崩、过期淘汰、持久化和一致性故障。",
+        "缓存命中率或内存占用不使用脱离业务和版本的统一阈值。"
+      ]
+    },
+    {
+      "document_id": "xiaolincoding-os",
+      "title": "操作系统面试题",
+      "module": "测开基础 · 计算机与系统",
+      "url": "https://xiaolincoding.com/interview/os.html",
+      "source_chars": 30407,
+      "declared_question_count": 51,
+      "observed_question_count": 51,
+      "coverage_mode": "supporting-topic-mapping",
+      "question_ids": [
+        "core-03-01",
+        "core-03-02",
+        "core-03-05",
+        "core-03-06",
+        "xiaolin-performance-linux-use-red-triage",
+        "xiaolin-performance-linux-disk-io"
+      ],
+      "quality_notes": [
+        "面向进程线程、内存、锁、文件与 I/O 的测试排障场景。",
+        "概念题必须落到日志、指标、线程栈或可复现实验，不能只背定义。"
+      ]
+    },
+    {
+      "document_id": "xiaolincoding-network",
+      "title": "计算机网络面试题",
+      "module": "测开基础 · 计算机与系统",
+      "url": "https://xiaolincoding.com/interview/network.html",
+      "source_chars": 41702,
+      "declared_question_count": 76,
+      "observed_question_count": 76,
+      "coverage_mode": "supporting-topic-mapping",
+      "question_ids": [
+        "core-03-03",
+        "core-03-04",
+        "core-04-01",
+        "core-04-02",
+        "core-04-04",
+        "core-04-09",
+        "supplemental-backend-api-unreachable-troubleshooting",
+        "supplemental-backend-signed-encrypted-api",
+        "xiaolin-performance-network-bottleneck-evidence"
+      ],
+      "quality_notes": [
+        "映射 HTTP、DNS、TCP、TLS、代理、重试、签名和网络瓶颈分层排查。",
+        "网络协议事实优先按 IETF、WHATWG、W3C 或工具官方文档校验。"
+      ]
+    },
+    {
+      "document_id": "xiaolincoding-data-structures",
+      "title": "数据结构与算法面试题",
+      "module": "测开基础 · 计算机与系统",
+      "url": "https://xiaolincoding.com/interview/data.html",
+      "source_chars": 34038,
+      "declared_question_count": 43,
+      "observed_question_count": 43,
+      "coverage_mode": "supporting-topic-mapping",
+      "question_ids": [
+        "xiaolin-automation-collection-selection-result-aggregation",
+        "core-05-01",
+        "core-05-02",
+        "core-05-15"
+      ],
+      "quality_notes": [
+        "只映射测试数据生成、复杂度、集合选型和并行结果处理等测开应用。",
+        "通用算法题可作为编码练习，但不以题量扩充测试面试库。"
+      ]
+    },
+    {
+      "document_id": "xiaolincoding-message-queue",
+      "title": "消息队列面试题",
+      "module": "测开基础 · 数据与中间件",
+      "url": "https://xiaolincoding.com/interview/mq.html",
+      "source_chars": 26376,
+      "declared_question_count": 38,
+      "observed_question_count": 38,
+      "coverage_mode": "supporting-topic-mapping",
+      "question_ids": [
+        "core-04-15",
+        "core-07-10",
+        "supplemental-kafka-delivery-semantics",
+        "supplemental-webhook-delivery"
+      ],
+      "quality_notes": [
+        "映射消息重复、丢失、顺序、积压、重试、幂等与最终一致性测试。",
+        "不同中间件的交付语义、确认和事务能力必须按产品与版本区分。"
+      ]
+    },
+    {
+      "document_id": "xiaolincoding-distributed",
+      "title": "分布式面试题",
+      "module": "测开基础 · 架构与工程",
+      "url": "https://xiaolincoding.com/interview/cap.html",
+      "source_chars": 19047,
+      "declared_question_count": 26,
+      "observed_question_count": 19,
+      "coverage_mode": "supporting-topic-mapping",
+      "question_ids": [
+        "core-04-02",
+        "core-04-09",
+        "core-04-14",
+        "core-04-15",
+        "2026-api-order-idempotency",
+        "2026-agent-timeout-recovery",
+        "supplemental-webhook-delivery"
+      ],
+      "quality_notes": [
+        "映射一致性、分布式锁、事务、超时、重试、幂等和补偿验证。",
+        "CAP、BASE 等模型用于明确取舍，不直接推出具体系统必然行为。"
+      ]
+    },
+    {
+      "document_id": "xiaolincoding-system-design",
+      "title": "系统设计面试题",
+      "module": "测开基础 · 架构与工程",
+      "url": "https://xiaolincoding.com/interview/systemdesign.html",
+      "source_chars": 16169,
+      "declared_question_count": 14,
+      "observed_question_count": 14,
+      "coverage_mode": "supporting-topic-mapping",
+      "question_ids": [
+        "core-07-06",
+        "core-07-14",
+        "core-08-12",
+        "core-08-13",
+        "xiaolin-performance-load-balancer-skew",
+        "xiaolin-performance-error-inflection"
+      ],
+      "quality_notes": [
+        "从测试策略、容量、限流、故障恢复和可观测性角度理解系统设计。",
+        "架构选择题要求说明约束与验证方式，不背单一标准答案。"
+      ]
+    },
+    {
+      "document_id": "xiaolincoding-linux",
+      "title": "Linux 命令面试题",
+      "module": "测开基础 · 计算机与系统",
+      "url": "https://xiaolincoding.com/interview/linux.html",
+      "source_chars": 9250,
+      "declared_question_count": 21,
+      "observed_question_count": 21,
+      "coverage_mode": "supporting-topic-mapping",
+      "question_ids": [
+        "core-03-05",
+        "core-03-06",
+        "core-03-07",
+        "supplemental-backend-request-id-shell-troubleshooting",
+        "supplemental-backend-linux-systemd-resource-troubleshooting",
+        "xiaolin-performance-linux-use-red-triage",
+        "xiaolin-performance-linux-disk-io"
+      ],
+      "quality_notes": [
+        "映射日志、进程、端口、CPU、内存、磁盘、inode 和 systemd 只读排障。",
+        "默认使用只读取证；危险清理命令不作为面试演示步骤。"
+      ]
+    },
+    {
+      "document_id": "xiaolincoding-git",
+      "title": "Git 命令面试题",
+      "module": "测开基础 · 架构与工程",
+      "url": "https://xiaolincoding.com/interview/git.html",
+      "source_chars": 10216,
+      "declared_question_count": 24,
+      "observed_question_count": 23,
+      "coverage_mode": "supporting-topic-mapping",
+      "question_ids": [
+        "core-03-14",
+        "core-03-15",
+        "core-03-16",
+        "core-03-17",
+        "core-03-18",
+        "core-03-19",
+        "core-03-20",
+        "core-08-04",
+        "xiaolin-automation-java-ci-reproducible"
+      ],
+      "quality_notes": [
+        "页面有一个推荐学习标题不属于问题，本次实际题数按 23 记录。",
+        "映射分支协作、冲突、revert/reset 边界、bisect 和 CI 可复现性。"
+      ]
+    },
+    {
+      "document_id": "xiaolincoding-docker",
+      "title": "Docker 面试题",
+      "module": "测开基础 · 架构与工程",
+      "url": "https://xiaolincoding.com/interview/docker.html",
+      "source_chars": 10996,
+      "declared_question_count": 22,
+      "observed_question_count": 22,
+      "coverage_mode": "supporting-topic-mapping",
+      "question_ids": [
+        "core-08-05",
+        "core-08-06",
+        "core-08-10",
+        "xiaolin-automation-testcontainers-lifecycle"
+      ],
+      "quality_notes": [
+        "映射可重复测试环境、镜像、容器、网络、数据、Compose 与 Testcontainers。",
+        "Docker 提供隔离与打包边界，不能替代环境配置、数据治理和真实依赖验收。"
+      ]
+    }
+  ]
+}

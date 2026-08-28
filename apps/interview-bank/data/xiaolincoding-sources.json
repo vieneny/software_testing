@@ -1,0 +1,640 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-07-29",
+  "methodology": "小林 Coding 用于发现测试与测开知识主题；答案由本仓库去重、原创重写，并优先使用标准或工具官方文档校验。站点标称题量与当前页面可见标题分别记录，不以标称数量虚增覆盖。",
+  "questions": [],
+  "sources": [
+    {
+      "id": "xiaolincoding-business-testing",
+      "title": "小林 Coding：业务测试面试题",
+      "platform": "小林 Coding",
+      "url": "https://xiaolincoding.com/interview/business_testing.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于盘点测试基础、Web、App、H5、小程序和接口测试题型；答案必须去重、原创重写并交叉核验。"
+    },
+    {
+      "id": "xiaolincoding-python-automation",
+      "title": "小林 Coding：Python 自动化测试面试题",
+      "platform": "小林 Coding",
+      "url": "https://xiaolincoding.com/interview/python_automation.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于盘点接口、Web 与 App 自动化工程化主题；不复制示例项目经历和固定阈值。"
+    },
+    {
+      "id": "xiaolincoding-java-automation",
+      "title": "小林 Coding：Java 自动化测试面试题",
+      "platform": "小林 Coding",
+      "url": "https://xiaolincoding.com/interview/java_automation.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于补充 Java 测开框架、HTTP 客户端、测试运行器、Mock、数据与持续集成主题。"
+    },
+    {
+      "id": "xiaolincoding-performance-testing",
+      "title": "小林 Coding：性能测试面试题",
+      "platform": "小林 Coding",
+      "url": "https://xiaolincoding.com/interview/performance_testing.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于盘点 JMeter、负载模型、监控、瓶颈和调优题；固定并发、资源比例与调优数字不作为通用结论。"
+    },
+    {
+      "id": "xiaolincoding-java",
+      "title": "小林 Coding：Java 基础面试题",
+      "platform": "小林 Coding",
+      "url": "https://xiaolincoding.com/interview/java.html",
+      "accessed_at": "2026-07-29",
+      "note": "作为 Java 测试开发辅助来源，重点映射异常、反射、注解、I/O、泛型和设计模式。"
+    },
+    {
+      "id": "xiaolincoding-java-collections",
+      "title": "小林 Coding：Java 集合面试题",
+      "platform": "小林 Coding",
+      "url": "https://xiaolincoding.com/interview/collections.html",
+      "accessed_at": "2026-07-29",
+      "note": "作为 Java 测开数据结构辅助来源，重点映射 List、Set、Map、迭代和并发修改边界。"
+    },
+    {
+      "id": "xiaolincoding-java-concurrency",
+      "title": "小林 Coding：Java 并发编程面试题",
+      "platform": "小林 Coding",
+      "url": "https://xiaolincoding.com/interview/juc.html",
+      "accessed_at": "2026-07-29",
+      "note": "作为并发测试与 Java 测开辅助来源，重点映射线程安全、锁、线程池和故障场景。"
+    },
+    {
+      "id": "xiaolincoding-jvm",
+      "title": "小林 Coding：Java 虚拟机面试题",
+      "platform": "小林 Coding",
+      "url": "https://xiaolincoding.com/interview/jvm.html",
+      "accessed_at": "2026-07-29",
+      "note": "作为性能诊断辅助来源，重点映射内存、类加载、垃圾回收和证据化调优。"
+    },
+    {
+      "id": "xiaolincoding-spring",
+      "title": "小林 Coding：Spring 面试题",
+      "platform": "小林 Coding",
+      "url": "https://xiaolincoding.com/interview/spring.html",
+      "accessed_at": "2026-07-29",
+      "note": "作为企业智能客服 Java 项目的被测系统辅助来源，重点映射 Spring Boot、MVC、事务、MyBatis 与微服务测试。"
+    },
+    {
+      "id": "xiaolincoding-mysql",
+      "title": "小林 Coding：MySQL 面试题",
+      "platform": "小林 Coding",
+      "url": "https://xiaolincoding.com/interview/mysql.html",
+      "accessed_at": "2026-07-29",
+      "note": "作为 SQL 与数据库测试辅助来源；索引、事务、锁、日志和架构结论以 MySQL 对应版本官方文档为准。"
+    },
+    {
+      "id": "xiaolincoding-redis",
+      "title": "小林 Coding：Redis 面试题",
+      "platform": "小林 Coding",
+      "url": "https://xiaolincoding.com/interview/redis.html",
+      "accessed_at": "2026-07-29",
+      "note": "作为缓存与稳定性测试辅助来源，重点映射数据结构、过期淘汰、持久化、集群和缓存故障模式。"
+    },
+    {
+      "id": "xiaolincoding-os",
+      "title": "小林 Coding：操作系统面试题",
+      "platform": "小林 Coding",
+      "url": "https://xiaolincoding.com/interview/os.html",
+      "accessed_at": "2026-07-29",
+      "note": "作为测试开发计算机基础来源，重点映射进程线程、锁、死锁、内存和网络 I/O。"
+    },
+    {
+      "id": "xiaolincoding-network",
+      "title": "小林 Coding：计算机网络面试题",
+      "platform": "小林 Coding",
+      "url": "https://xiaolincoding.com/interview/network.html",
+      "accessed_at": "2026-07-29",
+      "note": "作为接口与网络排障辅助来源，重点映射 HTTP、DNS、TCP、TLS、代理、网络攻击与异常场景。"
+    },
+    {
+      "id": "xiaolincoding-data-structures",
+      "title": "小林 Coding：数据结构与算法面试题",
+      "platform": "小林 Coding",
+      "url": "https://xiaolincoding.com/interview/data.html",
+      "accessed_at": "2026-07-29",
+      "note": "作为测试开发编码基础扩展来源，重点映射集合、复杂度、排序和测试数据生成，不机械复制算法题。"
+    },
+    {
+      "id": "xiaolincoding-message-queue",
+      "title": "小林 Coding：消息队列面试题",
+      "platform": "小林 Coding",
+      "url": "https://xiaolincoding.com/interview/mq.html",
+      "accessed_at": "2026-07-29",
+      "note": "作为异步系统测试来源，重点映射重复、丢失、顺序、积压、重试和不同消息中间件的边界。"
+    },
+    {
+      "id": "xiaolincoding-distributed",
+      "title": "小林 Coding：分布式面试题",
+      "platform": "小林 Coding",
+      "url": "https://xiaolincoding.com/interview/cap.html",
+      "accessed_at": "2026-07-29",
+      "note": "作为分布式测试来源，重点映射一致性、分布式锁、ID、事务、故障恢复与可观测证据。"
+    },
+    {
+      "id": "xiaolincoding-system-design",
+      "title": "小林 Coding：系统设计面试题",
+      "platform": "小林 Coding",
+      "url": "https://xiaolincoding.com/interview/systemdesign.html",
+      "accessed_at": "2026-07-29",
+      "note": "作为测试策略与架构理解来源，重点映射秒杀、库存、限流、微服务、容量和接口超时排障。"
+    },
+    {
+      "id": "xiaolincoding-linux",
+      "title": "小林 Coding：Linux 命令面试题",
+      "platform": "小林 Coding",
+      "url": "https://xiaolincoding.com/interview/linux.html",
+      "accessed_at": "2026-07-29",
+      "note": "作为只读排障和性能取证来源，重点映射日志、进程、线程、端口、CPU、内存与负载。"
+    },
+    {
+      "id": "xiaolincoding-git",
+      "title": "小林 Coding：Git 命令面试题",
+      "platform": "小林 Coding",
+      "url": "https://xiaolincoding.com/interview/git.html",
+      "accessed_at": "2026-07-29",
+      "note": "作为测试代码协作来源，重点映射分支、合并、回滚、敏感信息处置、bisect 与工作流。"
+    },
+    {
+      "id": "xiaolincoding-docker",
+      "title": "小林 Coding：Docker 面试题",
+      "platform": "小林 Coding",
+      "url": "https://xiaolincoding.com/interview/docker.html",
+      "accessed_at": "2026-07-29",
+      "note": "作为可重复测试环境来源，重点映射镜像、容器、网络、数据、Compose、排障与清理边界。"
+    },
+    {
+      "id": "rest-assured-docs",
+      "title": "REST Assured 官方使用指南",
+      "platform": "REST Assured / GitHub",
+      "url": "https://github.com/rest-assured/rest-assured/wiki/usage",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 REST Assured DSL、Specification、Filter、JsonPath、Schema、对象映射与日志边界。"
+    },
+    {
+      "id": "java-httpclient-docs",
+      "title": "Java SE 25 HttpClient API",
+      "platform": "Oracle Java",
+      "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.net.http/java/net/http/HttpClient.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 JDK HttpClient 的构建、复用、同步/异步调用、协议、超时与资源语义；不同 JDK 基线需重新核对。"
+    },
+    {
+      "id": "openjdk-httpclient-timeout",
+      "title": "OpenJDK：HttpClient 请求超时覆盖响应体的版本变更",
+      "platform": "OpenJDK",
+      "url": "https://bugs.openjdk.org/browse/JDK-8370631",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 HttpRequest.Builder.timeout 的版本边界：JDK 25 及以前的内置实现收到响应头后停止该超时，JDK 26 起扩展到响应体消费。"
+    },
+    {
+      "id": "apache-httpclient-docs",
+      "title": "Apache HttpClient 5 官方文档",
+      "platform": "Apache HttpComponents",
+      "url": "https://hc.apache.org/httpcomponents-client-5.6.x/",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 Apache HttpClient 的连接管理、路由、认证、代理和客户端配置能力。"
+    },
+    {
+      "id": "junit-docs",
+      "title": "JUnit 当前用户指南",
+      "platform": "JUnit",
+      "url": "https://docs.junit.org/current/user-guide/",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 JUnit Platform/Jupiter 生命周期、扩展、参数化、动态测试、模板与并行执行；移动链接需按维护周期复核。"
+    },
+    {
+      "id": "testng-docs",
+      "title": "TestNG 官方文档",
+      "platform": "TestNG",
+      "url": "https://testng.org/documentation.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 TestNG 注解、suite、group、DataProvider、监听器、重试与并行模型。"
+    },
+    {
+      "id": "maven-docs",
+      "title": "Apache Maven 官方指南",
+      "platform": "Apache Maven",
+      "url": "https://maven.apache.org/guides/index.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 POM、依赖机制、构建生命周期、插件、Toolchains 与 Wrapper 入口。"
+    },
+    {
+      "id": "maven-surefire-docs",
+      "title": "Maven Surefire Plugin 官方文档",
+      "platform": "Apache Maven",
+      "url": "https://maven.apache.org/surefire/maven-surefire-plugin/",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验单元测试阶段的测试发现、provider、fork、并行、筛选与报告。"
+    },
+    {
+      "id": "maven-failsafe-docs",
+      "title": "Maven Failsafe Plugin 官方文档",
+      "platform": "Apache Maven",
+      "url": "https://maven.apache.org/surefire/maven-failsafe-plugin/",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 integration-test 与 verify 阶段、集成测试发现、结果校验和失败收口。"
+    },
+    {
+      "id": "maven-reproducible-builds-docs",
+      "title": "Maven 可复现构建官方指南",
+      "platform": "Apache Maven",
+      "url": "https://maven.apache.org/guides/mini/guide-reproducible-builds.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 Maven 构建输出可复现性及其与依赖、插件和环境固定之间的边界。"
+    },
+    {
+      "id": "gradle-testing-docs",
+      "title": "Gradle Java 与 JVM 测试指南",
+      "platform": "Gradle",
+      "url": "https://docs.gradle.org/current/userguide/java_testing.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验测试发现、筛选、报告、JUnit/TestNG 集成、fork 与并行执行；移动链接需按维护周期复核。"
+    },
+    {
+      "id": "gradle-dependency-locking-docs",
+      "title": "Gradle 依赖锁定官方指南",
+      "platform": "Gradle",
+      "url": "https://docs.gradle.org/current/userguide/dependency_locking.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验依赖锁定、解析结果固化及 CI 可复现性的适用边界。"
+    },
+    {
+      "id": "wiremock-docs",
+      "title": "WireMock Java 官方文档",
+      "platform": "WireMock",
+      "url": "https://wiremock.org/docs/",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验生命周期、请求匹配与验证、延迟/断连故障注入、录制回放和扩展能力。"
+    },
+    {
+      "id": "okhttp-mockwebserver-docs",
+      "title": "OkHttp MockWebServer 官方模块",
+      "platform": "OkHttp / GitHub",
+      "url": "https://github.com/lysine-dev/okhttp/tree/master/mockwebserver",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 MockWebServer 的队列响应、请求捕获、Dispatcher 与客户端组件测试边界；使用时按当前 OkHttp 主版本确认模块坐标。"
+    },
+    {
+      "id": "testcontainers-java-docs",
+      "title": "Testcontainers for Java 官方文档",
+      "platform": "Testcontainers",
+      "url": "https://java.testcontainers.org/",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验容器生命周期、JUnit 集成、动态端口、等待策略、环境要求和资源清理。"
+    },
+    {
+      "id": "jacoco-docs",
+      "title": "JaCoCo 官方文档",
+      "platform": "JaCoCo",
+      "url": "https://www.jacoco.org/jacoco/trunk/doc/",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 Java Agent 插桩、执行数据、覆盖计数、Maven/CLI 和远程采集边界；trunk 为移动文档，需按维护周期复核。"
+    },
+    {
+      "id": "java-collections-docs",
+      "title": "Java SE 25 Collections Framework",
+      "platform": "Oracle Java",
+      "url": "https://docs.oracle.com/en/java/javase/25/core/java-collections-framework.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 List、Set、Map、Queue 的接口、实现、算法和选型边界。"
+    },
+    {
+      "id": "java-concurrency-docs",
+      "title": "Java SE 25 并发编程指南",
+      "platform": "Oracle Java",
+      "url": "https://docs.oracle.com/en/java/javase/25/core/concurrency.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 Executor、线程池、队列、并发集合、同步器、锁和 ThreadLocal 基础语义。"
+    },
+    {
+      "id": "java-jfr-docs",
+      "title": "Java SE 25 使用 JFR 排查性能问题",
+      "platform": "Oracle Java",
+      "url": "https://docs.oracle.com/en/java/javase/25/troubleshoot/troubleshoot-performance-issues-using-jfr.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 JFR 对 GC、分配、线程、锁、I/O 与 CPU 的性能取证方法。"
+    },
+    {
+      "id": "java-diagnostic-tools-docs",
+      "title": "Java SE 25 诊断工具指南",
+      "platform": "Oracle Java",
+      "url": "https://docs.oracle.com/en/java/javase/25/troubleshoot/diagnostic-tools.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 jcmd、线程转储、堆转储和相关诊断工具；采集开销与敏感数据风险必须单独评估。"
+    },
+    {
+      "id": "web-vitals-docs",
+      "title": "web.dev Core Web Vitals 指标与阈值",
+      "platform": "web.dev",
+      "url": "https://web.dev/articles/defining-core-web-vitals-thresholds",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 LCP、INP、CLS、当前参考阈值和第 75 百分位口径；项目门禁仍需结合 SLO 与基线。"
+    },
+    {
+      "id": "android-permissions-docs",
+      "title": "Android 运行时权限官方指南",
+      "platform": "Android Developers",
+      "url": "https://developer.android.com/training/permissions/requesting",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验按需申请、拒绝降级、单次权限、撤销、自动重置和测试调试行为。"
+    },
+    {
+      "id": "apple-permissions-docs",
+      "title": "Apple Protected Resources 官方文档",
+      "platform": "Apple Developer",
+      "url": "https://developer.apple.com/documentation/bundleresources/protected-resources",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 Apple 平台访问定位、相机、麦克风、照片等受保护资源的声明与用户授权边界。"
+    },
+    {
+      "id": "mdn-pwa-docs",
+      "title": "MDN Progressive Web Apps 文档",
+      "platform": "MDN Web Docs",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 Web App Manifest、Service Worker、离线能力、安装形态、缓存更新和浏览器兼容性。"
+    },
+    {
+      "id": "wechat-miniprogram-docs",
+      "title": "微信小程序官方开发文档",
+      "platform": "微信开放文档",
+      "url": "https://developers.weixin.qq.com/miniprogram/dev/framework/",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验逻辑/渲染架构、生命周期、登录、分包、运行环境和发布规则；具体限制按访问日期与当前平台版本复核。"
+    },
+    {
+      "id": "owasp-session-docs",
+      "title": "OWASP Session Management Cheat Sheet",
+      "platform": "OWASP",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验会话标识轮换、Cookie 属性、失效、超时、传输、缓存与日志安全。"
+    },
+    {
+      "id": "graphql-spec",
+      "title": "GraphQL Specification September 2025",
+      "platform": "GraphQL",
+      "url": "https://spec.graphql.org/September2025/",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 Schema、执行、nullability、data 与 errors 等 GraphQL 核心语义。"
+    },
+    {
+      "id": "graphql-http-draft",
+      "title": "GraphQL over HTTP Draft Specification",
+      "platform": "GraphQL",
+      "url": "https://graphql.github.io/graphql-over-http/draft/",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 GraphQL over HTTP 的方法、媒体类型和响应约定；当前仍为 draft，不能当作所有既有服务已实现的强制标准。"
+    },
+    {
+      "id": "opentelemetry-tracing-docs",
+      "title": "OpenTelemetry Traces 官方文档",
+      "platform": "OpenTelemetry",
+      "url": "https://opentelemetry.io/docs/concepts/signals/traces/",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 Trace、Span、上下文、父子关系和分布式链路观测概念；采样和具体实现需结合实际平台。"
+    },
+    {
+      "id": "sbtm-original",
+      "title": "Session-Based Test Management 原始文章",
+      "platform": "Satisfice / James Bach 与 Jon Bach",
+      "url": "https://www.satisfice.com/download/session-based-test-management",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 Session、Charter、时间盒、测试笔记与复盘等 SBTM 原始方法，不把探索式测试误写成随机点击。"
+    },
+    {
+      "id": "commercetools-cart-merge-docs",
+      "title": "commercetools Cart merge strategies 官方文档",
+      "platform": "commercetools",
+      "url": "https://docs.commercetools.com/learning-implement-carts-and-shopping-lists/manage-signups-and-signins/cart-merge-strategies",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验游客购物车与登录账户购物车的合并/替换策略、行项目匹配和自定义合并边界；练习系统不依赖该厂商实现。"
+    },
+    {
+      "id": "android-app-links-docs",
+      "title": "Android Deep Links 与 App Links 官方指南",
+      "platform": "Android Developers",
+      "url": "https://developer.android.com/training/app-links",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 Android 从通知、浏览器等入口进入 App 内容时的 Intent 路由、域名验证、回退与测试边界。"
+    },
+    {
+      "id": "apple-universal-links-docs",
+      "title": "Apple Universal Links 官方指南",
+      "platform": "Apple Developer",
+      "url": "https://developer.apple.com/documentation/xcode/allowing-apps-and-websites-to-link-to-your-content/",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 Apple 平台 Universal Link 的网站关联、App/浏览器回退、参数校验与安全边界。"
+    },
+    {
+      "id": "android-offline-first-docs",
+      "title": "Android Offline-first 数据层官方指南",
+      "platform": "Android Developers",
+      "url": "https://developer.android.com/topic/architecture/data-layer/offline-first",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验离线读写、持久队列、重试、同步、版本与冲突解决；具体业务冲突策略仍由产品规则定义。"
+    },
+    {
+      "id": "chrome-webview-debugging-docs",
+      "title": "Chrome DevTools 远程调试 WebView 官方指南",
+      "platform": "Chrome for Developers",
+      "url": "https://developer.chrome.com/docs/devtools/remote-debugging/webviews",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 Android WebView 的远程检查入口及网络、脚本、DOM、渲染证据采集方式；调试能力只在受控测试构建中启用。"
+    },
+    {
+      "id": "use-method-original",
+      "title": "The USE Method 原始方法说明",
+      "platform": "Brendan Gregg",
+      "url": "https://www.brendangregg.com/usemethod.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验以 Utilization、Saturation、Errors 逐类排查系统资源的证据化方法，避免只看单个利用率下结论。"
+    },
+    {
+      "id": "linux-io-statistics-docs",
+      "title": "Linux Kernel I/O statistics fields",
+      "platform": "Linux Kernel Documentation",
+      "url": "https://docs.kernel.org/admin-guide/iostats.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 /proc/diskstats 与 /sys/block/*/stat 的累计计数、队列和耗时语义；工具派生指标需按版本公式复核。"
+    },
+    {
+      "id": "tcp-rfc-9293",
+      "title": "RFC 9293 Transmission Control Protocol",
+      "platform": "RFC Editor / IETF",
+      "url": "https://www.rfc-editor.org/rfc/rfc9293.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 TCP 连接状态、重传与传输语义；网络性能结论仍需结合抓包、操作系统计数和应用时间线。"
+    },
+    {
+      "id": "nginx-load-balancing-docs",
+      "title": "NGINX HTTP Load Balancing 官方文档",
+      "platform": "NGINX",
+      "url": "https://nginx.org/en/docs/http/load_balancing.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验轮询、最少连接、哈希、权重、粘性和被动健康检查等流量分配语义；不能把已有连接理解为会迁移。"
+    },
+    {
+      "id": "nist-experimental-design",
+      "title": "NIST/SEMATECH Choosing an experimental design",
+      "platform": "NIST",
+      "url": "https://www.itl.nist.gov/div898/handbook/pri/section3/pri3.htm",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验预先设定目标、因素与水平，以及随机化、重复、分组和 factorial/fractional 设计；单因素对照或多因素矩阵应按目标与交互风险选择。"
+    },
+    {
+      "id": "log4j-performance-docs",
+      "title": "Apache Log4j Performance 官方指南",
+      "platform": "Apache Log4j",
+      "url": "https://logging.apache.org/log4j/2.x/manual/performance.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验日志 API、格式化、布局、调用位置、异步队列、GC 与可诊断性的性能取舍；所有优化必须以本系统测量为准。"
+    },
+    {
+      "id": "red-method-grafana",
+      "title": "The RED Method: How to Instrument Your Services",
+      "platform": "Grafana Labs",
+      "url": "https://grafana.com/blog/the-red-method-how-to-instrument-your-services/",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 RED 的 Rate、Errors、Duration 服务指标及其与 USE 的互补关系；该方法由 Tom Wilkie 创建，不与 Brendan Gregg 的 USE 混为同一来源。"
+    },
+    {
+      "id": "sysstat-iostat-manpage",
+      "title": "iostat(1) 上游官方手册",
+      "platform": "sysstat / GitHub",
+      "url": "https://github.com/sysstat/sysstat/blob/master/man/iostat.in",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 IOPS、吞吐、请求大小、await、aqu-sz 与 %util 的字段语义；master 为移动版本，使用时必须同时记录实际安装的 sysstat 版本。"
+    },
+    {
+      "id": "amazon-ebs-io-characteristics",
+      "title": "Amazon EBS I/O characteristics and monitoring",
+      "platform": "Amazon Web Services",
+      "url": "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-io-characteristics.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于举例核验云盘 IOPS、吞吐、I/O 大小、队列、时延和突发额度的独立限制；仅代表 AWS EBS，其他云盘必须查对应厂商规格。"
+    },
+    {
+      "id": "tcp-throughput-rfc-6349",
+      "title": "RFC 6349 Framework for TCP Throughput Testing",
+      "platform": "RFC Editor / IETF",
+      "url": "https://www.rfc-editor.org/info/rfc6349/",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 TCP 吞吐测试的路径 MTU、RTT、瓶颈带宽、socket buffer 与单/多连接对照；该 RFC 为 Informational，不是 Standards Track。"
+    },
+    {
+      "id": "aws-alb-listeners-docs",
+      "title": "Application Load Balancer listeners",
+      "platform": "Amazon Web Services",
+      "url": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 WebSocket Upgrade 后的持久连接语义，从而说明既有 WebSocket 连接不能假设会在实例间无缝迁移；仅代表 AWS ALB 实现。"
+    },
+    {
+      "id": "aws-alb-target-group-attributes",
+      "title": "Application Load Balancer target group attributes",
+      "platform": "Amazon Web Services",
+      "url": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-target-group-attributes.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验连接排空、路由算法、slow start、跨区均衡和会话粘滞；具体行为必须按实际负载均衡器与版本复核。"
+    },
+    {
+      "id": "log4j-async-docs",
+      "title": "Apache Log4j Asynchronous Loggers 官方指南",
+      "platform": "Apache Log4j",
+      "url": "https://logging.apache.org/log4j/2.x/manual/async.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验异步队列容量、队列满时阻塞或丢弃、后台错误处理和审计日志同步写入取舍；必须针对实际应用做基准与剖析。"
+    },
+    {
+      "id": "owasp-logging-cheat-sheet",
+      "title": "OWASP Logging Cheat Sheet",
+      "platform": "OWASP Cheat Sheet Series",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验密码、令牌、会话标识和个人数据的日志保护，以及必要安全事件、日志洪泛和磁盘耗尽风险；它是权威社区指南，不是正式标准。"
+    },
+    {
+      "id": "firebase-cloud-messaging-receive",
+      "title": "FCM Android 接收消息官方指南",
+      "platform": "Firebase",
+      "url": "https://firebase.google.com/docs/cloud-messaging/android/receive-messages",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 Android 前台、后台及 notification/data message 的接收与处理差异；系统版本、权限和厂商限制按目标环境复核。"
+    },
+    {
+      "id": "firebase-cloud-messaging-delivery",
+      "title": "Firebase Cloud Messaging 消息投递数据官方指南",
+      "platform": "Firebase",
+      "url": "https://firebase.google.com/docs/cloud-messaging/understand-delivery",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 Sends、Received、Impressions、Opens 与聚合投递指标的不同语义、延迟、覆盖和隐私限制；供应商接受不等于设备送达或业务处理成功。"
+    },
+    {
+      "id": "apple-notification-handling-docs",
+      "title": "Apple 通知与通知操作处理官方指南",
+      "platform": "Apple Developer",
+      "url": "https://developer.apple.com/documentation/usernotifications/handling-notifications-and-notification-related-actions",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 Apple 平台通知到达、用户交互和 App 委托处理边界；具体前后台行为与授权状态按目标系统版本复核。"
+    },
+    {
+      "id": "commercetools-carts-orders-overview",
+      "title": "commercetools Carts and Orders overview",
+      "platform": "commercetools",
+      "url": "https://docs.commercetools.com/api/carts-orders-overview",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验购物车行项目快照、价格/折扣/税费重算、合并、冻结及订单创建时的库存校验边界；练习系统不依赖该厂商实现。"
+    },
+    {
+      "id": "commercetools-inventory-overview",
+      "title": "commercetools Inventory overview",
+      "platform": "commercetools",
+      "url": "https://docs.commercetools.com/api/inventory-overview",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验库存条目、可用量和购物车/订单库存模式边界；购物车是否占库必须按具体业务契约判断。"
+    },
+    {
+      "id": "aws-idempotent-api-retries",
+      "title": "Making retries safe with idempotent APIs",
+      "platform": "AWS Builders' Library",
+      "url": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验响应丢失后的安全重试、调用方请求标识与幂等语义；它是厂商工程方法，不替代系统自己的业务契约。"
+    },
+    {
+      "id": "android-webview-api-docs",
+      "title": "Android WebView API 官方文档",
+      "platform": "Android Developers",
+      "url": "https://developer.android.com/reference/android/webkit/WebView",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验 WebView 导航、生命周期、渲染进程、调试与安全相关 API；行为按目标 Android System WebView 版本复核。"
+    },
+    {
+      "id": "chrome-devtools-network-docs",
+      "title": "Chrome DevTools Network 官方指南",
+      "platform": "Chrome for Developers",
+      "url": "https://developer.chrome.com/docs/devtools/network",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验资源请求的状态、Header、响应体、Initiator、Timing、缓存与故障阻断证据；HTTP 200 仍需检查实际内容。"
+    },
+    {
+      "id": "chrome-devtools-performance-docs",
+      "title": "Chrome DevTools Performance 官方指南",
+      "platform": "Chrome for Developers",
+      "url": "https://developer.chrome.com/docs/devtools/performance",
+      "accessed_at": "2026-07-29",
+      "note": "用于核验主线程、长任务、帧、渲染和运行时性能证据；工具界面与字段按浏览器版本记录。"
+    },
+    {
+      "id": "google-sre-canarying-releases",
+      "title": "Google SRE Workbook: Canarying Releases",
+      "platform": "Google SRE",
+      "url": "https://sre.google/workbook/canarying-releases/",
+      "accessed_at": "2026-07-29",
+      "note": "用于补充版本对照、指标选择、实验组/控制组和可回退验证；性能调优仍需固定负载、数据和环境并报告重复测量。"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-07-29T00:00:00+00:00",
+  "catalog_path": "../questions.json",
+  "policy": {
+    "scope": "public-http-https-only",
+    "authentication": "never-used",
+    "robots_txt": "required",
+    "content_storage": "sanitized-markdown-only",
+    "git_policy": "local-snapshots-must-not-be-committed"
+  },
+  "statistics": {
+    "total": 1,
+    "by_status": {
+      "downloaded": 1
+    }
+  },
+  "items": [
+    {
+      "source_id": "example-public-doc",
+      "aliases": [
+        "example-coverage-document"
+      ],
+      "title": "公开文档示例",
+      "platform": "示例平台",
+      "original_url": "https://example.com/docs/testing",
+      "final_url": "https://example.com/docs/testing",
+      "local_path": "content/example-public-doc.md",
+      "content_type": "text/html",
+      "content_format": "markdown",
+      "captured_at": "2026-07-29T00:00:00+00:00",
+      "accessed_at": "2026-07-29",
+      "status": "downloaded",
+      "http_status": 200,
+      "content_hash": "sha256:example",
+      "char_count": 100,
+      "byte_count": 120,
+      "capture_method": "public_crawler",
+      "assets": [
+        {
+          "asset_id": "asset-example",
+          "original_url": "https://example.com/images/testing.png",
+          "final_url": "https://example.com/images/testing.png",
+          "local_path": "assets/example-public-doc/asset-example.png",
+          "mime_type": "image/png",
+          "status": "downloaded",
+          "content_hash": "sha256:example-image",
+          "byte_count": 80,
+          "alt_text": "测试流程图",
+          "capture_method": "public_crawler",
+          "license": null,
+          "copyright_notice": "版权归原作者及原网站所有；本地图片仅供个人学习。",
+          "error": null
+        }
+      ],
+      "license": null,
+      "copyright_notice": "版权归原作者及原网站所有；本地快照仅供个人学习。",
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,718 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-07-29",
+  "methodology": "完整审阅小林 Coding 的 Python 与 Java 自动化测试页面后，与现有 248 题按标题、考察点和答案意图做语义去重。保留真正缺失的 Java 工程化知识，并使用官方文档修订模糊、绝对化或可能制造虚假经历的口径。所有业务背景均为公开合成场景。",
+  "questions": [
+    {
+      "id": "xiaolin-automation-restassured-httpclient-choice",
+      "module_id": "05",
+      "origin": "xiaolincoding-reviewed",
+      "title": "REST Assured、JDK HttpClient 与 Apache HttpClient 应如何选择，为什么不能简单说前者一定更好？",
+      "level": "进阶",
+      "kind": "知识题",
+      "roles": ["接口自动化", "自动化测试", "测试开发"],
+      "tags": ["Java", "REST Assured", "HttpClient", "技术选型"],
+      "focus": "区分测试 DSL 与通用 HTTP 客户端，澄清 HttpClient 指代，基于测试边界而不是代码行数选型",
+      "answer": "先澄清面试官所说的 HttpClient 是 JDK 11 起的 `java.net.http.HttpClient`，还是 Apache HttpComponents Client。REST Assured 是面向 REST API 验证的测试 DSL，优势是 `given/when/then`、JsonPath、Hamcrest、对象映射、规范复用和失败日志集成，适合可读的接口验收测试。JDK HttpClient 是标准库通用客户端，支持同步、`CompletableFuture` 异步、HTTP/2 等能力，依赖少，适合验证客户端封装或需要精确控制请求处理的场景。Apache HttpClient 的连接管理、路由、代理、认证和底层配置更丰富，适合已有相关基础设施或特殊网络需求。\n\n选择时看五点：测试目标、协议细节控制、团队生态、诊断能力和维护成本。不能用“REST Assured 只写三行，所以一定更快、更专业”作结论；DSL 会隐藏底层细节，测试客户端自身、流式响应或特殊连接行为时反而可能不合适。一个项目也可以在验收层用 REST Assured，在客户端组件测试中用底层客户端。",
+      "explanation": "原页面把 HttpClient 默认解释为 Apache 库，并把技术差异简化成代码行数。面试回答应先消除术语歧义，再说明工具所在抽象层。REST Assured 的价值主要是测试表达和验证能力，并不是它发送出来的 HTTP 天生更真实。所有客户端都必须显式治理连接超时、请求超时、重定向、TLS、日志脱敏和资源复用。",
+      "followups": [
+        "追问：为什么不统一封装成一个万能客户端？答：可以抽取环境、认证和观测等稳定策略，但不要抹平工具的重要语义；过度封装会让 DSL 失去可读性，也会让底层错误难以诊断。",
+        "追问：如何证明选型合理？答：用代表性场景做小型验证，比较可读性、失败信息、并发安全、特殊协议支持和 CI 维护成本，而不是凭语言性能印象。",
+        "追问：是否可以直接复用生产代码中的 HTTP 客户端？答：组件测试可以验证它，黑盒验收最好保留独立测试预言，避免与被测实现共享同一个错误。"
+      ],
+      "pitfalls": [
+        "没有澄清 JDK HttpClient 与 Apache HttpClient",
+        "只用代码行数判断工具优劣",
+        "把 REST Assured 当成性能压测工具",
+        "为所有测试共享可变的全局客户端配置"
+      ],
+      "scenario": {
+        "background": "合成通知服务同时需要 REST 验收测试、Java SDK 组件测试和代理/TLS 专项测试。",
+        "data": "接口包含普通 JSON、异步 202、30 MiB 流式下载、重定向和双向 TLS 五类请求。",
+        "task": "为每类测试选择客户端，说明不能被该层证明的内容，并给出超时、日志和连接复用策略。",
+        "synthetic": true
+      },
+      "source_ids": ["xiaolincoding-java-automation", "rest-assured-docs", "java-httpclient-docs", "apache-httpclient-docs"],
+      "updated_at": "2026-07-29"
+    },
+    {
+      "id": "xiaolin-automation-restassured-spec-filter",
+      "module_id": "05",
+      "origin": "xiaolincoding-reviewed",
+      "title": "REST Assured 如何复用 RequestSpecification、ResponseSpecification 和 Filter，同时避免全局状态污染？",
+      "level": "进阶",
+      "kind": "实操题",
+      "roles": ["接口自动化", "自动化测试", "测试开发"],
+      "tags": ["REST Assured", "Specification", "Filter", "并发安全", "日志脱敏"],
+      "focus": "规范复用、横切能力、不可变测试上下文和并行执行安全",
+      "answer": "把稳定的协议默认值放进规范，把业务步骤留在 API client 或测试中。`RequestSpecification` 可复用基础 URI、内容类型和公共头；`ResponseSpecification` 只承载真正通用的协议约束，不要把所有成功响应都硬编码为 200。Filter 适合关联 ID、计时和失败证据，但 REST Assured 的内置日志 Filter 不提供项目所需的字段级脱敏保证，不能给带 Authorization 的规范直接挂上日志 Filter 后就声称安全。示例显式注入一个经过单元测试的自定义脱敏 Filter：\n\n```java\nRequestSpecification baseSpec(\n    URI baseUri, String token, Filter sanitizedEvidenceFilter) {\n  return new RequestSpecBuilder()\n      .setBaseUri(baseUri.toString())\n      .setContentType(ContentType.JSON)\n      .addHeader(\"Authorization\", \"Bearer \" + token)\n      .addFilter(sanitizedEvidenceFilter) // 只输出白名单元数据，敏感值先替换\n      .build();\n}\n\nResponse createOrder(RequestSpecification spec, String sku) {\n  return given().spec(spec)\n      .body(Map.of(\"sku\", sku, \"quantity\", 1))\n      .when().post(\"/orders\");\n}\n```\n\n自定义 Filter 默认只记录 request-id、方法、规范化路径、状态码和耗时；若确需请求/响应体，先按 Header 名、JSONPath 和 Content-Type 做白名单/遮蔽，限制长度，并用含 Token、Cookie、签名、手机号和嵌套字段的测试证明原值不会出现在控制台、JUnit XML、Allure 或 CI 制品。每个测试或隔离上下文构造规范，不在并行套件中修改 `RestAssured.baseURI`、`authentication` 等全局状态。",
+      "explanation": "规范复用的目标是消除重复且保留意图，而不是把所有请求塞进一个 BaseTest。REST Assured 提供静态默认配置，但它们属于 JVM 全局可变状态；并发运行不同环境、租户或身份时容易串数据。日志安全也不能靠类名推断：只有脱敏实现、输出目的地和包含敏感样本的自动测试共同通过，才能证明 Filter 可用于 CI。",
+      "followups": [
+        "追问：token 过期怎么办？答：由认证客户端或受控 Filter 处理一次刷新，并对并发刷新做单飞控制；不要对所有 401 无限重试。",
+        "追问：为什么不在 ResponseSpecification 中统一校验业务码？答：成功、异步、空响应和错误响应契约不同，强行统一会造成假失败或漏检。",
+        "追问：如何保留真正发出的请求？答：REST Assured 请求日志不一定等同最终线上字节；需要时结合底层客户端日志、代理或服务端 request-id 证据。"
+      ],
+      "pitfalls": [
+        "并行用例修改 REST Assured 静态全局配置",
+        "给含凭据的规范直接添加内置日志 Filter，却没有实现和测试字段级脱敏",
+        "把所有业务断言塞入通用 ResponseSpecification",
+        "BaseTest 继承层级过深并隐藏依赖"
+      ],
+      "scenario": {
+        "background": "合成订单服务在同一 CI 作业中并行验证两个租户和两种身份。",
+        "data": "四组测试使用不同 base URI、token 和 trace header，任何凭据串用都应被检测。",
+        "task": "实现隔离的规范工厂与脱敏 Filter，并通过并行用例证明没有全局状态污染。",
+        "synthetic": true
+      },
+      "source_ids": ["xiaolincoding-java-automation", "rest-assured-docs"],
+      "updated_at": "2026-07-29"
+    },
+    {
+      "id": "xiaolin-automation-java-httpclient-timeout-retry",
+      "module_id": "05",
+      "origin": "xiaolincoding-reviewed",
+      "title": "用 JDK HttpClient 测接口时，连接超时、请求超时和重试应怎样分别设计？",
+      "level": "进阶",
+      "kind": "实操题",
+      "roles": ["接口自动化", "测试开发"],
+      "tags": ["Java", "HttpClient", "超时", "重试", "幂等"],
+      "focus": "区分连接、响应头与响应体超时的 JDK 版本边界，用显式总预算和取消治理重试与副作用",
+      "answer": "连接超时配置在 `HttpClient.Builder.connectTimeout`；`HttpRequest.Builder.timeout` 的覆盖范围必须按实际 JDK 核对。JDK 25 及以前的内置实现收到响应头后就停止该请求超时，因此它不是响应体消费的总等待边界；JDK 26 起才扩展为覆盖响应体消费。构建后的 HttpClient 可复用并管理连接，不应每次请求都新建。以 JDK 25 为例：\n\n```java\nHttpClient client = HttpClient.newBuilder()\n    .connectTimeout(Duration.ofSeconds(2))\n    .followRedirects(HttpClient.Redirect.NEVER)\n    .build();\n\nHttpRequest request = HttpRequest.newBuilder(URI.create(baseUrl + \"/orders/demo-1\"))\n    .timeout(Duration.ofSeconds(5)) // JDK 25：主要约束等待响应头\n    .header(\"Accept\", \"application/json\")\n    .GET()\n    .build();\n```\n\n测试框架还要有独立的端到端 deadline。对 `sendAsync` 返回的原始 Future 建立定时取消，并验证取消后连接、订阅和业务副作用；仅调用 `orTimeout` 使 Future 异常完成，不应未经验证就假设底层交换已停止。`BodyHandlers.ofInputStream/ofPublisher` 会在流尚未消费完时返回，更要给读取空闲时间、总时间和最大字节数设边界，并在超时后关闭流或取消订阅。JDK 26 也仍需区分应用总预算、流式长连接和故意持续消费的场景。\n\n重试只用于明确可重试的暂态故障，并结合安全/幂等方法或业务幂等键、次数上限、指数退避与抖动；连接失败、等待响应头超时、读体超时、429 和 503 的语义不同。POST 创建订单超时后先按幂等键查询结果，不能盲重发。",
+      "explanation": "“加大 timeout 再重试三次”会把慢故障放大。连接阶段、响应头到达和响应体消费是不同边界，而且 JDK 26 改变了内置请求 timeout 的覆盖范围；面试回答必须说明运行时版本。HttpClient 构建后不可变且可并发发送，Builder 不应并发修改。测试既要验证抛出的异常，也要验证取消是否生效及服务端是否已经产生副作用。",
+      "followups": [
+        "追问：JDK 25 的 `.timeout` 能否限制一个慢速下载的全部时间？答：不能依赖它覆盖响应体；需另设总 deadline/读体边界并验证取消与资源关闭。JDK 26 起行为已变化。",
+        "追问：429 如何处理？答：依据契约读取 Retry-After，设置总预算并验证客户端不会形成重试风暴。",
+        "追问：如何测试请求超时后的副作用？答：用 request-id 或幂等键查询服务端状态、数据库和消息，不把客户端未收到响应等同于服务未执行。"
+      ],
+      "pitfalls": [
+        "把 connect timeout 或 JDK 25 的 request timeout 当作包含响应体的完整总预算",
+        "每次调用创建一个 HttpClient 导致连接无法复用",
+        "对所有 POST 和所有异常统一重试",
+        "只断言抛出超时异常，不检查服务端副作用"
+      ],
+      "scenario": {
+        "background": "合成订单接口可能在写库后、返回响应前断开连接。",
+        "data": "同一幂等键执行正常、连接失败、响应延迟 6 秒、503 后恢复和 429 五类脚本化响应。",
+        "task": "实现带总预算的调用策略，验证每个业务请求最多创建一个订单。",
+        "synthetic": true
+      },
+      "source_ids": ["xiaolincoding-java-automation", "java-httpclient-docs", "openjdk-httpclient-timeout", "rfc-9110"],
+      "updated_at": "2026-07-29"
+    },
+    {
+      "id": "xiaolin-automation-restassured-assertion-depth",
+      "module_id": "05",
+      "origin": "xiaolincoding-reviewed",
+      "title": "REST Assured 中 JsonPath、JSON Schema、DTO 反序列化和业务断言应如何分工？",
+      "level": "进阶",
+      "kind": "实操题",
+      "roles": ["接口自动化", "测试开发"],
+      "tags": ["REST Assured", "JsonPath", "JSON Schema", "DTO", "测试预言"],
+      "focus": "响应断言分层、类型与缺失字段识别、避免只断言状态码或重复被测实现",
+      "answer": "四种方式解决不同问题：\n\n| 手段 | 适合验证 | 不能单独证明 |\n|---|---|---|\n| JsonPath | 少量字段提取、局部值和字段关系 | 完整结构与全部业务规则 |\n| JSON Schema | 必填、类型、枚举、格式和结构 | 金额关系、授权及副作用 |\n| DTO 反序列化 | 类型化访问、重构和复杂对象断言 | 宽松配置下被忽略的未知字段 |\n| 业务断言 | 跨字段不变量和外部副作用 | 响应结构是否完整符合契约 |\n\n示例中的订单包含行金额、折扣和税费，因此总额预言必须按独立规则完整计算，不能漏掉折扣或税费：\n\n```java\nResponse r = given().spec(spec).pathParam(\"id\", id)\n    .when().get(\"/orders/{id}\");\n\nr.then().statusCode(200)\n    .contentType(ContentType.JSON)\n    .body(matchesJsonSchemaInClasspath(\"schemas/order.json\"))\n    .body(\"data.id\", equalTo(id));\n\nOrderResponse dto = r.as(OrderResponse.class);\nBigDecimal subtotal = dto.data().lines().stream()\n    .map(line -> line.unitPrice()\n        .multiply(BigDecimal.valueOf(line.quantity())))\n    .reduce(BigDecimal.ZERO, BigDecimal::add);\nBigDecimal expectedTotal = moneyRules.round(\n    subtotal.subtract(dto.data().discount()).add(dto.data().tax()));\nassertThat(dto.data().total()).isEqualByComparingTo(expectedTotal);\n```\n\n这里的 `moneyRules` 由测试夹具按公开接口契约独立实现，包含币种精度、折扣/税费顺序和舍入规则，不能直接调用生产计算函数。随后再通过只读查询或事件证据确认订单确实落库。断言应按协议、结构、业务和副作用分层，失败信息要指出哪一层不满足。",
+      "explanation": "只用 JsonPath 会在大对象中形成脆弱字符串表达式，只用 DTO 又可能因反序列化配置宽松而忽略未知字段。Schema 也不能证明金额求和、折扣、税费、授权或副作用。本场景原示例只累加行金额，却宣称验证含折扣和税费的最终总额，测试预言与题干不对应；修订后明确完整公式及舍入依据。组合策略比“统一用某个断言库”更可靠。",
+      "followups": [
+        "追问：未知字段是否应让 DTO 反序列化失败？答：取决于兼容策略；消费者通常应容忍向后兼容新增字段，但契约测试仍要监控关键结构漂移。",
+        "追问：金额为什么不用 double？答：金融金额应按契约使用整数最小单位或 BigDecimal，并明确舍入规则。",
+        "追问：Schema 通过能否证明接口正确？答：不能，它只证明结构满足声明的约束。"
+      ],
+      "pitfalls": [
+        "只断言 HTTP 200",
+        "把 Schema 校验当作完整业务校验",
+        "反序列化配置吞掉关键字段错误却没有契约检查",
+        "复制生产计算逻辑作为测试预言"
+      ],
+      "scenario": {
+        "background": "合成订单查询响应包含三行商品、折扣、税费和最终总额。",
+        "data": "构造字段缺失、类型错误、未知新增字段、舍入边界和总额不一致五种响应。",
+        "task": "分别用 Schema、DTO 和独立业务不变量发现对应缺陷。",
+        "synthetic": true
+      },
+      "related_question_ids": ["core-05-14"],
+      "deepening_rationale": "在通用接口断言分层基础上，专门考察 REST Assured 中 JsonPath、JSON Schema、DTO 反序列化的组合边界、Java 金额类型与外部副作用证据。",
+      "source_ids": ["xiaolincoding-java-automation", "rest-assured-docs"],
+      "updated_at": "2026-07-29"
+    },
+    {
+      "id": "xiaolin-automation-junit-testng-choice",
+      "module_id": "05",
+      "origin": "xiaolincoding-reviewed",
+      "title": "JUnit Jupiter 与 TestNG 应如何选择，为什么“TestNG 功能更多所以更好”是不完整答案？",
+      "level": "进阶",
+      "kind": "知识题",
+      "roles": ["自动化测试", "测试开发"],
+      "tags": ["JUnit", "TestNG", "测试框架", "技术选型"],
+      "focus": "用实际生态和执行模型比较测试框架，修正对参数化、并发、标签和扩展能力的旧认知",
+      "answer": "JUnit Jupiter 和 TestNG 都能做生命周期管理、参数化、标签/分组、条件执行、扩展监听和并发执行，不能再用“JUnit 不支持这些能力”作为选择理由。JUnit Jupiter 与 JUnit Platform、现代 Java 项目、IDE、Maven/Gradle 和大量扩展生态结合紧密，扩展模型包括 Extension、ParameterResolver、TestWatcher 等。TestNG 的 suite XML、groups、方法依赖、DataProvider、Factory、listener 和并行配置对复杂套件编排很直接。\n\n选择依据应是：现有代码与插件生态、团队经验、套件编排需要、构建工具支持、并发模型、迁移成本和维护活跃度。新建普通 Java/Spring 测试项目通常可优先评估 JUnit Jupiter；已有大量 TestNG suite、groups 或 DataProvider 资产时不必为了“新”而迁移。方法依赖也要谨慎，因为它容易制造顺序耦合。",
+      "explanation": "原页面把 JUnit 描述得过于简单，并默认 TestNG 因失败重试和并发而胜出。现代 JUnit Jupiter 已具备丰富参数化、标签、并发和扩展机制。TestNG 的重试能力也不能自动消除环境干扰；框架选型不应依赖这一点。",
+      "followups": [
+        "追问：能否在一个项目同时运行两者？答：构建工具可配置对应 provider/engine，但报告、标签语义和生命周期要统一治理，混用会增加认知成本。",
+        "追问：TestNG dependsOnMethods 是否适合串业务流程？答：少量必要依赖可以，但大多数业务流程应封装为一个独立场景，避免前序失败造成大片 skip。",
+        "追问：迁移时最容易遗漏什么？答：生命周期、测试实例创建、参数化、标签映射、并发配置和报告监听器语义。"
+      ],
+      "pitfalls": [
+        "声称 JUnit 不支持参数化或并发",
+        "把自动重试当作选 TestNG 的核心理由",
+        "大量使用方法依赖导致顺序耦合",
+        "忽略构建工具实际选择的 test engine/provider"
+      ],
+      "scenario": {
+        "background": "合成 Java 仓库已有 600 个 TestNG 用例，新模块由 Spring Boot 和 JUnit Jupiter 模板生成。",
+        "data": "旧套件依赖 groups 与 suite XML，新模块需要参数化、并发和容器扩展。",
+        "task": "给出保留、迁移或阶段性共存方案，并定义成功指标与回滚条件。",
+        "synthetic": true
+      },
+      "source_ids": ["xiaolincoding-java-automation", "junit-docs", "testng-docs", "maven-surefire-docs"],
+      "updated_at": "2026-07-29"
+    },
+    {
+      "id": "xiaolin-automation-junit-extension-lifecycle",
+      "module_id": "05",
+      "origin": "xiaolincoding-reviewed",
+      "title": "如何用 JUnit Jupiter Extension 管理 API 客户端、Mock 服务和失败证据，而不是继续扩展 BaseTest？",
+      "level": "高级",
+      "kind": "实操题",
+      "roles": ["自动化测试", "测试开发"],
+      "tags": ["JUnit", "Extension", "ParameterResolver", "TestWatcher", "生命周期"],
+      "focus": "组合优于继承、资源作用域、参数注入、失败证据和并行安全",
+      "answer": "把正交能力拆成 Extension：资源启动/关闭可实现 `BeforeAllCallback`、`AfterAllCallback` 或 `BeforeEachCallback`、`AfterEachCallback`；客户端注入可实现 `ParameterResolver`；结果采集可实现 `TestWatcher`。状态放进 `ExtensionContext.Store`，按 root、class 或 method 作用域管理，资源对象实现可关闭语义。测试只声明需要的参数：\n\n```java\n@ExtendWith(ApiEnvironmentExtension.class)\nclass OrderApiTest {\n  @Test\n  void createsOrder(ApiClient api, TestTenant tenant) {\n    var created = api.createOrder(tenant, \"SKU-DEMO-1\");\n    assertThat(created.status()).isEqualTo(\"CREATED\");\n  }\n}\n```\n\nExtension 必须定义资源属于每个方法还是每个类，关闭失败也要进入测试证据；并行时不能把当前测试的 token、临时目录或 request-id 放进静态字段。不要让一个万能 Extension 同时处理环境、数据、日志、重试和业务步骤。",
+      "explanation": "深层 BaseTest 继承把不相关能力绑在一起，子类很难知道资源何时创建和释放。JUnit 扩展与参数解析让依赖显式，也便于单独测试。ExtensionContext 的层级和 Store 生命周期是设计重点，不是简单把 setup 代码搬家。",
+      "followups": [
+        "追问：静态 Extension 和实例 Extension 有何差别？答：注册方式会影响创建时机与可访问状态，应结合官方生命周期而不是凭注解位置猜测。",
+        "追问：如何给失败用例附加 request-id？答：请求 Filter 把证据写入当前方法作用域，TestWatcher 在失败事件中读取并发布。",
+        "追问：Extension 自己如何测试？答：用 JUnit Platform Launcher 或最小测试类验证回调顺序、异常和资源关闭。"
+      ],
+      "pitfalls": [
+        "把所有逻辑堆进一个万能 Extension",
+        "在 Extension 中用静态可变字段存当前用例上下文",
+        "只在成功路径关闭 Mock 服务",
+        "Extension 吞掉初始化或清理异常"
+      ],
+      "scenario": {
+        "background": "合成 API 套件需要每类共享 WireMock、每方法独立租户，并在失败时输出 request-id。",
+        "data": "其中一个测试在数据创建后抛异常，另一个测试与其并行运行。",
+        "task": "设计三个小 Extension 的职责、作用域和关闭顺序，证明不会串用租户。",
+        "synthetic": true
+      },
+      "source_ids": ["xiaolincoding-java-automation", "junit-docs", "wiremock-docs"],
+      "updated_at": "2026-07-29"
+    },
+    {
+      "id": "xiaolin-automation-junit-parameterized-dynamic",
+      "module_id": "05",
+      "origin": "xiaolincoding-reviewed",
+      "title": "JUnit 的参数化测试、动态测试和 TestTemplate 分别适合什么场景？",
+      "level": "进阶",
+      "kind": "知识题",
+      "roles": ["自动化测试", "接口自动化", "测试开发"],
+      "tags": ["JUnit", "参数化", "动态测试", "TestTemplate", "数据驱动"],
+      "focus": "数据驱动机制选择、用例身份与可诊断性、避免 Excel 万能化",
+      "answer": "`@ParameterizedTest` 适合一个稳定测试逻辑配多组显式输入，可使用 ValueSource、CsvSource、MethodSource、ArgumentsSource 等来源；每组数据都是独立 invocation，应给出可读 display name。`@TestFactory` 生成 DynamicTest，适合运行时发现的一组检查，但生成阶段与执行阶段生命周期不同，不能把它当普通参数化的替代品。`@TestTemplate` 需要 InvocationContextProvider，适合框架作者为同一测试提供不同环境、协议或浏览器上下文。\n\n优先让数据靠近规则并保持代码审查友好。少量边界表放代码；较大稳定数据集可使用版本化 JSON/CSV 并先做 Schema 校验；Excel 只有在确有非技术人员协作、格式治理和变更审计时才考虑。敏感或真实生产数据不应进入仓库。",
+      "explanation": "数据与代码分离不自动等于可维护。Excel 单元格类型、空值、公式和合并单元格会引入解析歧义，失败报告也常只显示行号。参数化的核心是以清晰名字表达等价规则，而不是追求一个方法读取所有文件。",
+      "followups": [
+        "追问：为什么动态测试里 BeforeEach 可能不符合直觉？答：生命周期围绕 TestFactory 方法，而不是每个动态节点自动创建与普通 @Test 完全相同的实例边界。",
+        "追问：参数化数据很多怎么办？答：先按等价类和边界精简；海量组合更适合属性测试或组合测试，并设置随机种子和最小失败样本。",
+        "追问：如何让失败定位到具体数据？答：为 invocation 设置业务可读名称，报告中保留非敏感关键输入与数据版本。"
+      ],
+      "pitfalls": [
+        "默认把所有数据放 Excel",
+        "参数化名称只有序号，失败无法定位业务场景",
+        "用动态测试规避正常生命周期却不了解其语义",
+        "把真实用户数据复制进测试资源"
+      ],
+      "scenario": {
+        "background": "合成折扣接口有 12 个明确边界、3 种货币和运行时发现的 5 个租户能力。",
+        "data": "所有金额均为合成整数最小单位，租户列表由本地 Fake 服务返回。",
+        "task": "选择参数化、动态测试或 TestTemplate，并说明用例身份、数据校验和报告设计。",
+        "synthetic": true
+      },
+      "source_ids": ["xiaolincoding-java-automation", "junit-docs"],
+      "updated_at": "2026-07-29"
+    },
+    {
+      "id": "xiaolin-automation-maven-surefire-failsafe",
+      "module_id": "08",
+      "origin": "xiaolincoding-reviewed",
+      "title": "Maven Surefire 与 Failsafe 的职责有什么不同，为什么接口集成测试通常应在 verify 阶段收口？",
+      "level": "进阶",
+      "kind": "实操题",
+      "roles": ["自动化测试", "测试开发"],
+      "tags": ["Maven", "Surefire", "Failsafe", "构建生命周期", "CI"],
+      "focus": "区分单元测试与集成测试生命周期，保证环境清理和质量门禁真正执行",
+      "answer": "Surefire 通常在 `test` 阶段运行单元/快速测试；Failsafe 在 `integration-test` 阶段运行集成测试，并在 `verify` 阶段检查结果。关键差异不是文件名，而是生命周期：集成环境可在 `pre-integration-test` 启动，在 `post-integration-test` 清理，Failsafe 不会在执行阶段立刻终止而跳过清理，最终由 `verify` 失败构建。\n\n```xml\n<plugin>\n  <groupId>org.apache.maven.plugins</groupId>\n  <artifactId>maven-failsafe-plugin</artifactId>\n  <version>${maven-failsafe.version}</version>\n  <executions><execution><goals>\n    <goal>integration-test</goal><goal>verify</goal>\n  </goals></execution></executions>\n</plugin>\n```\n\nCI 应执行 `./mvnw verify`，而不是默认认为 `mvn test` 会运行所有接口集成测试。用明确命名或 includes 区分 `*Test` 与 `*IT`，并把插件版本固定在父 POM/pluginManagement 中。",
+      "explanation": "原页面把 Java CI 简化为 `mvn clean test`。这可能遗漏 Failsafe 管理的集成测试和 verify 阶段的覆盖率、契约或质量检查。集成测试失败后仍需要执行环境清理，正是生命周期分层的重要价值。",
+      "followups": [
+        "追问：为什么本地 `test` 通过而 CI `verify` 失败？答：verify 会运行后续集成检查，先看执行计划、profile 和实际发现的用例数量。",
+        "追问：`-DskipTests` 与 `maven.test.skip` 是否相同？答：语义不同且插件支持有差异，流水线应显式记录跳过原因并验证没有误跳。",
+        "追问：是否每个接口测试都放 Failsafe？答：本地进程内的快速组件测试可在 test；依赖外部进程、容器或完整应用生命周期的更适合 integration-test。"
+      ],
+      "pitfalls": [
+        "只跑 `mvn test` 却宣称完成全量接口测试",
+        "在 integration-test 失败时直接中止导致环境未清理",
+        "插件版本随环境漂移",
+        "没有核对 discovered test count"
+      ],
+      "scenario": {
+        "background": "合成 Maven 项目有 80 个单元测试和 24 个需要启动应用与数据库容器的接口集成测试。",
+        "data": "集成测试故意失败一例，仍必须停止容器并生成 JUnit XML。",
+        "task": "设计 Maven 生命周期和 CI 命令，验证 104 个测试均被发现且失败后完成清理。",
+        "synthetic": true
+      },
+      "source_ids": ["xiaolincoding-java-automation", "maven-surefire-docs", "maven-failsafe-docs"],
+      "updated_at": "2026-07-29"
+    },
+    {
+      "id": "xiaolin-automation-maven-gradle-choice",
+      "module_id": "08",
+      "origin": "xiaolincoding-reviewed",
+      "title": "Java 自动化项目选择 Maven 还是 Gradle，应该比较哪些工程化因素？",
+      "level": "进阶",
+      "kind": "项目题",
+      "roles": ["自动化测试", "测试开发"],
+      "tags": ["Maven", "Gradle", "构建工具", "依赖管理", "可复现构建"],
+      "focus": "基于现有生态、任务模型、可复现性和维护成本选构建工具，避免工具信仰",
+      "answer": "Maven 提供约定明确的生命周期和成熟插件生态，POM 较显式，适合希望统一、可预测的团队；Gradle 的任务模型、增量构建、构建缓存和 Kotlin/Groovy DSL 更灵活，适合多模块或需要自定义测试套件的项目。Gradle 的 `Test` task 可配置 fork、过滤、报告和 `maxParallelForks`，JVM Test Suite 可建模不同测试组；Maven 则常用 Surefire/Failsafe 和 profile 分层。\n\n真正应比较：仓库现状与组织标准、JDK/框架兼容、依赖锁定与 BOM、Wrapper、插件成熟度、CI 缓存、测试分层、报告格式、学习成本和构建可观测性。不要为了学习同时维护两套同功能脚本。无论选谁，都应提交 Wrapper、锁定插件/依赖策略、在干净环境验证构建，并输出机器可读测试结果。",
+      "explanation": "“Maven 简单、Gradle 快”不足以作为项目决策。构建速度取决于缓存命中、任务图、依赖下载和测试本身；灵活 DSL 也可能演变成难维护的隐式逻辑。面试应能解释选择如何降低团队总成本。",
+      "followups": [
+        "追问：如何迁移？答：先固定当前构建输入和验收基线，双跑一段时间比较发现用例、classpath、报告和制品哈希，再逐步切换。",
+        "追问：Wrapper 为什么重要？答：它固定并下载项目声明的构建工具版本，减少开发机和 CI 差异，但依赖与插件仍需治理。",
+        "追问：能否按模块混用？答：技术上可以，除非组织已有明确边界，否则会增加缓存、版本和维护复杂度。"
+      ],
+      "pitfalls": [
+        "只按个人熟悉程度给出绝对结论",
+        "同时维护 Maven 与 Gradle 两套等价构建",
+        "未提交 Wrapper 或不锁插件版本",
+        "只看构建耗时，不核对实际运行的测试集合"
+      ],
+      "scenario": {
+        "background": "合成多模块仓库包含 Spring Boot 服务、Java SDK 和独立接口验收套件。",
+        "data": "团队现有 Maven 经验，CI 支持两种缓存，SDK 模块希望增加多 JDK 矩阵。",
+        "task": "写一份带权重的选型表，并用相同测试发现数和制品结果做验证。",
+        "synthetic": true
+      },
+      "source_ids": ["xiaolincoding-java-automation", "maven-docs", "gradle-testing-docs"],
+      "updated_at": "2026-07-29"
+    },
+    {
+      "id": "xiaolin-automation-wiremock-mockwebserver-choice",
+      "module_id": "05",
+      "origin": "xiaolincoding-reviewed",
+      "title": "WireMock 与 OkHttp MockWebServer 有什么差异，测试第三方 HTTP 依赖时怎样选择？",
+      "level": "进阶",
+      "kind": "知识题",
+      "roles": ["接口自动化", "测试开发"],
+      "tags": ["WireMock", "MockWebServer", "Mock", "服务虚拟化", "第三方依赖"],
+      "focus": "按服务虚拟化能力、客户端测试目标和请求验证方式选择 Mock 工具",
+      "answer": "WireMock 是功能较完整的 HTTP 服务虚拟化工具，支持丰富请求匹配、场景状态、延迟与故障、记录/回放、模板和独立进程/容器模式，也有 JUnit Jupiter Extension。MockWebServer 是 OkHttp 项目提供的轻量脚本化服务器，常用队列响应和 `takeRequest` 检查客户端实际发出的请求，特别适合 HTTP 客户端或 SDK 的组件测试。\n\n如果要模拟多个第三方端点、复杂匹配、状态迁移和团队共享 stub，优先评估 WireMock；如果目标是快速验证一个 Java/Android 客户端的序列、header、body 与连接行为，MockWebServer 更轻。二者都是测试替身，不能替代少量真实沙箱契约验证。并发场景应使用动态端口，避免固定端口冲突，并在每个测试清空请求与 stub 状态。",
+      "explanation": "原页面只说“用 WireMock 返回固定数据”，缺少选择边界和请求验证。好的 Mock 测试不只让依赖返回成功，还要验证被测系统是否发出了正确请求，并覆盖超时、断连、畸形响应和契约漂移。",
+      "followups": [
+        "追问：MockWebServer 按队列返回有什么风险？答：并发请求顺序不稳定时，简单 FIFO 可能制造 flaky，应使用 Dispatcher 按请求特征决定响应。",
+        "追问：WireMock 如何与 JUnit 生命周期结合？答：使用 Jupiter Extension 和动态端口，按方法重置映射与请求；不要共享未隔离的静态状态。",
+        "追问：为什么还要真实沙箱？答：Mock 只能证明对我们声明契约的实现，无法发现供应商实际认证、TLS、限流和字段漂移。"
+      ],
+      "pitfalls": [
+        "固定端口导致并行冲突",
+        "只 stub 响应，不验证请求",
+        "并发请求仍依赖严格 FIFO 响应",
+        "认为 Mock 通过等于第三方真实集成通过"
+      ],
+      "scenario": {
+        "background": "合成邮件 SDK 要验证 header、JSON body、超时和一次重试；业务服务还要模拟供应商的限流状态机。",
+        "data": "准备成功、429、半关闭连接、慢响应和错误 Content-Type。",
+        "task": "分别选择 MockWebServer 或 WireMock，设计请求验证和真实沙箱补充范围。",
+        "synthetic": true
+      },
+      "source_ids": ["xiaolincoding-java-automation", "wiremock-docs", "okhttp-mockwebserver-docs"],
+      "updated_at": "2026-07-29"
+    },
+    {
+      "id": "xiaolin-automation-wiremock-fault-contract",
+      "module_id": "05",
+      "origin": "xiaolincoding-reviewed",
+      "title": "如何用 WireMock 验证超时、重试、请求匹配与契约漂移，而不只是返回固定 JSON？",
+      "level": "高级",
+      "kind": "实操题",
+      "roles": ["接口自动化", "测试开发"],
+      "tags": ["WireMock", "故障注入", "重试", "契约测试", "请求验证"],
+      "focus": "动态端口、精确匹配、故障场景、调用次数与不能被 Mock 证明的边界",
+      "answer": "每个测试先声明依赖契约，再执行被测客户端，最后验证结果与对 Mock 的调用。使用动态端口，把 base URL 注入被测系统；匹配方法、路径、关键 header 和结构化 body，避免只匹配 URL。示例：\n\n```java\n@WireMockTest\nclass NotificationClientTest {\n  @Test\n  void rejectsAfterRetryBudget(WireMockRuntimeInfo wm) {\n    stubFor(post(\"/messages\")\n        .withHeader(\"Idempotency-Key\", matching(\".+\"))\n        .willReturn(aResponse().withStatus(503)));\n\n    var client = new NotificationClient(wm.getHttpBaseUrl());\n    assertThatThrownBy(() -> client.send(\"demo@example.invalid\"));\n\n    verify(2, postRequestedFor(urlEqualTo(\"/messages\")));\n  }\n}\n```\n\n实际实现应让 stub 按调用序列从暂态失败转为成功，断言退避总预算和最终副作用。故障集至少包含连接断开、首字节延迟、错误状态、畸形 JSON、缺字段和错误 Content-Type。契约文件要版本化；同时保留少量供应商沙箱 smoke 或消费者契约验证。",
+      "explanation": "Mock 的可信度来自“输入契约、输出契约、调用证据和边界声明”，不是 stub 数量。固定响应容易让错误路径完全未测。示例中的邮箱域为保留的 `.invalid`，不会连接真实人员。",
+      "followups": [
+        "追问：如何验证退避而不让测试真的等很久？答：把 Clock/Sleeper 注入客户端，用 FakeClock 记录计划延迟，并另做少量真实时钟集成检查。",
+        "追问：是否应该记录生产流量自动生成 stub？答：只有在获得明确授权并满足数据治理要求时才可评估；练习时可使用自建报文、供应商示例或隔离沙箱响应，再人工收敛为最小契约。",
+        "追问：所有 503 都重试吗？答：需结合业务操作是否可安全重试、幂等键和总预算。"
+      ],
+      "pitfalls": [
+        "只匹配 URL，错误请求也获得成功响应",
+        "用 Thread.sleep 验证真实退避导致套件缓慢",
+        "未经授权记录真实流量生成 stub",
+        "只断言客户端返回，不核对调用次数与请求内容"
+      ],
+      "scenario": {
+        "background": "合成通知客户端调用供应商发送测试邮件，供应商可能 503 后恢复。",
+        "data": "使用 `.invalid` 收件地址、合成消息和固定 FakeClock，不涉及任何真实账户。",
+        "task": "实现动态端口 Mock、一次受控重试、请求验证与契约漂移检测。",
+        "synthetic": true
+      },
+      "source_ids": ["xiaolincoding-java-automation", "wiremock-docs", "rfc-9110"],
+      "updated_at": "2026-07-29"
+    },
+    {
+      "id": "xiaolin-automation-junit-testng-parallel-model",
+      "module_id": "08",
+      "origin": "xiaolincoding-reviewed",
+      "title": "JUnit/TestNG 并行执行、Gradle/Maven fork 和性能压测的并发模型为什么不能混为一谈？",
+      "level": "高级",
+      "kind": "场景题",
+      "roles": ["自动化测试", "性能测试", "测试开发"],
+      "tags": ["并行执行", "JUnit", "TestNG", "Gradle", "Maven", "性能测试"],
+      "focus": "区分缩短回归时间、JVM 进程隔离与受控负载生成",
+      "answer": "测试框架线程并行的目标通常是缩短功能回归时间；构建工具 fork 是把测试分配到独立 JVM 进程以获得隔离和吞吐；性能压测则需要受控的到达率/并发模型、连接复用、预热、指标聚合、资源监控和可重复工作负载。三者都使用并发，但测试问题不同。\n\nJUnit 可配置并行执行模式并用 `@ResourceLock`/`@Isolated`保护共享资源；TestNG 可按 methods/classes/tests 并行，也能让 DataProvider 并行；Gradle `maxParallelForks` 控制 test worker 进程，Maven Surefire/Failsafe 也有 fork/parallel 配置。线程数不等于用户数，功能测试跑 100 个线程也不能可靠计算 TPS 或延迟分位数。性能结论应交给 JMeter、k6、Gatling 等负载工具或经校验的专用 harness。",
+      "explanation": "原页面用 TestNG 十个线程模拟秒杀并得出性能和线程安全结论。这可能发现部分竞争问题，但缺少负载模型、定时精度、连接策略与分位数，不能替代性能测试。功能并行首先要解决数据与环境隔离。",
+      "followups": [
+        "追问：功能并发是否毫无价值？答：有价值，可用屏障构造确定的竞争窗口验证幂等与不变量，但结论应限定为该同步实验。",
+        "追问：fork 越多越快吗？答：不一定，CPU、内存、数据库连接和环境容量都会形成瓶颈，过多进程反而更慢或更不稳定。",
+        "追问：如何逐步开启并行？答：先量化串行基线，按无共享资源的测试组小步开启，记录 flaky 率和资源冲突，再扩大。"
+      ],
+      "pitfalls": [
+        "把测试线程数直接称为并发用户数",
+        "用功能框架平均耗时代替性能分位数",
+        "增加 fork 却不检查机器和下游容量",
+        "并行开启后仍共享固定账号、端口和文件"
+      ],
+      "scenario": {
+        "background": "合成接口套件串行 40 分钟，团队计划开 20 线程并顺便声称完成性能测试。",
+        "data": "CI 只有 4 vCPU，下游测试库连接上限 30，当前套件使用 8 个固定账号。",
+        "task": "设计回归并行实验、竞争专项测试和独立性能测试三套方案及各自指标。",
+        "synthetic": true
+      },
+      "source_ids": ["xiaolincoding-java-automation", "junit-docs", "testng-docs", "gradle-testing-docs", "maven-surefire-docs"],
+      "updated_at": "2026-07-29"
+    },
+    {
+      "id": "xiaolin-automation-java-parallel-context",
+      "module_id": "05",
+      "origin": "xiaolincoding-reviewed",
+      "title": "Java 接口自动化并行时，为什么 static 全局变量和随意使用 ThreadLocal 都会带来数据串扰？",
+      "level": "高级",
+      "kind": "实操题",
+      "roles": ["接口自动化", "自动化测试", "测试开发"],
+      "tags": ["Java", "并发安全", "ThreadLocal", "测试上下文", "数据隔离"],
+      "focus": "显式场景上下文、线程复用、异步边界和可靠清理",
+      "answer": "static Map、全局 orderId 或 token 会被所有测试共享，写入顺序不确定；即使用 ConcurrentHashMap 只保证数据结构线程安全，也不保证业务键不会互相覆盖。ThreadLocal 能隔离同一线程上的状态，但测试线程会复用，若不 remove 会把旧上下文泄漏给下个测试；异步回调或 CompletableFuture 还可能切换线程，使值不可见或错误传播。\n\n优先把依赖作为不可变 `ScenarioContext` 显式传递，并为每个测试创建唯一命名空间。确需 ThreadLocal 时，用受控 Extension 在 BeforeEach 设置、AfterEach 的 finally 中 remove，且不跨异步边界假设它自动传播。示例：\n\n```java\nrecord ScenarioContext(String runId, String tenantId, String token) {}\n\nOrder createOrder(ApiClient api, ScenarioContext ctx, String sku) {\n  return api.create(ctx.tenantId(), ctx.token(), ctx.runId(), sku);\n}\n```\n\n每个测试产生自己的 runId、租户或数据前缀，清理按所有权执行。",
+      "explanation": "“把订单号存全局变量供下一个接口使用”在串行 Demo 中看似方便，在并行、重试和分片后会成为最常见的污染来源。上下文显式传递也能让依赖关系在代码审查中可见，减少隐藏顺序。",
+      "followups": [
+        "追问：InheritableThreadLocal 能解决异步吗？答：线程池线程通常提前创建且会复用，继承语义并不等于任务上下文安全传播。",
+        "追问：如何测试没有串扰？答：并行运行不同租户和唯一标记，服务端回显 runId，并断言每条数据只属于其创建者。",
+        "追问：Context 是否会变成万能 Map？答：应使用强类型不可变字段，只放场景身份和拥有的资源，不存任意全局状态。"
+      ],
+      "pitfalls": [
+        "用 static 字段保存 token、订单号或当前环境",
+        "认为 ConcurrentHashMap 自动解决业务隔离",
+        "ThreadLocal 设置后没有在 finally 中 remove",
+        "跨 CompletableFuture 线程默认继承上下文"
+      ],
+      "scenario": {
+        "background": "合成订单套件在 8 个线程上运行 40 个租户场景，线程池会复用工作线程。",
+        "data": "每个场景有唯一 runId 和租户 token，异步轮询步骤在线程池执行。",
+        "task": "设计显式上下文与清理机制，并写出能稳定暴露 static 串扰的并行测试。",
+        "synthetic": true
+      },
+      "source_ids": ["xiaolincoding-java-automation", "junit-docs", "testng-docs"],
+      "updated_at": "2026-07-29"
+    },
+    {
+      "id": "xiaolin-automation-testcontainers-lifecycle",
+      "module_id": "08",
+      "origin": "xiaolincoding-reviewed",
+      "title": "Testcontainers 在 Java 接口测试中应如何选择容器生命周期、等待条件和数据清理策略？",
+      "level": "高级",
+      "kind": "项目题",
+      "roles": ["接口自动化", "测试开发"],
+      "tags": ["Testcontainers", "JUnit", "数据库", "环境隔离", "测试数据"],
+      "focus": "真实依赖容器化、生命周期性能权衡、就绪判断和并行边界",
+      "answer": "Testcontainers 适合需要真实数据库、消息系统或服务协议的集成测试。JUnit Jupiter 扩展中，static `@Container` 在顶层测试类内共享，在全部测试方法前启动、最后一个方法后停止；实例字段容器通常每个测试方法启动和停止。选择要平衡隔离、启动成本和污染风险。镜像应固定到明确版本或 digest，使用服务语义的等待策略，不把“端口已开”误认为迁移完成、集群就绪或业务可用。\n\n共享容器时，每个测试使用独立 schema/database/topic/tenant 前缀，并在 teardown 校验与删除自己拥有的数据；事务回滚只对测试与被测代码共享事务的场景有效，对真实 HTTP 调用通常无效。官方 Testcontainers 文档明确说明 JUnit Jupiter 扩展只在顺序执行下经过测试，并行执行不受支持且可能产生非预期副作用。因此本场景不能仅开启 JUnit 并行开关：应先保持容器生命周期顺序执行，或自行实现并验证资源编排与每测试命名空间，再把不共享容器状态的测试分组并行。CI 失败时保留容器日志、应用日志和初始化版本，但不输出密钥。",
+      "explanation": "直接删数据库记录虽然快，却可能绕过外键、审计、事件与缓存。容器也不自动提供隔离；共享容器中的数据库仍会互相污染。可靠方案要同时定义资源所有者、命名空间、就绪证据和失败清理，并把“容器共享”和“测试方法并行”作为两个独立决策。不能把尚未受官方扩展支持的并行模式写成默认能力。",
+      "followups": [
+        "追问：容器重用能否默认开启？答：开发机的实验性重用与 CI 的可重复隔离目标不同，必须明确策略，不能依赖本地残留状态。",
+        "追问：为什么不全部每方法起容器？答：隔离强但成本可能过高，可用类级共享加逻辑命名空间，再用少量完全隔离测试验证初始化。",
+        "追问：如何验证迁移脚本？答：从空卷启动固定版本容器，执行迁移并检查 schema 版本与关键约束，不能复用已迁移数据卷。"
+      ],
+      "pitfalls": [
+        "使用 latest 镜像标签",
+        "仅等待端口开放就开始测试",
+        "共享容器却共享 schema 和固定业务键",
+        "假设 HTTP 测试可由测试线程事务自动回滚",
+        "直接在 Testcontainers JUnit Jupiter 扩展上开启并行，却没有自主管理和验证生命周期"
+      ],
+      "scenario": {
+        "background": "合成订单服务依赖 MySQL 和 Kafka，容器启动合计 35 秒。",
+        "data": "40 个测试可分为只读、独立订单和迁移验证三类，计划在 CI 中并行。",
+        "task": "设计容器与数据作用域、就绪条件、失败制品和并行验证步骤。",
+        "synthetic": true
+      },
+      "source_ids": ["xiaolincoding-java-automation", "testcontainers-java-docs"],
+      "updated_at": "2026-07-29"
+    },
+    {
+      "id": "xiaolin-automation-jacoco-coverage-boundary",
+      "module_id": "08",
+      "origin": "xiaolincoding-reviewed",
+      "title": "接口自动化如何正确使用 JaCoCo，为什么外部黑盒测试不会天然得到可信代码覆盖率？",
+      "level": "高级",
+      "kind": "知识题",
+      "roles": ["接口自动化", "测试开发"],
+      "tags": ["JaCoCo", "代码覆盖率", "黑盒测试", "质量门禁"],
+      "focus": "字节码探针、被测 JVM 关联、覆盖指标边界和风险驱动门禁",
+      "answer": "JaCoCo 通过 Java agent 或构建插件记录被测 JVM 中执行过的字节码指令，并可报告 instruction、branch、line、method、class 和 complexity 等计数。若接口自动化从另一个进程调用远端服务，只有给被测服务 JVM 正确挂载 agent、在对应部署版本上收集 exec 数据并与相同 class 文件生成报告，才可能把接口请求关联到服务覆盖；测试进程自己的 JaCoCo 只会测到测试代码或客户端代码。\n\n覆盖率用于发现未触达区域，不证明断言正确、业务风险已覆盖或系统没有缺陷。阈值应按模块风险、历史基线和可控范围制定，不能无来源地统一宣称 80%。合并并行/多实例执行数据前要校验 class id 和版本，生成报告时记录 commit、镜像和测试集合。",
+      "explanation": "原页面将“配置 Maven 插件、跑测试、得到核心接口 80%”说成普遍流程。跨进程、远程服务和多实例时还需要部署侧探针、数据导出和版本对应。JaCoCo 的 branch 计数也不把异常处理直接当分支，因此数字需要正确解释。",
+      "followups": [
+        "追问：行覆盖 100% 为什么仍可能漏 Bug？答：同一行可能有多个条件，数据边界、异常路径、并发与断言正确性都不由行覆盖保证。",
+        "追问：覆盖率下降一定阻断发布吗？答：先排除采集与版本问题，再结合变更风险、绝对未覆盖区域和已有基线决定。",
+        "追问：远程多实例如何合并？答：为每实例导出独立 execution data，确认相同构建 class id 后合并，避免不同版本数据混算。"
+      ],
+      "pitfalls": [
+        "只给测试进程挂 JaCoCo 却宣称覆盖服务端代码",
+        "用任意 80% 作为所有模块门禁",
+        "把覆盖率当测试质量或无缺陷证明",
+        "混合不同 commit 的执行数据和 class 文件"
+      ],
+      "scenario": {
+        "background": "合成 Java 服务以三个容器实例运行，接口测试从独立 runner 发起。",
+        "data": "其中一个实例误部署旧 commit，测试 runner 自身也启用了 JaCoCo。",
+        "task": "设计采集与版本校验流程，识别错误实例并给出可信覆盖报告边界。",
+        "synthetic": true
+      },
+      "source_ids": ["xiaolincoding-java-automation", "jacoco-docs"],
+      "updated_at": "2026-07-29"
+    },
+    {
+      "id": "xiaolin-automation-java-python-tradeoff",
+      "module_id": "05",
+      "origin": "xiaolincoding-reviewed",
+      "title": "Java 与 Python 接口自动化怎样做工程化选型，为什么不能声称 Java 用例固定快两倍？",
+      "level": "进阶",
+      "kind": "项目题",
+      "roles": ["接口自动化", "自动化测试", "测试开发"],
+      "tags": ["Java", "Python", "技术选型", "工程化", "性能基准"],
+      "focus": "从生态、团队、类型、启动与 I/O 特征选择语言，用数据而不是刻板印象回答",
+      "answer": "接口自动化通常受网络、服务响应、数据准备和环境容量限制，语言运行时未必是主要瓶颈，不能脱离相同工作负载声称“Java 500 条五分钟、Python 十分钟”。Java 的静态类型、IDE 重构、JVM 生态、与 Java 服务共享 DTO/契约工具和大型工程治理可能更有优势；Python 的语法简洁、pytest 插件、数据处理和快速试验成本较低。共享生产 DTO 可以提高编译期反馈，但也可能让测试与实现共享同一错误。\n\n选型比较：团队现有能力、被测技术栈、库和插件成熟度、并发模型、CI 冷启动、依赖安全、代码审查、长期维护和与平台集成。用同一批合成场景做基准，分别统计收集/启动、数据准备、网络等待、断言和报告阶段；先优化最大瓶颈。必要时允许不同层使用不同语言，但要统一契约、报告和质量门禁。",
+      "explanation": "语言选择是总拥有成本问题，不是执行速度口号。Java/JVM 的 JIT 需要预热，Python 的网络 I/O 也常不受解释器计算速度主导。真实比较还必须保持并发、连接复用、数据和环境一致。",
+      "followups": [
+        "追问：是否应与后端使用同一语言？答：协作与工具复用是加分项，但独立测试预言和团队能力同样重要，不是硬性规则。",
+        "追问：能否共享 DTO？答：可共享稳定公开契约生成物，但关键兼容性测试要保留独立 Schema/原始 JSON 检查。",
+        "追问：如何避免两套框架重复建设？答：按测试层和所有权划界，统一用例元数据、环境接口、结果协议和门禁，不复制同一套 E2E。"
+      ],
+      "pitfalls": [
+        "虚构固定的 Java/Python 速度倍数",
+        "只因后端是 Java 就强制所有测试用 Java",
+        "共享生产实现导致测试预言不独立",
+        "两种语言重复覆盖同一低价值 E2E 集合"
+      ],
+      "scenario": {
+        "background": "合成团队现有 300 个 Python API 测试，新 Java 服务提供 OpenAPI 契约。",
+        "data": "CI 总耗时 28 分钟，其中数据准备 9 分钟、服务等待 14 分钟、测试收集与代码执行 5 分钟。",
+        "task": "判断是迁移、共存还是保留，并设计公平基准与半年维护成本指标。",
+        "synthetic": true
+      },
+      "source_ids": ["xiaolincoding-python-automation", "xiaolincoding-java-automation", "pytest-docs", "junit-docs"],
+      "updated_at": "2026-07-29"
+    },
+    {
+      "id": "xiaolin-automation-retry-governance-java",
+      "module_id": "08",
+      "origin": "xiaolincoding-reviewed",
+      "title": "TestNG IRetryAnalyzer 或 JUnit 扩展实现失败重试时，怎样避免把真实缺陷洗成通过？",
+      "level": "高级",
+      "kind": "场景题",
+      "roles": ["自动化测试", "测试开发"],
+      "tags": ["重试", "TestNG", "JUnit", "Flaky Test", "质量门禁"],
+      "focus": "重试准入、首次失败证据、结果分类和重试安全边界",
+      "answer": "重试必须是受治理的恢复实验，而不是默认装饰器。先按异常类型和测试阶段分类：断言失败、业务 4xx、确定性数据错误不应自动重试；明确的网络暂态故障可在操作安全/幂等、预算有限且保留首次失败证据时重试。TestNG 可用 IRetryAnalyzer，JUnit 可通过扩展或构建/CI 层实现，但实现位置不改变治理原则。\n\n报告必须区分首次通过、重试后通过和最终失败；重试后通过仍计入 flaky 指标，不能覆盖首次堆栈、request-id、种子和制品。设置每测试与整套件预算，禁止递归/无限重试。重试前确认前一次副作用并清理或复用同一幂等键。对已知 flaky 建立责任人和退出期限，而不是长期绿化。",
+      "explanation": "原页面把自动重跑三次描述为排除环境干扰、提升稳定性。它只能改变观测结果，不能修复根因，还可能让 CI 假绿、重复创建数据或重复支付。可靠测试首先靠确定数据、明确等待和可观测性。",
+      "followups": [
+        "追问：为什么不对 AssertionError 重试？答：它通常表示预期不满足；若断言依赖最终一致性，应在断言前做有边界的状态轮询，而不是重跑整个场景。",
+        "追问：重试后通过是否阻断发布？答：可按风险阈值决定，但必须单独可见；关键路径出现新 flaky 通常不应当作普通通过。",
+        "追问：如何验证 RetryAnalyzer 线程安全？答：不要把计数器错误地跨用例共享，使用每次 invocation 身份并在并行套件中做专项测试。"
+      ],
+      "pitfalls": [
+        "所有失败默认重跑三次",
+        "重试覆盖首次失败日志",
+        "非幂等写操作直接整场景重跑",
+        "重试后通过按普通通过统计"
+      ],
+      "scenario": {
+        "background": "合成订单套件有一次响应读取超时和一次金额断言失败。",
+        "data": "超时请求带幂等键且服务端状态可查；金额断言每次都稳定不一致。",
+        "task": "制定重试准入、报告字段和副作用核对，证明金额缺陷不会被洗掉。",
+        "synthetic": true
+      },
+      "related_question_ids": ["core-05-16"],
+      "deepening_rationale": "在通用 Flaky Test 全生命周期治理基础上，专门考察 TestNG/JUnit 的重试实现、并行计数器、重试预算、幂等副作用与结果三态报告。",
+      "source_ids": ["xiaolincoding-python-automation", "xiaolincoding-java-automation", "testng-docs", "junit-docs"],
+      "updated_at": "2026-07-29"
+    },
+    {
+      "id": "xiaolin-automation-java-ci-reproducible",
+      "module_id": "08",
+      "origin": "xiaolincoding-reviewed",
+      "title": "Java 自动化测试接入 CI 时，怎样做到依赖可复现、测试不漏跑且结果可追溯？",
+      "level": "进阶",
+      "kind": "项目题",
+      "roles": ["自动化测试", "测试开发"],
+      "tags": ["CI", "Maven", "Gradle", "依赖治理", "报告", "可追溯性"],
+      "focus": "Wrapper、版本锁定、用例发现校验、机器可读报告和安全制品",
+      "answer": "流水线至少固定 JDK、构建工具 Wrapper、直接依赖、插件和关键镜像版本；Maven 用 dependencyManagement/BOM 与 pluginManagement，Gradle 可用 version catalog、dependency locking 和 verification 等机制。PR 先做编译、静态检查和快速测试，再执行接口/集成层；命令必须匹配生命周期，例如 Maven 集成测试用 `./mvnw verify`。\n\n每次运行记录 commit、JDK、构建工具版本、环境版本、测试选择条件、发现/执行/跳过数量和随机种子。发布 JUnit XML、脱敏日志、失败请求证据和覆盖报告；用例数量意外归零或大幅下降应让作业失败。缓存只能缓存可验证依赖和构建输出，不能缓存会污染测试的运行时数据。密钥从 CI secret 注入，禁止写入配置文件、命令输出和报告。",
+      "explanation": "“Jenkins 拉代码后执行 Maven 并发邮件”只是工具操作，不是可靠流水线。质量关键在输入可复现、门禁可解释、测试确实被发现和失败证据可追溯。CI 平台可以替换，原则不变。",
+      "followups": [
+        "追问：如何防止依赖投毒或仓库漂移？答：使用可信仓库、锁定/校验依赖、SBOM 和安全扫描，并审查更新，而不是长期禁止升级。",
+        "追问：报告上传失败是否阻断？答：测试结果已失败时仍应在 finally/always 阶段上传；关键审计制品缺失可按组织策略阻断。",
+        "追问：为什么检查执行数量？答：provider、标签或命名配置错误可能造成构建绿色但零测试。"
+      ],
+      "pitfalls": [
+        "使用浮动插件或镜像版本",
+        "构建绿色但没有检查测试发现数量",
+        "把密钥写入 POM、Gradle 脚本或 Allure 附件",
+        "缓存测试数据库目录造成跨构建污染"
+      ],
+      "scenario": {
+        "background": "合成 Java 自动化仓库从 Maven profile 迁移后，CI 突然从 220 个测试降到 17 个但仍显示成功。",
+        "data": "提供 JUnit XML、Surefire/Failsafe 配置、历史发现数量和失败日志。",
+        "task": "定位漏跑原因，并设计发现数量、来源版本和报告完整性的永久门禁。",
+        "synthetic": true
+      },
+      "source_ids": ["xiaolincoding-java-automation", "maven-docs", "maven-surefire-docs", "gradle-testing-docs", "maven-reproducible-builds-docs", "gradle-dependency-locking-docs"],
+      "updated_at": "2026-07-29"
+    },
+    {
+      "id": "xiaolin-automation-java-api-module-architecture",
+      "module_id": "05",
+      "origin": "xiaolincoding-reviewed",
+      "title": "Java 接口自动化框架如何划分 transport、API client、workflow 与 test 层，哪些内容不应塞进 BaseTest？",
+      "level": "进阶",
+      "kind": "项目题",
+      "roles": ["接口自动化", "自动化测试", "测试开发"],
+      "tags": ["Java", "框架设计", "接口自动化", "分层", "可维护性"],
+      "focus": "按变化原因分层、显式依赖、独立测试预言和框架最小化",
+      "answer": "transport 层处理 HTTP 客户端、超时、序列化、非敏感观测和统一错误模型；API client 层按服务/资源提供类型化调用，不写测试断言；workflow 层只封装有业务意义的多接口流程，并返回完整结果或证据；test 层负责场景数据、期望与断言。config、data factory、database observer、mock 和 report 是可组合支撑能力，不应都通过继承注入。\n\nBaseTest 若存在，只管理极少的框架生命周期；环境、身份、客户端和数据所有权应通过构造器、参数或 Extension 显式提供。不要把所有异常 catch 后返回 null，不要让 API client 自动断言 200，也不要让 workflow 隐藏每个步骤的 request-id。框架设计完成的标准是新增一个普通 API 与失败诊断都简单，不是目录层数多。",
+      "explanation": "现有题库已有通用分层题，因此本题只深化 Java 落地和反模式。页面原答案强调五层目录，却没有说明依赖方向、断言归属和失败证据。按变化原因分层比按文件类型机械分层更稳定。",
+      "followups": [
+        "追问：DTO 放哪一层？答：外部契约 DTO 靠近 API client，领域期望模型可在 test support；避免直接让数据库实体成为公共测试契约。",
+        "追问：workflow 是否会掩盖接口细节？答：返回步骤证据，并为每个 API client 保留独立契约测试；workflow 只表达真正业务流程。",
+        "追问：何时不需要自研框架？答：规模小、协议简单时用测试框架加少量 fixture/helper 即可，先解决重复痛点再抽象。"
+      ],
+      "pitfalls": [
+        "BaseTest 继承所有能力",
+        "API client 内部硬编码成功断言",
+        "捕获异常后返回 null 让根因丢失",
+        "以目录数量衡量框架成熟度"
+      ],
+      "scenario": {
+        "background": "合成论坛服务有用户、帖子和审核三个 API 域，一个发帖审核流程跨四次请求。",
+        "data": "每个响应都有 trace-id，审核可能异步完成，所有测试账号与帖子都可重置。",
+        "task": "画出 Java 包和依赖方向，给出发帖 workflow 返回的证据对象，并说明断言位置。",
+        "synthetic": true
+      },
+      "related_question_ids": ["core-05-12"],
+      "deepening_rationale": "在通用自动化框架职责分层基础上，专门考察 Java 的 transport、client、workflow、test 依赖方向，以及 BaseTest、JUnit Extension、DTO 与失败证据反模式。",
+      "source_ids": ["xiaolincoding-python-automation", "xiaolincoding-java-automation", "rest-assured-docs", "junit-docs"],
+      "updated_at": "2026-07-29"
+    },
+    {
+      "id": "xiaolin-automation-collection-selection-result-aggregation",
+      "module_id": "05",
+      "origin": "xiaolincoding-reviewed",
+      "title": "测试平台汇总并行执行结果时，List、Set、Map、Queue 和并发集合应怎样选择？",
+      "level": "进阶",
+      "kind": "实操题",
+      "roles": ["测试开发", "自动化测试"],
+      "tags": ["数据结构", "Java 集合", "并发集合", "结果聚合", "复杂度"],
+      "focus": "从顺序、唯一性、键值查询、生产消费和并发语义选择集合，而不是背实现类",
+      "answer": "先把业务约束翻译成数据结构语义。需要保留重复和确定顺序的明细用 `List`；只关心唯一用例 ID 用 `Set`；按 caseId 查询最后状态用 `Map`；生产者提交结果、消费者异步落库用 `BlockingQueue`。如果既去重又保留首次出现顺序，可在单线程归并阶段用 `LinkedHashSet`，不要假设 `HashSet` 或 `HashMap` 有稳定顺序。\n\n并行写入时普通 `ArrayList`、`HashMap` 不是线程安全的。只把它们换成 `ConcurrentHashMap` 也不一定满足业务原子性，例如“首次失败必须保留”需要先定义顺序。分布式 worker 的 `endedAt` 受时钟偏差影响，不能单独作为首次依据；本场景可先按较小 attempt 排序，同 attempt 再使用汇总端分配的单调 ingestSeq：\n\n```java\nrecord Result(\n    String caseId, int attempt, boolean passed,\n    long ingestSeq, Instant endedAt, String workerId) {}\n\nConcurrentMap<String, Result> firstFailure = new ConcurrentHashMap<>();\nvoid accept(Result r) {\n  if (!r.passed()) {\n    firstFailure.compute(r.caseId(), (id, old) ->\n        old == null\n            || r.attempt() < old.attempt()\n            || (r.attempt() == old.attempt()\n                && r.ingestSeq() < old.ingestSeq()) ? r : old);\n  }\n}\n```\n\n若业务要的是“最早发生”而不是“最早尝试”，则必须同步时钟并声明误差，或在数据源生成可比较的序列。最终报告若要求稳定排序，应在全部任务完成后复制快照，再按明确字段排序；ConcurrentHashMap 的遍历顺序不能作为报告契约。",
+      "explanation": "这是测试开发场景中的集合选型题，不重复现有算法八股。关键不是说 ArrayList 查询快、LinkedList 插入快，而是识别顺序、唯一性、原子更新、背压和可诊断输出。原示例直接按不同 worker 的 endedAt 认定“首次”，忽略时钟偏差和顺序定义；修订后把业务顺序键显式化。`ConcurrentModificationException` 也只是尽力发现错误，不能作为并发正确性机制。",
+      "followups": [
+        "追问：为什么不直接用 `Collections.synchronizedList`？答：它能串行化单个操作，但复合的检查再写入仍要在同一锁内完成，迭代也需要按其契约同步。",
+        "追问：如何统计每个模块通过数？答：可用 ConcurrentHashMap 配合 LongAdder 等并发计数，但最终统计要与任务完成屏障和结果快照对齐。",
+        "追问：BlockingQueue 的容量如何选？答：容量体现允许的积压和背压策略；无界队列可能在消费者变慢时耗尽内存。"
+      ],
+      "pitfalls": [
+        "用 HashMap/HashSet 的偶然遍历顺序生成稳定报告",
+        "认为换成 ConcurrentHashMap 后所有复合操作都原子",
+        "并行向 ArrayList 写入",
+        "为追求去重而丢失重试次数与首次失败证据"
+      ],
+      "scenario": {
+        "background": "合成测试平台从 12 个 worker 接收同一批 10,000 条结果，其中包含重试和重复回调。",
+        "data": "每条结果包含 caseId、attempt、passed、endedAt 和 workerId，可按执行批次聚合。",
+        "task": "设计明细、去重、首次失败、模块统计和异步落库的数据结构，并分析时间复杂度与并发边界。",
+        "synthetic": true
+      },
+      "source_ids": ["xiaolincoding-data-structures", "xiaolincoding-java-collections", "java-collections-docs", "java-concurrency-docs"],
+      "updated_at": "2026-07-29"
+    },
+    {
+      "id": "xiaolin-automation-threadpool-hang-diagnosis",
+      "module_id": "08",
+      "origin": "xiaolincoding-reviewed",
+      "title": "Java 自动化套件并发后卡住且没有新日志，如何从线程池、队列和线程转储定位？",
+      "level": "高级",
+      "kind": "场景题",
+      "roles": ["测试开发", "自动化测试"],
+      "tags": ["Java 并发", "线程池", "线程转储", "任务饥饿", "拒绝策略"],
+      "focus": "用运行指标和线程栈区分任务饥饿、下游阻塞、队列积压、死锁与未关闭线程池",
+      "answer": "先冻结证据而不是重启：记录进程、时间、套件进度、线程池 active/pool/queue/completed/rejected 指标，并在短间隔取得至少两到三份线程转储。查看工作线程是都阻塞在同一个网络/锁，还是父任务在 `Future.get/join` 等待提交到同一已满线程池的子任务；后者是典型线程饥饿。再检查队列类型：无界队列会让 maximumPoolSize 基本不起扩容作用并可能无限积压，有限队列饱和则触发拒绝策略。`DiscardPolicy` 会静默丢任务，测试平台通常不应使用。\n\n修复时不能只把原池从 4 改成 8。原示例的 `core=4、max=8、queue=100` 仍会先把 60 个子任务排队，四个父任务继续占满 core 并等待它们，因而仍可能饥饿。应让编排在测试线程或独立的小池中运行，把真正的 I/O 子任务提交到单独的有界池；每个外部调用必须有实际 deadline，整个编排另设上限和显式取消策略：\n\n```java\nvar ioPool = new ThreadPoolExecutor(\n    8, 8, 0, TimeUnit.SECONDS,\n    new ArrayBlockingQueue<>(32),\n    new NamedThreadFactory(\"api-io-\"),\n    new ThreadPoolExecutor.AbortPolicy());\n\n// 当前测试线程只负责编排，不占用 ioPool 的 worker。\nvar children = requests.stream()\n    .map(req -> CompletableFuture.supplyAsync(\n        () -> callWithDeadline(req), ioPool))\n    .toArray(CompletableFuture[]::new);\ntry {\n  CompletableFuture.allOf(children).get(10, TimeUnit.SECONDS);\n} catch (TimeoutException e) {\n  cancelOutstandingCalls(); // 取消底层 HTTP 调用/关闭响应，且要专项验证\n  for (var child : children) child.cancel(false);\n  throw e;\n}\n```\n\n只让 `CompletableFuture` 超时或取消，不保证底层网络调用已经停止，所以 `cancelOutstandingCalls` 必须连接到真实客户端取消机制并验证资源释放。还要给每个任务记录 taskId、提交/开始/结束时间，限制生产速率，并在 finally 中 `shutdown` 后有界 `awaitTermination`。线程数、队列和拒绝策略应根据任务阻塞比例、突发量和下游容量实测；如果业务必须嵌套提交，也要使用非阻塞组合或证明不会形成循环等待。",
+      "explanation": "“并发数调大”可能让队列、连接池和下游服务更糟。ThreadPoolExecutor 达到 core 后会先尝试入队，只有入队失败且未达 max 才新增线程，因此扩大 maximumPoolSize 而保留大队列并不能修复同池等待。原代码示例与题干中的饥饿条件相矛盾，修订后显式拆开编排与 I/O 执行。线程转储要看多次时间序列，单份 WAITING 不足以证明死锁。",
+      "followups": [
+        "追问：如何区分 JVM 死锁和任务饥饿？答：死锁常有互相等待的锁环并可被诊断工具报告；饥饿可能没有锁环，只是所有 worker 都等待尚未获得执行机会的任务。",
+        "追问：CallerRunsPolicy 有什么效果？答：让提交线程执行任务形成背压，但会改变延迟和线程上下文，必须验证不会阻塞关键调度线程。",
+        "追问：为什么 shutdown 后进程仍不退出？答：检查非守护线程、定时任务、HTTP client executor 和未关闭资源，并用线程转储确认存活线程。"
+      ],
+      "pitfalls": [
+        "卡住后直接重启导致关键线程证据丢失",
+        "用无界队列却期待 maximumPoolSize 自动扩容",
+        "使用静默丢弃拒绝策略",
+        "在池内任务同步等待同池子任务"
+      ],
+      "scenario": {
+        "background": "合成接口套件使用 4 线程池，每个父任务提交两个子任务后立即 join，第四分钟开始零进度。",
+        "data": "队列仍有 60 个任务，四个 worker 均处于 WAITING，下游健康且没有数据库锁。",
+        "task": "给出取证顺序、根因判断、最小复现和不依赖无限加线程的修复方案。",
+        "synthetic": true
+      },
+      "source_ids": ["xiaolincoding-java-concurrency", "java-concurrency-docs", "java-diagnostic-tools-docs"],
+      "updated_at": "2026-07-29"
+    },
+    {
+      "id": "xiaolin-automation-jvm-gc-evidence",
+      "module_id": "07",
+      "origin": "xiaolincoding-reviewed",
+      "title": "Java 被测服务在稳定性测试中延迟逐步升高，如何用 GC 日志、JFR、jcmd 和堆转储形成证据链？",
+      "level": "高级",
+      "kind": "场景题",
+      "roles": ["性能测试", "测试开发"],
+      "tags": ["JVM", "GC", "JFR", "jcmd", "内存泄漏", "稳定性测试"],
+      "focus": "先关联业务延迟与 JVM 时间线，再按成本逐步取证，区分高分配、存活集增长、线程阻塞和非堆问题",
+      "answer": "先统一时间线：记录请求延迟分位数、吞吐、错误率、堆使用、GC 次数/暂停、CPU、线程数、进程 RSS 和被测 commit。若延迟尖峰与 GC 暂停对齐，再判断是分配率过高、老年代存活集持续增长、堆配置不合适，还是其他线程/锁/I/O 问题；不要看到内存上涨就直接宣布泄漏。\n\n取证按工具影响分级。延迟测量窗优先使用预先配置的统一 GC 日志、经过开销校准的连续 JFR、运行时指标和 `jcmd <pid> VM.version` 等低影响证据。Oracle JDK 25 将 `GC.heap_info`、`Thread.print` 标为 Medium，将 `GC.class_histogram` 标为 High；它们不能与前述项目一起笼统称作“低影响”。应在授权的合成环境中安排独立诊断窗、降低或暂停负载、记录命令起止时间，再采集堆概览或多份线程转储；只有趋势证据需要时才执行类直方图。若多轮 GC 后 live set 仍增长，可用经过评估的 JFR OldObjectSample/分配栈，再在评估磁盘、停顿和敏感数据风险后升级到 heap dump，并用 MAT/JMC 分析 dominator、retained size 与 GC root 引用链。`path-to-gc-roots=true` 等增强取证不得混入基准测量窗。\n\n结论必须包含对照：相同负载下修复前后 live set、分配率、GC 暂停和业务延迟变化，并区分“业务症状时间窗”和“诊断命令扰动时间窗”。若堆稳定但 RSS 上涨，应继续检查 direct buffer、线程栈、native 库和容器限制。",
+      "explanation": "JVM 页面提供了堆、GC 与 OOM 基础，本题把它们转化为测试取证流程。Full GC 多或堆使用高不是根因本身；单张 heap dump 也不能证明趋势。JFR 能同时观察 GC、分配、线程、锁、I/O 和 CPU，但其设置仍需先校准。jcmd 各命令影响级别不同，取证本身可能改变延迟，因此必须记录并隔离诊断扰动。",
+      "followups": [
+        "追问：为什么不能测试一开始就抓 heap dump？答：文件大、可能触发明显暂停并含敏感对象；应先授权、评估空间和影响，再在合成环境按需获取。",
+        "追问：什么证据更像内存泄漏？答：相同稳态负载下，经过多轮回收后的 live set 与某类对象 retained size 持续增长，并能找到不合理 GC root 引用链。",
+        "追问：调大 Xmx 是否算修复？答：它可能延后 OOM 或降低 GC 频率，但若对象生命周期错误，增长趋势仍在；需用对照实验判断。"
+      ],
+      "pitfalls": [
+        "看到堆曲线上升就直接断言泄漏",
+        "只抓一份堆转储，没有趋势与负载对照",
+        "在延迟压测期间启用高开销堆统计却忽略测量扰动",
+        "只看 Java 堆，忽略线程、direct memory 和容器 RSS"
+      ],
+      "scenario": {
+        "background": "合成 Java 论坛服务进行 6 小时稳定性测试，第四小时起 p99 延迟升高，吞吐保持不变。",
+        "data": "提供自动生成的帖子、测试账号、GC 日志、JFR、进程指标和受控 jcmd。",
+        "task": "设计低风险到高成本的取证阶梯，给出泄漏、分配压力、锁竞争和非堆增长的判别证据。",
+        "synthetic": true
+      },
+      "source_ids": ["xiaolincoding-jvm", "java-jfr-docs", "java-diagnostic-tools-docs"],
+      "updated_at": "2026-07-29"
+    }
+  ]
+}

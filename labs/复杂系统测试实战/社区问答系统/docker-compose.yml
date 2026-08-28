@@ -1,0 +1,96 @@
+name: community-qa-learning
+
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-community_qa}
+      MYSQL_USER: ${MYSQL_USER:-community}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-community_dev_password}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root_dev_password}
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_0900_ai_ci
+    ports:
+      - "3307:3306"
+    volumes:
+      - community_mysql_data:/var/lib/mysql
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "mysqladmin ping -h 127.0.0.1 -u$$MYSQL_USER -p$$MYSQL_PASSWORD --silent",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+
+  redis:
+    image: redis:7.4-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "6380:6379"
+    volumes:
+      - community_redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  ai-middleware:
+    profiles: ["ai"]
+    build:
+      context: ../人工智能中间件
+    environment:
+      AI_PROVIDER: ${AI_PROVIDER:-mock}
+      AI_SERVICE_VERSION: ${AI_SERVICE_VERSION:-0.1.0}
+      AI_DEFAULT_TIMEOUT_MS: ${AI_DEFAULT_TIMEOUT_MS:-1500}
+      AI_DEFAULT_MAX_RETRIES: ${AI_DEFAULT_MAX_RETRIES:-1}
+      AI_MAX_INPUT_CHARS: ${AI_MAX_INPUT_CHARS:-10000}
+    ports:
+      - "8090:8000"
+
+  backend:
+    build:
+      context: ./backend
+    environment:
+      APP_ENV: docker
+      DEBUG: "false"
+      DATABASE_URL: mysql+pymysql://${MYSQL_USER:-community}:${MYSQL_PASSWORD:-community_dev_password}@mysql:3306/${MYSQL_DATABASE:-community_qa}?charset=utf8mb4
+      REDIS_URL: redis://redis:6379/0
+      AI_BASE_URL: http://ai-middleware:8000
+      AI_SUMMARY_PATH: /api/v1/forum/summarize
+      AI_TIMEOUT_SECONDS: ${AI_TIMEOUT_SECONDS:-25}
+      CORS_ORIGINS: http://localhost:3000,http://localhost:5173
+      AUTO_CREATE_TABLES: "false"
+    ports:
+      - "8000:8000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/v1/health')",
+        ]
+      interval: 10s
+      timeout: 4s
+      retries: 10
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  community_mysql_data:
+  community_redis_data:

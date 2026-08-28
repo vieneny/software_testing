@@ -1,0 +1,78 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# Node / Web
+node_modules/
+.npm/
+.pnpm-store/
+.yarn/
+coverage/
+*.tsbuildinfo
+
+# Java / Maven / Gradle
+target/
+.gradle/
+out/
+
+# 测试报告与运行产物
+allure-results/
+allure-report/
+test-results/
+playwright-report/
+blob-report/
+screenshots/
+videos/
+traces/
+*.jtl
+*.har
+*.pcap
+*.log
+
+# 密钥、身份信息与本地配置
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.mobileprovision
+auth.json
+storage-state.json
+secrets.*
+
+# 公开移动端练习应用只从官方来源下载，不在个人仓库重新分发
+mobile-apps/
+*.apk
+*.ipa
+*.app
+*.xctestrun
+
+# 可能包含真实业务数据的导出文件
+data/private/
+data/raw/
+*.dump
+*.sql.gz
+*.xlsx
+*.xls
+*.csv
+
+# 公开网页的完整离线快照只保存在本机，避免未经授权重新分发
+apps/interview-bank/data/source-snapshots/*
+!apps/interview-bank/data/source-snapshots/manifest.example.json
+
+# IDE / OS
+.DS_Store
+.idea/
+.vscode/

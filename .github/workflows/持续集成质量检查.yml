@@ -1,0 +1,122 @@
+name: public-learning-quality
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  interview-bank:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: apps/interview-bank/backend/pyproject.toml
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: apps/interview-bank/frontend/package-lock.json
+      - name: Install interview bank backend
+        run: python -m pip install -e 'apps/interview-bank/backend[dev]'
+      - name: Verify generated catalog and historical coverage
+        run: python apps/interview-bank/scripts/build_bank.py --check
+      - name: Run FastAPI and privacy tests
+        run: pytest -q apps/interview-bank/backend/tests
+      - name: Install and verify Vue frontend
+        working-directory: apps/interview-bank/frontend
+        run: |
+          npm ci
+          npm run test
+          npm run typecheck
+          npm run build
+
+  automation-framework-offline:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: labs/automation-practice
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: labs/automation-practice/pyproject.toml
+      - name: Install framework dependencies
+        run: python -m pip install -e '.[all,dev]'
+      - name: Check formatting and static rules
+        run: |
+          ruff check src tests
+          ruff format --check src tests
+      - name: Run offline tests and verify external guards
+        run: pytest -q
+
+  api-and-ai:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: labs/demo-shop
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: labs/demo-shop/pyproject.toml
+      - name: Install test dependencies
+        run: python -m pip install -e '.[test]'
+      - name: Start synthetic demo service
+        run: |
+          uvicorn app.商城服务:app --host 127.0.0.1 --port 8000 > /tmp/demo-shop.log 2>&1 &
+          for attempt in {1..20}; do
+            curl --fail --silent http://127.0.0.1:8000/health && exit 0
+            sleep 1
+          done
+          cat /tmp/demo-shop.log
+          exit 1
+      - name: Run API and deterministic AI checks
+        run: pytest tests/api tests/ai -q
+
+  web-ui:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: labs/demo-shop
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: labs/demo-shop/pyproject.toml
+      - name: Install UI dependencies
+        run: |
+          python -m pip install -e '.[test,ui]'
+          python -m playwright install --with-deps chromium
+      - name: Start synthetic demo service
+        run: |
+          uvicorn app.商城服务:app --host 127.0.0.1 --port 8000 > /tmp/demo-shop.log 2>&1 &
+          for attempt in {1..20}; do
+            curl --fail --silent http://127.0.0.1:8000/health && exit 0
+            sleep 1
+          done
+          cat /tmp/demo-shop.log
+          exit 1
+      - name: Run browser journey
+        run: pytest tests/ui -q --tracing=retain-on-failure --screenshot=only-on-failure
+      - name: Upload browser diagnostics on failure
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-test-results
+          path: labs/demo-shop/test-results/
+          if-no-files-found: ignore
+          retention-days: 7

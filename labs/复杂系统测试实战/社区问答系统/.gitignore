@@ -1,0 +1,15 @@
+.env
+*.db
+*.sqlite3
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+backend/.venv/
+frontend/node_modules/
+frontend/dist/
+*.tsbuildinfo
+.DS_Store
