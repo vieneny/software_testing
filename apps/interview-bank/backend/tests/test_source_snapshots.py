@@ -70,7 +70,7 @@ def test_snapshot_is_read_locally_by_source_id_and_alias(tmp_path: Path) -> None
     page_path = manifest_path.parent / "pages" / "testdev.md"
     page_path.parent.mkdir(parents=True)
     content = "# 测试开发\n\n这是下载到本地的公开学习快照。"
-    page_path.write_text(content, encoding="utf-8")
+    page_path.write_text(content, encoding="utf-8", newline="\n")
     digest = hashlib.sha256(content.encode("utf-8")).hexdigest()
     _write_manifest(
         manifest_path,
@@ -295,7 +295,7 @@ def test_registered_local_asset_is_returned_without_redirect(
 ```
 """
     asset_content = b"\x89PNG\r\n\x1a\nsynthetic-public-diagram"
-    page_path.write_text(page_content, encoding="utf-8")
+    page_path.write_text(page_content, encoding="utf-8", newline="\n")
     asset_path.write_bytes(asset_content)
     _write_manifest(
         manifest_path,

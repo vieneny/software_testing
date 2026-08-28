@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -19,11 +20,12 @@ def load(name: str) -> dict:
 def test_generated_bank_counts_and_required_answer_fields() -> None:
     payload = load("questions.json")
     questions = payload["questions"]
-    assert len(questions) == 310
+    assert len(questions) == 485
     assert payload["statistics"]["reviewed_core_questions"] == 172
-    assert payload["statistics"]["curated_questions"] == 138
+    assert payload["statistics"]["curated_questions"] == 313
     assert payload["statistics"]["by_origin"] == {
         "curated-2026": 24,
+        "legacy-2025-reviewed": 175,
         "reviewed-core": 172,
         "xiaolincoding-reviewed": 62,
         "supplemental-reviewed": 52,
@@ -160,11 +162,11 @@ def test_every_legacy_item_has_a_traceable_disposition() -> None:
     }
     assert len(coverage["items"]) == 495
     assert len({item["id"] for item in coverage["items"]}) == 495
-    assert coverage["statistics"]["strong_semantic_matches"] == 40
-    assert coverage["statistics"]["candidate_assignments_review_required"] == 455
-    assert coverage["statistics"]["mapped_to_answer"] == 40
-    assert coverage["statistics"]["unmapped"] == 455
-    assert coverage["statistics"]["coverage_rate"] == 0.0808
+    assert coverage["statistics"]["strong_semantic_matches"] == 495
+    assert coverage["statistics"]["candidate_assignments_review_required"] == 0
+    assert coverage["statistics"]["mapped_to_answer"] == 495
+    assert coverage["statistics"]["unmapped"] == 0
+    assert coverage["statistics"]["coverage_rate"] == 1.0
     for item in coverage["items"]:
         assert item["question_intent"]
         assert item["mapping_status"] in {
@@ -217,6 +219,7 @@ def test_every_legacy_item_has_a_traceable_disposition() -> None:
 def test_generated_public_artifacts_contain_no_quarantined_text() -> None:
     artifact_names = [
         "questions.json",
+        "legacy-2025-reviewed.json",
         "legacy-coverage.json",
         "supplemental-backend-questions.json",
         "supplemental-ui-performance-questions.json",
@@ -246,7 +249,7 @@ def test_generated_public_artifacts_contain_no_quarantined_text() -> None:
 def test_curated_sources_are_traceable() -> None:
     payload = load("questions.json")
     sources = {source["id"]: source for source in payload["sources"]}
-    assert len(sources) == 100
+    assert len(sources) == 101
     used = {
         source_id
         for question in payload["questions"]
@@ -263,7 +266,7 @@ def test_curated_sources_are_traceable() -> None:
         for question in xiaolin_questions
     )
     public = [source for source in sources.values() if source["url"]]
-    assert len(public) == 98
+    assert len(public) == 99
     assert all(source["url"].startswith("https://") for source in public)
     assert all(source["accessed_at"] for source in public)
 
@@ -283,3 +286,42 @@ def test_build_outputs_are_current() -> None:
         check=False,
     )
     assert result.returncode == 0, result.stderr
+
+
+def test_first_2025_edition_is_complete_reviewed_and_traceable() -> None:
+    source = load("legacy-2025-reviewed.json")
+    questions = source["questions"]
+    assert source["collection"]["source_commit"] == (
+        "d0a8cfde75fe43c3abd7919e91c72bb7f3c15823"
+    )
+    assert len(questions) == 175
+    assert {question["origin"] for question in questions} == {
+        "legacy-2025-reviewed"
+    }
+    assert all(question["source_ids"] == ["github-first-commit-2025"] for question in questions)
+    assert all(len(re.sub(r"\s+", "", question["answer"])) >= 120 for question in questions)
+    assert all(question["explanation"] for question in questions)
+    coverage = load("legacy-coverage.json")
+    first_edition = [item for item in coverage["items"] if item["source_id"] == "outline-draft"]
+    assert len(first_edition) == 175
+    assert all(item["mapping_status"] == "strong-semantic-match" for item in first_edition)
+    assert all(item["canonical_question_id"].startswith("legacy-2025-") for item in first_edition)
+
+
+def test_reviewed_2025_and_offline_generators_are_current() -> None:
+    scripts = ("build_legacy_2025.py", "build_offline.py")
+    for script in scripts:
+        result = subprocess.run(
+            [sys.executable, str(BANK_DIR / "scripts" / script), "--check"],
+            cwd=REPO_ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        assert result.returncode == 0, result.stderr
+
+    offline = BANK_DIR / "offline" / "软件测试离线题库.html"
+    text = offline.read_text(encoding="utf-8")
+    assert '"questionCount":485' in text
+    assert "2025 第一版" in text
+    assert "后续整理：核心模块" in text

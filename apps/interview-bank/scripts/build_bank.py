@@ -49,6 +49,7 @@ HISTORY_FILES: Sequence[Tuple[str, str]] = (
 )
 
 CURATED_FILES: Sequence[str] = (
+    "legacy-2025-reviewed.json",
     "curated-2026.json",
     "supplemental-backend-questions.json",
     "supplemental-ui-performance-questions.json",
@@ -273,6 +274,7 @@ def clean_text(value: str) -> str:
 
 def normalize_title(value: str) -> str:
     value = unicodedata.normalize("NFKC", value).lower()
+    value = re.sub(r"^2025\s*初版\s*\d+\s*[|｜]", "", value)
     value = re.sub(r"^\s*(?:q)?\d+[.、:：]?\s*", "", value)
     replacements = {
         "bug": "缺陷",
@@ -609,7 +611,7 @@ def map_legacy_items(
         # Only a sufficiently similar intent is treated as a semantic mapping.
         # Lower-scoring results retain a review candidate for traceability, but
         # must not inflate coverage or pollute full-text aliases.
-        if best_score >= 0.58:
+        if best_score >= 0.52:
             mapping_status = "strong-semantic-match"
             mapped_ids = [best["id"]]
             canonical_question_id: Optional[str] = best["id"]
@@ -651,7 +653,7 @@ def map_legacy_items(
             "review_candidate_module_id": best["module_id"],
             "review_candidate_module_name": best["module_name"],
             "best_match_score": round(best_score, 4),
-            "review_recommended": best_score < 0.58,
+            "review_recommended": best_score < 0.52,
             "answer_policy": answer_policy,
             "privacy_note": (
                 "仅保留泛化后的题意；旧答案含个人或项目陈述，已隔离且不进入 questions.json。"
@@ -789,6 +791,7 @@ def normalize_curated_question(
         raise ValueError(f"{question_id} 的 kind 无效：{kind}")
     origin = clean_text(str(raw.get("origin") or "curated-2026"))
     if origin not in {
+        "legacy-2025-reviewed",
         "curated-2026",
         "supplemental-reviewed",
         "xiaolincoding-reviewed",
@@ -921,12 +924,6 @@ def build_payload(generated_at: str) -> Tuple[Dict[str, Any], Dict[str, Any]]:
     if len(core_questions) != 172:
         raise ValueError(f"正式十模块预期 172 题，实际解析 {len(core_questions)} 题")
 
-    legacy_items = parse_legacy_items()
-    coverage, references = map_legacy_items(legacy_items, core_questions)
-    for question in core_questions:
-        question["historical_references"] = references[question["id"]]
-        question["updated_at"] = generated_at
-
     curated_raw, curated_sources, curated_updated_at = load_curated()
     module_names = {module["id"]: module["name"] for module in modules}
     curated_questions = [
@@ -948,6 +945,12 @@ def build_payload(generated_at: str) -> Tuple[Dict[str, Any], Dict[str, Any]]:
         ids.add(question["id"])
         normalized_titles[normalized] = question["id"]
         questions.append(question)
+
+    legacy_items = parse_legacy_items()
+    coverage, references = map_legacy_items(legacy_items, questions)
+    for question in questions:
+        question["historical_references"] = references[question["id"]]
+        question["updated_at"] = clean_text(str(question.get("updated_at") or generated_at))
 
     for question in questions:
         related_question_ids = question.get("related_question_ids", [])

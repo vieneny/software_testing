@@ -1430,7 +1430,7 @@ def write_manifest(
     payload = {
         "schema_version": "1.0",
         "generated_at": utc_now(),
-        "catalog_path": os.path.relpath(catalog_path, output_dir),
+        "catalog_path": Path(os.path.relpath(catalog_path, output_dir)).as_posix(),
         "policy": {
             "scope": "public-http-https-only",
             "authentication": "never-used",

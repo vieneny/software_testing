@@ -25,6 +25,7 @@ const defaultMeta: Meta = {
   levels: ['入门', '进阶', '高级'],
   kinds: ['知识题', '场景题', '项目题', '行为题', '实操题'],
   origins: [
+    'legacy-2025-reviewed',
     'reviewed-core',
     'curated-2026',
     'supplemental-reviewed',
@@ -89,6 +90,7 @@ const activeFilterCount = computed(
 
 function originLabel(origin: string): string {
   const labels: Record<string, string> = {
+    'legacy-2025-reviewed': '2025 第一版（已复核）',
     'reviewed-core': '核心模块评审题',
     'curated-2026': '2026 公开趋势重构题',
     'supplemental-reviewed': '补充评审题',

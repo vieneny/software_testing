@@ -413,7 +413,12 @@ def test_relative_asset_file_is_allowed_but_traversal_and_symlinks_are_rejected(
         )
 
     symlink_path = export_assets / "linked.png"
-    symlink_path.symlink_to(png_path)
+    try:
+        symlink_path.symlink_to(png_path)
+    except OSError as error:
+        if getattr(error, "winerror", None) == 1314:
+            pytest.skip("当前 Windows 用户没有创建符号链接的权限")
+        raise
     write_export("export-assets/linked.png")
     with pytest.raises(browser_import.ImportValidationError, match="符号链接"):
         browser_import.import_snapshots(

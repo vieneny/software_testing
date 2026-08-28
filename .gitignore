@@ -72,6 +72,9 @@ data/raw/
 apps/interview-bank/data/source-snapshots/*
 !apps/interview-bank/data/source-snapshots/manifest.example.json
 
+# GitHub 旧提交原始文件仅用于本机核对；净化后的题库由构建脚本生成
+.local-history/
+
 # IDE / OS
 .DS_Store
 .idea/
