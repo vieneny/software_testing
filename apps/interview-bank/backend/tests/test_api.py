@@ -107,6 +107,10 @@ def test_question_filter_pagination_and_detail(client: TestClient) -> None:
         item["answer"] and item["answer_strategy"] and item["explanation"]
         for item in first_edition["items"]
     )
+    assert all(
+        not item["title"].startswith("个人整理最新版")
+        for item in first_edition["items"]
+    )
 
     question_id = full["items"][0]["id"]
     detail = client.get(f"/api/v1/questions/{question_id}")

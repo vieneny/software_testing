@@ -260,7 +260,7 @@ def normalize_title(value: str) -> str:
         "",
         value,
     )
-    value = re.sub(r"^\s*(?:q)?\d+[.、:：]?\s*", "", value)
+    value = re.sub(r"^\s*(?:q)?\d+[.、:：|｜]?\s*", "", value)
     replacements = {
         "bug": "缺陷",
         "app": "移动端",

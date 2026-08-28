@@ -24,7 +24,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20001,
-      "title": "个人整理最新版 001｜软件测试的目的是什么？",
+      "title": "001｜软件测试的目的是什么？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -57,7 +57,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20002,
-      "title": "个人整理最新版 002｜软件测试的一般流程是怎样的？",
+      "title": "002｜软件测试的一般流程是怎样的？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -90,7 +90,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20003,
-      "title": "个人整理最新版 003｜如果需求不明确，你会怎么处理？",
+      "title": "003｜如果需求不明确，你会怎么处理？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -123,7 +123,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20004,
-      "title": "个人整理最新版 004｜需求评审需要哪些文档？参与评审的人有哪些？",
+      "title": "004｜需求评审需要哪些文档？参与评审的人有哪些？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -156,7 +156,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20005,
-      "title": "个人整理最新版 005｜测试计划包含哪些内容？你是否撰写过测试计划？",
+      "title": "005｜测试计划包含哪些内容？你是否撰写过测试计划？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -189,7 +189,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20006,
-      "title": "个人整理最新版 006｜测试用例包含哪些部分？常见的设计方法有哪些？",
+      "title": "006｜测试用例包含哪些部分？常见的设计方法有哪些？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -222,7 +222,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20007,
-      "title": "个人整理最新版 007｜如何编写高质量的测试用例？",
+      "title": "007｜如何编写高质量的测试用例？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -255,7 +255,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20008,
-      "title": "个人整理最新版 008｜为什么要编写测试用例？",
+      "title": "008｜为什么要编写测试用例？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -288,7 +288,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20009,
-      "title": "个人整理最新版 009｜测试用例的编写流程是怎样的？",
+      "title": "009｜测试用例的编写流程是怎样的？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -321,7 +321,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20010,
-      "title": "个人整理最新版 010｜常见测试类型及说明（如单元测试、集成测试、系统测试、验收测试等）。",
+      "title": "010｜常见测试类型及说明（如单元测试、集成测试、系统测试、验收测试等）。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -354,7 +354,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20011,
-      "title": "个人整理最新版 011｜单元测试、集成测试、系统测试、验收测试的区别。",
+      "title": "011｜单元测试、集成测试、系统测试、验收测试的区别。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -387,7 +387,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20012,
-      "title": "个人整理最新版 012｜什么是探索性测试？实施步骤是什么？",
+      "title": "012｜什么是探索性测试？实施步骤是什么？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -420,7 +420,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20013,
-      "title": "个人整理最新版 013｜什么是冒烟测试？在什么阶段执行？如何有效进行冒烟测试？",
+      "title": "013｜什么是冒烟测试？在什么阶段执行？如何有效进行冒烟测试？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -453,7 +453,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20014,
-      "title": "个人整理最新版 014｜回归测试的策略如何制定？",
+      "title": "014｜回归测试的策略如何制定？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -486,7 +486,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20015,
-      "title": "个人整理最新版 015｜如何提交一个高质量的BUG？提交时需要注意哪些问题？",
+      "title": "015｜如何提交一个高质量的BUG？提交时需要注意哪些问题？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -520,7 +520,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20016,
-      "title": "个人整理最新版 016｜BUG生命周期（状态流转）是怎样的？",
+      "title": "016｜BUG生命周期（状态流转）是怎样的？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -553,7 +553,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20017,
-      "title": "个人整理最新版 017｜BUG提交内容应包含哪些要素？",
+      "title": "017｜BUG提交内容应包含哪些要素？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -586,7 +586,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20018,
-      "title": "个人整理最新版 018｜当开发不认可你的BUG时，你如何处理？",
+      "title": "018｜当开发不认可你的BUG时，你如何处理？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -619,7 +619,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20019,
-      "title": "个人整理最新版 019｜无法重现的BUG，你会怎么处理？",
+      "title": "019｜无法重现的BUG，你会怎么处理？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -653,7 +653,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20020,
-      "title": "个人整理最新版 020｜页面出现乱码，可能的原因有哪些？",
+      "title": "020｜页面出现乱码，可能的原因有哪些？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -686,7 +686,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20021,
-      "title": "个人整理最新版 021｜BUG等级（严重级/优先级）如何划分？",
+      "title": "021｜BUG等级（严重级/优先级）如何划分？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -719,7 +719,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20022,
-      "title": "个人整理最新版 022｜如何区分前端BUG与后端BUG？",
+      "title": "022｜如何区分前端BUG与后端BUG？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -752,7 +752,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20023,
-      "title": "个人整理最新版 023｜项目上线后发现严重BUG，测试人员应该怎么做？",
+      "title": "023｜项目上线后发现严重BUG，测试人员应该怎么做？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -786,7 +786,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20024,
-      "title": "个人整理最新版 024｜你是如何保证测试质量的？",
+      "title": "024｜你是如何保证测试质量的？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -819,7 +819,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20025,
-      "title": "个人整理最新版 025｜产品完整的上线流程是怎样的？",
+      "title": "025｜产品完整的上线流程是怎样的？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -852,7 +852,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20026,
-      "title": "个人整理最新版 026｜测试数据从哪里获取？如果无人提供，你会怎么办？",
+      "title": "026｜测试数据从哪里获取？如果无人提供，你会怎么办？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -885,7 +885,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20027,
-      "title": "个人整理最新版 027｜如何测试万分之一概率的问题？",
+      "title": "027｜如何测试万分之一概率的问题？",
       "level": "进阶",
       "kind": "场景题",
       "roles": [
@@ -924,7 +924,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20028,
-      "title": "个人整理最新版 028｜测试报告包含哪些关键内容？如何撰写测试结论？",
+      "title": "028｜测试报告包含哪些关键内容？如何撰写测试结论？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -957,7 +957,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20029,
-      "title": "个人整理最新版 029｜与开发沟通的策略与技巧？",
+      "title": "029｜与开发沟通的策略与技巧？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -990,7 +990,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20030,
-      "title": "个人整理最新版 030｜常见测试风险有哪些？如何避免？",
+      "title": "030｜常见测试风险有哪些？如何避免？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -1023,7 +1023,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20031,
-      "title": "个人整理最新版 031｜如何确保100%覆盖需求？",
+      "title": "031｜如何确保100%覆盖需求？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -1056,7 +1056,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20032,
-      "title": "个人整理最新版 032｜当一个需求7天必须上线，你会如何安排测试？",
+      "title": "032｜当一个需求7天必须上线，你会如何安排测试？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -1089,7 +1089,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20033,
-      "title": "个人整理最新版 033｜产品上线的评判标准有哪些？",
+      "title": "033｜产品上线的评判标准有哪些？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -1122,7 +1122,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20034,
-      "title": "个人整理最新版 034｜对于重复度高的用例，是否需要执行？你的观点是什么？",
+      "title": "034｜对于重复度高的用例，是否需要执行？你的观点是什么？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -1155,7 +1155,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20035,
-      "title": "个人整理最新版 035｜上线后是否还会在生产环境执行测试？",
+      "title": "035｜上线后是否还会在生产环境执行测试？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -1188,7 +1188,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20036,
-      "title": "个人整理最新版 036｜多分支开发与单分支开发的区别？",
+      "title": "036｜多分支开发与单分支开发的区别？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -1221,7 +1221,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20037,
-      "title": "个人整理最新版 037｜APP与Web的兼容性测试如何开展？",
+      "title": "037｜APP与Web的兼容性测试如何开展？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -1254,7 +1254,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20038,
-      "title": "个人整理最新版 038｜对于功能测试重复测试率高的现象，你如何看待？",
+      "title": "038｜对于功能测试重复测试率高的现象，你如何看待？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -1287,7 +1287,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20039,
-      "title": "个人整理最新版 039｜多项目同时发布，你如何协调？",
+      "title": "039｜多项目同时发布，你如何协调？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -1320,7 +1320,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20040,
-      "title": "个人整理最新版 040｜从开发转测试需要做哪些准备？",
+      "title": "040｜从开发转测试需要做哪些准备？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -1353,7 +1353,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20041,
-      "title": "个人整理最新版 041｜你们主要使用什么开发语言？",
+      "title": "041｜你们主要使用什么开发语言？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -1386,7 +1386,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20042,
-      "title": "个人整理最新版 042｜Alpha测试与Beta测试的区别？",
+      "title": "042｜Alpha测试与Beta测试的区别？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -1419,7 +1419,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20043,
-      "title": "个人整理最新版 043｜软件测试工程师需要具备哪些素质？",
+      "title": "043｜软件测试工程师需要具备哪些素质？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -1452,7 +1452,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20044,
-      "title": "个人整理最新版 044｜如何提高与开发人员的沟通效率？",
+      "title": "044｜如何提高与开发人员的沟通效率？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -1485,7 +1485,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20045,
-      "title": "个人整理最新版 045｜测试工程师在团队中的价值是什么？",
+      "title": "045｜测试工程师在团队中的价值是什么？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -1518,7 +1518,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20046,
-      "title": "个人整理最新版 046｜你对软件测试最大的兴趣是什么？",
+      "title": "046｜你对软件测试最大的兴趣是什么？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -1551,7 +1551,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20047,
-      "title": "个人整理最新版 047｜在没有文档的情况下，如何开展测试？",
+      "title": "047｜在没有文档的情况下，如何开展测试？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -1585,7 +1585,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20048,
-      "title": "个人整理最新版 048｜测试用例设计常见问题考察。",
+      "title": "048｜测试用例设计常见问题考察。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -1618,7 +1618,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20049,
-      "title": "个人整理最新版 049｜印象最深/影响最大的BUG是什么？",
+      "title": "049｜印象最深/影响最大的BUG是什么？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -1651,7 +1651,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20050,
-      "title": "个人整理最新版 050｜解决过的最困难的问题是什么？",
+      "title": "050｜解决过的最困难的问题是什么？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -1684,7 +1684,7 @@
       "module_id": "01",
       "origin": "personal-latest-reviewed",
       "position": 20051,
-      "title": "个人整理最新版 051｜工作/学习中最大的收获是什么？",
+      "title": "051｜工作/学习中最大的收获是什么？",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -1717,7 +1717,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20052,
-      "title": "个人整理最新版 052｜打电话功能如何测试？",
+      "title": "052｜打电话功能如何测试？",
       "level": "进阶",
       "kind": "场景题",
       "roles": [
@@ -1756,7 +1756,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20053,
-      "title": "个人整理最新版 053｜杯子功能测试思路。",
+      "title": "053｜杯子功能测试思路。",
       "level": "进阶",
       "kind": "场景题",
       "roles": [
@@ -1795,7 +1795,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20054,
-      "title": "个人整理最新版 054｜图像上传功能测试点。",
+      "title": "054｜图像上传功能测试点。",
       "level": "进阶",
       "kind": "场景题",
       "roles": [
@@ -1834,7 +1834,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20055,
-      "title": "个人整理最新版 055｜搜索框测试点。",
+      "title": "055｜搜索框测试点。",
       "level": "进阶",
       "kind": "场景题",
       "roles": [
@@ -1873,7 +1873,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20056,
-      "title": "个人整理最新版 056｜电梯系统测试思路。",
+      "title": "056｜电梯系统测试思路。",
       "level": "进阶",
       "kind": "场景题",
       "roles": [
@@ -1912,7 +1912,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20057,
-      "title": "个人整理最新版 057｜更换头像（App）测试点。",
+      "title": "057｜更换头像（App）测试点。",
       "level": "进阶",
       "kind": "场景题",
       "roles": [
@@ -1951,7 +1951,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20058,
-      "title": "个人整理最新版 058｜QQ登录界面测试要点。",
+      "title": "058｜QQ登录界面测试要点。",
       "level": "进阶",
       "kind": "场景题",
       "roles": [
@@ -1990,7 +1990,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20059,
-      "title": "个人整理最新版 059｜微信点赞功能测试。",
+      "title": "059｜微信点赞功能测试。",
       "level": "进阶",
       "kind": "场景题",
       "roles": [
@@ -2029,7 +2029,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20060,
-      "title": "个人整理最新版 060｜微信发红包测试要点。",
+      "title": "060｜微信发红包测试要点。",
       "level": "进阶",
       "kind": "场景题",
       "roles": [
@@ -2068,7 +2068,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20061,
-      "title": "个人整理最新版 061｜微信聊天功能测试。",
+      "title": "061｜微信聊天功能测试。",
       "level": "进阶",
       "kind": "场景题",
       "roles": [
@@ -2107,7 +2107,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20062,
-      "title": "个人整理最新版 062｜给定任意界面，如何测试？",
+      "title": "062｜给定任意界面，如何测试？",
       "level": "进阶",
       "kind": "场景题",
       "roles": [
@@ -2146,7 +2146,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20063,
-      "title": "个人整理最新版 063｜充值功能测试思路。",
+      "title": "063｜充值功能测试思路。",
       "level": "进阶",
       "kind": "场景题",
       "roles": [
@@ -2185,7 +2185,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20064,
-      "title": "个人整理最新版 064｜电商库存逻辑测试方法。",
+      "title": "064｜电商库存逻辑测试方法。",
       "level": "进阶",
       "kind": "场景题",
       "roles": [
@@ -2224,7 +2224,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20065,
-      "title": "个人整理最新版 065｜给定新需求的测试流程。",
+      "title": "065｜给定新需求的测试流程。",
       "level": "进阶",
       "kind": "场景题",
       "roles": [
@@ -2263,7 +2263,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20066,
-      "title": "个人整理最新版 066｜测试时间被压缩，如何应对？",
+      "title": "066｜测试时间被压缩，如何应对？",
       "level": "进阶",
       "kind": "场景题",
       "roles": [
@@ -2302,7 +2302,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20067,
-      "title": "个人整理最新版 067｜数据返回异常，如何排查？",
+      "title": "067｜数据返回异常，如何排查？",
       "level": "进阶",
       "kind": "场景题",
       "roles": [
@@ -2341,7 +2341,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20068,
-      "title": "个人整理最新版 068｜难以复现的下单失败问题排查。",
+      "title": "068｜难以复现的下单失败问题排查。",
       "level": "进阶",
       "kind": "场景题",
       "roles": [
@@ -2380,7 +2380,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20069,
-      "title": "个人整理最新版 069｜APP崩溃日志抓取方法。",
+      "title": "069｜APP崩溃日志抓取方法。",
       "level": "进阶",
       "kind": "场景题",
       "roles": [
@@ -2419,7 +2419,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20070,
-      "title": "个人整理最新版 070｜微信朋友圈仅部分用户不可见的排查思路。",
+      "title": "070｜微信朋友圈仅部分用户不可见的排查思路。",
       "level": "进阶",
       "kind": "场景题",
       "roles": [
@@ -2458,7 +2458,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20071,
-      "title": "个人整理最新版 071｜简述最近负责的项目。",
+      "title": "071｜简述最近负责的项目。",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -2497,7 +2497,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20072,
-      "title": "个人整理最新版 072｜选取负责模块的测试思路。",
+      "title": "072｜选取负责模块的测试思路。",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -2536,7 +2536,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20073,
-      "title": "个人整理最新版 073｜在项目中承担的具体工作。",
+      "title": "073｜在项目中承担的具体工作。",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -2575,7 +2575,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20074,
-      "title": "个人整理最新版 074｜项目的技术栈（前端/后端/数据库等）。",
+      "title": "074｜项目的技术栈（前端/后端/数据库等）。",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -2614,7 +2614,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20075,
-      "title": "个人整理最新版 075｜项目中有几个角色？分别负责哪些功能？测试人员如何分工？项目组总共多少个开发人员？",
+      "title": "075｜项目中有几个角色？分别负责哪些功能？测试人员如何分工？项目组总共多少个开发人员？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -2653,7 +2653,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20076,
-      "title": "个人整理最新版 076｜团队规模（开发/测试）。",
+      "title": "076｜团队规模（开发/测试）。",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -2692,7 +2692,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20077,
-      "title": "个人整理最新版 077｜项目上线了吗？如果上线了，测试人员的工作重点是哪些？目前上线的版本号是多少？",
+      "title": "077｜项目上线了吗？如果上线了，测试人员的工作重点是哪些？目前上线的版本号是多少？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -2731,7 +2731,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20078,
-      "title": "个人整理最新版 078｜如何进行需求分析？如何确认需求？（系统只有可运行的程序，没有详细的需求文档）",
+      "title": "078｜如何进行需求分析？如何确认需求？（系统只有可运行的程序，没有详细的需求文档）",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -2770,7 +2770,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20079,
-      "title": "个人整理最新版 079｜什么是测试需求？与需求规格说明书的区别？",
+      "title": "079｜什么是测试需求？与需求规格说明书的区别？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -2809,7 +2809,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20080,
-      "title": "个人整理最新版 080｜什么是测试思路？测试思路有哪些？",
+      "title": "080｜什么是测试思路？测试思路有哪些？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -2848,7 +2848,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20081,
-      "title": "个人整理最新版 081｜如何进行需求评审？评审的内容有哪些？评审过程中发现了哪些问题？",
+      "title": "081｜如何进行需求评审？评审的内容有哪些？评审过程中发现了哪些问题？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -2887,7 +2887,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20082,
-      "title": "个人整理最新版 082｜如何进行用例设计评审？评审过程中发现了哪些问题？",
+      "title": "082｜如何进行用例设计评审？评审过程中发现了哪些问题？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -2926,7 +2926,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20083,
-      "title": "个人整理最新版 083｜虚构产品经过了测试，但是到用户现场还出现这样或哪样的问题，质量不高？可能的原因是什么？",
+      "title": "083｜虚构产品经过了测试，但是到用户现场还出现这样或哪样的问题，质量不高？可能的原因是什么？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -2965,7 +2965,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20084,
-      "title": "个人整理最新版 084｜如何理解基线用例库？",
+      "title": "084｜如何理解基线用例库？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3004,7 +3004,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20085,
-      "title": "个人整理最新版 085｜测试归档一般归档哪些内容？归档的好处是什么？",
+      "title": "085｜测试归档一般归档哪些内容？归档的好处是什么？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3043,7 +3043,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20086,
-      "title": "个人整理最新版 086｜如何规划测试进度？",
+      "title": "086｜如何规划测试进度？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3082,7 +3082,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20087,
-      "title": "个人整理最新版 087｜测试风险有哪些？如何避免？怎么克服？",
+      "title": "087｜测试风险有哪些？如何避免？怎么克服？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3121,7 +3121,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20088,
-      "title": "个人整理最新版 088｜测试范围找谁确认？",
+      "title": "088｜测试范围找谁确认？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3160,7 +3160,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20089,
-      "title": "个人整理最新版 089｜这个项目有多少个测试点？开发了多少条测试用例？",
+      "title": "089｜这个项目有多少个测试点？开发了多少条测试用例？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3199,7 +3199,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20090,
-      "title": "个人整理最新版 090｜测试过程中有发现典型的bug吗？你是怎么定位这些bug的？",
+      "title": "090｜测试过程中有发现典型的bug吗？你是怎么定位这些bug的？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3238,7 +3238,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20091,
-      "title": "个人整理最新版 091｜实际测试过程中，你发现一个bug，开发说不是bug，这样的问题怎么解决？",
+      "title": "091｜实际测试过程中，你发现一个bug，开发说不是bug，这样的问题怎么解决？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3277,7 +3277,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20092,
-      "title": "个人整理最新版 092｜Bug管理工具是什么？",
+      "title": "092｜Bug管理工具是什么？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3316,7 +3316,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20093,
-      "title": "个人整理最新版 093｜概率性bug是指什么？如何测试概率性bug？",
+      "title": "093｜概率性bug是指什么？如何测试概率性bug？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3355,7 +3355,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20094,
-      "title": "个人整理最新版 094｜bug的生命周期是怎样的？",
+      "title": "094｜bug的生命周期是怎样的？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3394,7 +3394,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20095,
-      "title": "个人整理最新版 095｜介绍一些高质量的bug。",
+      "title": "095｜介绍一些高质量的bug。",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3433,7 +3433,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20096,
-      "title": "个人整理最新版 096｜你是怎么保证测试的模块质量？",
+      "title": "096｜你是怎么保证测试的模块质量？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3472,7 +3472,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20097,
-      "title": "个人整理最新版 097｜如何进行回归测试？",
+      "title": "097｜如何进行回归测试？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3511,7 +3511,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20098,
-      "title": "个人整理最新版 098｜黑盒测试与白盒测试的区别是什么？",
+      "title": "098｜黑盒测试与白盒测试的区别是什么？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3550,7 +3550,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20099,
-      "title": "个人整理最新版 099｜迭代周期及每版本缺陷量。这个项目测试周期多长？版本迭代周期多长？",
+      "title": "099｜迭代周期及每版本缺陷量。这个项目测试周期多长？版本迭代周期多长？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3589,7 +3589,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20100,
-      "title": "个人整理最新版 100｜每个环节的时间：写用例用了多长时间？开发用例了多长时间？回归测试用了多长时间？",
+      "title": "100｜每个环节的时间：写用例用了多长时间？开发用例了多长时间？回归测试用了多长时间？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3628,7 +3628,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20101,
-      "title": "个人整理最新版 101｜用例总量及个人负责用例数量。",
+      "title": "101｜用例总量及个人负责用例数量。",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3667,7 +3667,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20102,
-      "title": "个人整理最新版 102｜最新版本用例数量。",
+      "title": "102｜最新版本用例数量。",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3706,7 +3706,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20103,
-      "title": "个人整理最新版 103｜你能说出你这个项目后台几张表的表名称吗？",
+      "title": "103｜你能说出你这个项目后台几张表的表名称吗？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3745,7 +3745,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20104,
-      "title": "个人整理最新版 104｜使用什么工具管理测试需求和用例的？使用什么工具管理软件的版本？",
+      "title": "104｜使用什么工具管理测试需求和用例的？使用什么工具管理软件的版本？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3784,7 +3784,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20105,
-      "title": "个人整理最新版 105｜你发布过软件版本吗？怎么发布的？",
+      "title": "105｜你发布过软件版本吗？怎么发布的？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3823,7 +3823,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20106,
-      "title": "个人整理最新版 106｜需求分析、用例编写与执行时间。",
+      "title": "106｜需求分析、用例编写与执行时间。",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3862,7 +3862,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20107,
-      "title": "个人整理最新版 107｜UAT测试客户临时数据需求处理。",
+      "title": "107｜UAT测试客户临时数据需求处理。",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3901,7 +3901,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20108,
-      "title": "个人整理最新版 108｜项目各阶段角色职责。",
+      "title": "108｜项目各阶段角色职责。",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3940,7 +3940,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20109,
-      "title": "个人整理最新版 109｜是否采用敏捷开发？",
+      "title": "109｜是否采用敏捷开发？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -3979,7 +3979,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20110,
-      "title": "个人整理最新版 110｜项目持续时间及活跃用户量。",
+      "title": "110｜项目持续时间及活跃用户量。",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -4018,7 +4018,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20111,
-      "title": "个人整理最新版 111｜系统是怎么实现的？系统是怎么进行业务交付的？系统采用了哪些技术？系统的技术框架是怎样的？系统架构是怎么设计的？",
+      "title": "111｜系统是怎么实现的？系统是怎么进行业务交付的？系统采用了哪些技术？系统的技术框架是怎样的？系统架构是怎么设计的？",
       "level": "进阶",
       "kind": "项目题",
       "roles": [
@@ -4057,7 +4057,7 @@
       "module_id": "02",
       "origin": "personal-latest-reviewed",
       "position": 20112,
-      "title": "个人整理最新版 112｜测试用例的定义及有效设计原则。",
+      "title": "112｜测试用例的定义及有效设计原则。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4089,7 +4089,7 @@
       "module_id": "02",
       "origin": "personal-latest-reviewed",
       "position": 20113,
-      "title": "个人整理最新版 113｜测试用例常见设计方法：等价类、边界值、因果图、场景法、决策表、错误推测法。",
+      "title": "113｜测试用例常见设计方法：等价类、边界值、因果图、场景法、决策表、错误推测法。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4121,7 +4121,7 @@
       "module_id": "02",
       "origin": "personal-latest-reviewed",
       "position": 20114,
-      "title": "个人整理最新版 114｜输入三个整数判断三角形类型的测试用例。",
+      "title": "114｜输入三个整数判断三角形类型的测试用例。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4154,7 +4154,7 @@
       "module_id": "02",
       "origin": "personal-latest-reviewed",
       "position": 20115,
-      "title": "个人整理最新版 115｜文件上传功能测试用例。",
+      "title": "115｜文件上传功能测试用例。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4187,7 +4187,7 @@
       "module_id": "02",
       "origin": "personal-latest-reviewed",
       "position": 20116,
-      "title": "个人整理最新版 116｜电商订单提交流程测试用例。",
+      "title": "116｜电商订单提交流程测试用例。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4220,7 +4220,7 @@
       "module_id": "08",
       "origin": "personal-latest-reviewed",
       "position": 20117,
-      "title": "个人整理最新版 117｜测试经理的主要职责。",
+      "title": "117｜测试经理的主要职责。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4253,7 +4253,7 @@
       "module_id": "08",
       "origin": "personal-latest-reviewed",
       "position": 20118,
-      "title": "个人整理最新版 118｜作为Test Leader，如何建立测试体系。",
+      "title": "118｜作为Test Leader，如何建立测试体系。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4286,7 +4286,7 @@
       "module_id": "08",
       "origin": "personal-latest-reviewed",
       "position": 20119,
-      "title": "个人整理最新版 119｜提升测试团队技术能力的方法。",
+      "title": "119｜提升测试团队技术能力的方法。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4319,7 +4319,7 @@
       "module_id": "08",
       "origin": "personal-latest-reviewed",
       "position": 20120,
-      "title": "个人整理最新版 120｜项目测试风险及应对策略。",
+      "title": "120｜项目测试风险及应对策略。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4352,7 +4352,7 @@
       "module_id": "08",
       "origin": "personal-latest-reviewed",
       "position": 20121,
-      "title": "个人整理最新版 121｜时间紧张时的测试计划。",
+      "title": "121｜时间紧张时的测试计划。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4385,7 +4385,7 @@
       "module_id": "08",
       "origin": "personal-latest-reviewed",
       "position": 20122,
-      "title": "个人整理最新版 122｜高技术含量测试经验及收益。",
+      "title": "122｜高技术含量测试经验及收益。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4418,7 +4418,7 @@
       "module_id": "08",
       "origin": "personal-latest-reviewed",
       "position": 20123,
-      "title": "个人整理最新版 123｜开发与测试对立时的协调策略。",
+      "title": "123｜开发与测试对立时的协调策略。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4451,7 +4451,7 @@
       "module_id": "08",
       "origin": "personal-latest-reviewed",
       "position": 20124,
-      "title": "个人整理最新版 124｜员工绩效考核量化标准。",
+      "title": "124｜员工绩效考核量化标准。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4484,7 +4484,7 @@
       "module_id": "08",
       "origin": "personal-latest-reviewed",
       "position": 20125,
-      "title": "个人整理最新版 125｜对技术水平更高但不服管的成员，如何管理。",
+      "title": "125｜对技术水平更高但不服管的成员，如何管理。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4517,7 +4517,7 @@
       "module_id": "08",
       "origin": "personal-latest-reviewed",
       "position": 20126,
-      "title": "个人整理最新版 126｜组员与开发因BUG争执的处理方式。",
+      "title": "126｜组员与开发因BUG争执的处理方式。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4550,7 +4550,7 @@
       "module_id": "04",
       "origin": "personal-latest-reviewed",
       "position": 20127,
-      "title": "个人整理最新版 127｜抓包工具的使用步骤。",
+      "title": "127｜抓包工具的使用步骤。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4583,7 +4583,7 @@
       "module_id": "04",
       "origin": "personal-latest-reviewed",
       "position": 20128,
-      "title": "个人整理最新版 128｜HTTPS抓包方法。",
+      "title": "128｜HTTPS抓包方法。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4616,7 +4616,7 @@
       "module_id": "04",
       "origin": "personal-latest-reviewed",
       "position": 20129,
-      "title": "个人整理最新版 129｜手机端抓包方案。",
+      "title": "129｜手机端抓包方案。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4649,7 +4649,7 @@
       "module_id": "04",
       "origin": "personal-latest-reviewed",
       "position": 20130,
-      "title": "个人整理最新版 130｜常见网络协议简介。",
+      "title": "130｜常见网络协议简介。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4682,7 +4682,7 @@
       "module_id": "04",
       "origin": "personal-latest-reviewed",
       "position": 20131,
-      "title": "个人整理最新版 131｜请求方式（GET/POST等）。",
+      "title": "131｜请求方式（GET/POST等）。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4715,7 +4715,7 @@
       "module_id": "04",
       "origin": "personal-latest-reviewed",
       "position": 20132,
-      "title": "个人整理最新版 132｜GET与POST区别。",
+      "title": "132｜GET与POST区别。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4748,7 +4748,7 @@
       "module_id": "04",
       "origin": "personal-latest-reviewed",
       "position": 20133,
-      "title": "个人整理最新版 133｜HTTP与HTTPS区别。",
+      "title": "133｜HTTP与HTTPS区别。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4781,7 +4781,7 @@
       "module_id": "04",
       "origin": "personal-latest-reviewed",
       "position": 20134,
-      "title": "个人整理最新版 134｜为什么需要Cookie和Session（HTTP无状态）。",
+      "title": "134｜为什么需要Cookie和Session（HTTP无状态）。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4814,7 +4814,7 @@
       "module_id": "04",
       "origin": "personal-latest-reviewed",
       "position": 20135,
-      "title": "个人整理最新版 135｜Cookie与Session区别。",
+      "title": "135｜Cookie与Session区别。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4847,7 +4847,7 @@
       "module_id": "04",
       "origin": "personal-latest-reviewed",
       "position": 20136,
-      "title": "个人整理最新版 136｜OSI七层模型。",
+      "title": "136｜OSI七层模型。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4880,7 +4880,7 @@
       "module_id": "04",
       "origin": "personal-latest-reviewed",
       "position": 20137,
-      "title": "个人整理最新版 137｜TCP/IP模型。",
+      "title": "137｜TCP/IP模型。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4913,7 +4913,7 @@
       "module_id": "04",
       "origin": "personal-latest-reviewed",
       "position": 20138,
-      "title": "个人整理最新版 138｜TCP与UDP区别。",
+      "title": "138｜TCP与UDP区别。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4946,7 +4946,7 @@
       "module_id": "04",
       "origin": "personal-latest-reviewed",
       "position": 20139,
-      "title": "个人整理最新版 139｜TCP三次握手过程。",
+      "title": "139｜TCP三次握手过程。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -4979,7 +4979,7 @@
       "module_id": "04",
       "origin": "personal-latest-reviewed",
       "position": 20140,
-      "title": "个人整理最新版 140｜HTTP协议结构。",
+      "title": "140｜HTTP协议结构。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -5012,7 +5012,7 @@
       "module_id": "04",
       "origin": "personal-latest-reviewed",
       "position": 20141,
-      "title": "个人整理最新版 141｜常见HTTP状态码。",
+      "title": "141｜常见HTTP状态码。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -5045,7 +5045,7 @@
       "module_id": "04",
       "origin": "personal-latest-reviewed",
       "position": 20142,
-      "title": "个人整理最新版 142｜使用错误请求方式产生的错误示例。",
+      "title": "142｜使用错误请求方式产生的错误示例。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -5078,7 +5078,7 @@
       "module_id": "04",
       "origin": "personal-latest-reviewed",
       "position": 20143,
-      "title": "个人整理最新版 143｜HTTP请求头常见字段。",
+      "title": "143｜HTTP请求头常见字段。",
       "level": "入门",
       "kind": "知识题",
       "roles": [
@@ -5111,7 +5111,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20144,
-      "title": "个人整理最新版 144｜自我介绍。",
+      "title": "144｜自我介绍。",
       "level": "入门",
       "kind": "行为题",
       "roles": [
@@ -5150,7 +5150,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20145,
-      "title": "个人整理最新版 145｜离职原因。",
+      "title": "145｜离职原因。",
       "level": "入门",
       "kind": "行为题",
       "roles": [
@@ -5189,7 +5189,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20146,
-      "title": "个人整理最新版 146｜对加班的看法。",
+      "title": "146｜对加班的看法。",
       "level": "入门",
       "kind": "行为题",
       "roles": [
@@ -5228,7 +5228,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20147,
-      "title": "个人整理最新版 147｜职业发展规划与目标。",
+      "title": "147｜职业发展规划与目标。",
       "level": "入门",
       "kind": "行为题",
       "roles": [
@@ -5267,7 +5267,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20148,
-      "title": "个人整理最新版 148｜最近关注的测试技术社区。",
+      "title": "148｜最近关注的测试技术社区。",
       "level": "入门",
       "kind": "行为题",
       "roles": [
@@ -5306,7 +5306,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20149,
-      "title": "个人整理最新版 149｜新工具的学习与评估方法。",
+      "title": "149｜新工具的学习与评估方法。",
       "level": "入门",
       "kind": "行为题",
       "roles": [
@@ -5345,7 +5345,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20150,
-      "title": "个人整理最新版 150｜从事3年测试的收获与心得。",
+      "title": "150｜从事3年测试的收获与心得。",
       "level": "入门",
       "kind": "行为题",
       "roles": [
@@ -5384,7 +5384,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20151,
-      "title": "个人整理最新版 151｜是否一直从事软件测试？职业转型经历。",
+      "title": "151｜是否一直从事软件测试？职业转型经历。",
       "level": "入门",
       "kind": "行为题",
       "roles": [
@@ -5423,7 +5423,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20152,
-      "title": "个人整理最新版 152｜过往工作经历与团队规模。",
+      "title": "152｜过往工作经历与团队规模。",
       "level": "入门",
       "kind": "行为题",
       "roles": [
@@ -5462,7 +5462,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20153,
-      "title": "个人整理最新版 153｜期望薪资及理由。",
+      "title": "153｜期望薪资及理由。",
       "level": "入门",
       "kind": "行为题",
       "roles": [
@@ -5501,7 +5501,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20154,
-      "title": "个人整理最新版 154｜入职周期。",
+      "title": "154｜入职周期。",
       "level": "入门",
       "kind": "行为题",
       "roles": [
@@ -5540,7 +5540,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20155,
-      "title": "个人整理最新版 155｜为什么选择进入软件测试领域？",
+      "title": "155｜为什么选择进入软件测试领域？",
       "level": "入门",
       "kind": "行为题",
       "roles": [
@@ -5579,7 +5579,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20156,
-      "title": "个人整理最新版 156｜是否考虑向开发方向发展？",
+      "title": "156｜是否考虑向开发方向发展？",
       "level": "入门",
       "kind": "行为题",
       "roles": [
@@ -5618,7 +5618,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20157,
-      "title": "个人整理最新版 157｜大学计算机专业核心课程。",
+      "title": "157｜大学计算机专业核心课程。",
       "level": "入门",
       "kind": "行为题",
       "roles": [
@@ -5657,7 +5657,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20158,
-      "title": "个人整理最新版 158｜过往经历（仅按本人真实情况）背景及业务简介。",
+      "title": "158｜过往经历（仅按本人真实情况）背景及业务简介。",
       "level": "入门",
       "kind": "行为题",
       "roles": [
@@ -5696,7 +5696,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20159,
-      "title": "个人整理最新版 159｜超过26岁后婚姻与职业规划平衡。",
+      "title": "159｜超过26岁后婚姻与职业规划平衡。",
       "level": "入门",
       "kind": "行为题",
       "roles": [
@@ -5735,7 +5735,7 @@
       "module_id": "10",
       "origin": "personal-latest-reviewed",
       "position": 20160,
-      "title": "个人整理最新版 160｜面试官：你有什么问题想要了解？",
+      "title": "160｜面试官：你有什么问题想要了解？",
       "level": "入门",
       "kind": "行为题",
       "roles": [

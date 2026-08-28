@@ -66,7 +66,7 @@ def parse_outline() -> list[tuple[str, str]]:
 
 def title_question(title: str) -> str:
     return re.sub(
-        r"^个人整理最新版\s*\d{3}\s*[|｜]\s*",
+        r"^(?:个人整理最新版\s*)?\d{3}\s*[|｜]\s*",
         "",
         title,
     ).strip()
@@ -96,7 +96,7 @@ def normalize_question(
 
     item = dict(raw)
     item["origin"] = "personal-latest-reviewed"
-    item["title"] = f"个人整理最新版 {index:03d}｜{outline_question}"
+    item["title"] = f"{index:03d}｜{outline_question}"
     item["tags"] = [section.replace(" & ", "与"), "个人整理最新版", "面试题整理"]
     if "主题线索" in str(item["explanation"]):
         item["explanation"] = (

@@ -295,6 +295,7 @@ def test_personal_latest_bank_is_complete_and_traceable() -> None:
         "personal-latest-reviewed"
     }
     assert all(question["source_ids"] == ["personal-latest-reviewed"] for question in questions)
+    assert all(not question["title"].startswith("个人整理最新版") for question in questions)
     assert all(len(re.sub(r"\s+", "", question["answer"])) >= 120 for question in questions)
     assert all(len(re.sub(r"\s+", "", question["answer_strategy"])) >= 120 for question in questions)
     assert all(question["explanation"] for question in questions)
@@ -325,5 +326,9 @@ def test_personal_latest_and_offline_generators_are_current() -> None:
     text = offline.read_text(encoding="utf-8")
     assert '"questionCount":470' in text
     assert "个人整理最新版" in text
+    assert 'id="page-size"' in text
+    assert "software-testing-offline-page-size" in text
+    assert all(f'<option value="{size}">{size} 条</option>' in text for size in (8, 16, 32, 64))
+    assert "个人整理最新版 001" not in text
     assert "答题思路" in text
     assert "后续整理：核心模块" in text

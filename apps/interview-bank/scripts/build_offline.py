@@ -101,8 +101,10 @@ def render(payload: dict) -> str:
     .bookmark {{ margin-top: 16px; border-radius: 4px; }}
     .bookmark.active {{ background: #ffbf47; border-color: #c78b00; }}
     .empty {{ background: #fff; border-left: 4px solid #9c2f22; padding: 24px; }}
-    .pager {{ display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 20px; }}
+    .pager {{ display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px; margin-top: 20px; }}
     .pager button {{ border-radius: 4px; }}
+    .page-size {{ display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; }}
+    .page-size select {{ width: auto; min-width: 72px; }}
     .footer-note {{ color: #5b6a63; text-align: center; margin: 28px 0 0; font-size: 13px; }}
     @media (max-width: 820px) {{
       .header-inner {{ align-items: start; flex-direction: column; }}
@@ -133,7 +135,12 @@ def render(payload: dict) -> str:
       <section aria-live="polite">
         <div class="result-head"><p id="result"></p><button class="clear" id="clear" type="button">清空筛选</button></div>
         <div class="question-list" id="questions"></div>
-        <nav class="pager" aria-label="分页"><button id="prev" type="button">上一页</button><span id="page"></span><button id="next" type="button">下一页</button></nav>
+        <nav class="pager" aria-label="分页">
+          <button id="prev" type="button">上一页</button>
+          <span id="page"></span>
+          <button id="next" type="button">下一页</button>
+          <label class="page-size"><span>每页</span><select id="page-size" aria-label="每页题数"><option value="8">8 条</option><option value="16">16 条</option><option value="32">32 条</option><option value="64">64 条</option></select></label>
+        </nav>
       </section>
     </div>
     <p class="footer-note">学习记录仅保存在当前浏览器。题目示例使用公开或合成场景，不代表个人真实经历。</p>
@@ -143,7 +150,13 @@ def render(payload: dict) -> str:
     (() => {{
       const bank = JSON.parse(document.getElementById('bank-data').textContent);
       const labels = Object.fromEntries(bank.groups.map(group => [group.id, group.label]));
-      const state = {{ query: '', module: '', origin: '', bookmark: '', page: 1, pageSize: 16 }};
+      const allowedPageSizes = [8, 16, 32, 64];
+      let initialPageSize = 16;
+      try {{
+        const storedPageSize = Number(localStorage.getItem('software-testing-offline-page-size'));
+        if (allowedPageSizes.includes(storedPageSize)) initialPageSize = storedPageSize;
+      }} catch {{ /* 文件模式可能禁用持久化，继续使用默认值。 */ }}
+      const state = {{ query: '', module: '', origin: '', bookmark: '', page: 1, pageSize: initialPageSize }};
       let savedValues = [];
       try {{ savedValues = JSON.parse(localStorage.getItem('software-testing-offline-saved') || '[]'); }} catch {{ savedValues = []; }}
       const saved = new Set(Array.isArray(savedValues) ? savedValues : []);
@@ -185,10 +198,19 @@ def render(payload: dict) -> str:
         }}));
       }};
       byId('total').textContent = `${{bank.questionCount}} 道完整题目`;
+      byId('page-size').value = String(state.pageSize);
       bank.modules.forEach(module => byId('module').insertAdjacentHTML('beforeend', `<option value="${{escape(module.id)}}">${{escape(module.name)}}</option>`));
       byId('query').addEventListener('input', event => {{ state.query = event.target.value; state.page = 1; render(); }});
       byId('module').addEventListener('change', event => {{ state.module = event.target.value; state.page = 1; render(); }});
       byId('bookmark').addEventListener('change', event => {{ state.bookmark = event.target.value; state.page = 1; render(); }});
+      byId('page-size').addEventListener('change', event => {{
+        const pageSize = Number(event.target.value);
+        if (!allowedPageSizes.includes(pageSize)) return;
+        state.pageSize = pageSize;
+        state.page = 1;
+        try {{ localStorage.setItem('software-testing-offline-page-size', String(pageSize)); }} catch {{ /* 只影响记忆设置。 */ }}
+        render();
+      }});
       byId('prev').addEventListener('click', () => {{ state.page -= 1; render(); scrollTo({{top: 0, behavior: 'smooth'}}); }});
       byId('next').addEventListener('click', () => {{ state.page += 1; render(); scrollTo({{top: 0, behavior: 'smooth'}}); }});
       byId('clear').addEventListener('click', () => {{ Object.assign(state, {{query:'',module:'',origin:'',bookmark:'',page:1}}); byId('query').value=''; byId('module').value=''; byId('bookmark').value=''; render(); }});
