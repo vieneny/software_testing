@@ -109,7 +109,7 @@
 - [demo-shop 综合实验](labs/demo-shop/README.md)
 - [复杂系统测试实战：FastAPI + React 社区与 Spring Boot + Vue 智能客服](labs/复杂系统测试实战/README.md)
 - [API、Web、Android、iOS 自动化综合练习工程](labs/automation-practice/README.md)
-- [自动化实战学习地图与七篇全流程教程](docs/09-自动化实战/README.md)
+- [自动化实战学习地图与八篇全流程教程](docs/09-自动化实战/README.md)
 - [项目任务与验收清单](docs/07-综合实战/README.md)
 - [公开资料索引](references/README.md)
 - [分类开源项目参考库：项目内容、学习价值、使用场景与组合路线](references/开源项目参考库/README.md)
@@ -130,6 +130,7 @@
 
 - [接口自动化：公开 API、本地靶场、契约与 Mock](docs/09-自动化实战/01-接口自动化全流程.md)
 - [Web 自动化：TodoMVC、SauceDemo 与 Playwright 框架](docs/09-自动化实战/02-网页自动化全流程.md)
+- [App 自动化项目快速学习：3 天掌握环境、分层、业务流、证据与 CI](docs/09-自动化实战/08-App自动化项目快速学习/README.md)
 - [App 自动化离线 Mock：Android/iOS 统一契约、故障注入、证据与清理](docs/09-自动化实战/07-移动端自动化模拟框架全流程.md)
 - [Android 真机：ApiDemos、UiAutomator2 与完整运行链路](docs/09-自动化实战/03-安卓真机自动化全流程.md)
 - [iOS：UIKitCatalog、Simulator、XCUITest 与 WDA](docs/09-自动化实战/04-苹果移动端自动化全流程.md)

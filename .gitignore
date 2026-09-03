@@ -75,6 +75,9 @@ apps/interview-bank/data/source-snapshots/*
 # GitHub 旧提交原始文件仅用于本机核对；净化后的题库由构建脚本生成
 .local-history/
 
+# 本地课程原始资料目录
+/3天搞定企业级APP自动化：2026最新Python+Appium 驱动网易严选全流程测试课件/
+
 # IDE / OS
 .DS_Store
 .idea/
