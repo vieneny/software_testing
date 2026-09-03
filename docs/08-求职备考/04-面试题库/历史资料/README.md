@@ -4,7 +4,7 @@
 
 - [个人整理最新版题库.md](./个人整理最新版题库.md)：按主题分组的完整题目清单。
 
-每道题均已补充独立答题思路、详细答案、原理解释、追问和常见误区，并同时进入在线平台与单文件离线题库。机器可读的评审数据位于：
+每道题均已补充独立答题思路、详细答案、原理解释、追问和常见误区，并进入单文件离线题库。机器可读的评审数据位于：
 
 ```text
 apps/interview-bank/data/personal-latest-reviewed.json
@@ -16,12 +16,6 @@ apps/interview-bank/data/personal-latest-reviewed.json
 
 ```text
 apps/interview-bank/data/legacy-coverage.json
-```
-
-网站后端可通过以下接口查看：
-
-```text
-GET /api/v1/legacy-coverage
 ```
 
 当前 160 道题已全部通过强语义匹配并关联详细答案。大纲只用于覆盖校验，`personal-latest-reviewed.json` 是答案与答题思路的唯一来源。

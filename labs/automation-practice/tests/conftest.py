@@ -19,12 +19,6 @@ def pytest_addoption(parser: pytest.Parser) -> None:
         default=False,
         help="allow low-frequency tests against public Web learning services",
     )
-    group.addoption(
-        "--run-mobile",
-        action="store_true",
-        default=False,
-        help="allow tests to control the explicitly configured test device/simulator",
-    )
 
 
 @pytest.fixture(scope="session")
@@ -42,9 +36,3 @@ def public_api_guard(request: pytest.FixtureRequest) -> None:
 def public_web_guard(request: pytest.FixtureRequest) -> None:
     if not request.config.getoption("--run-public-web"):
         pytest.skip("public Web tests require the explicit --run-public-web switch")
-
-
-@pytest.fixture(scope="session")
-def mobile_guard(request: pytest.FixtureRequest) -> None:
-    if not request.config.getoption("--run-mobile"):
-        pytest.skip("mobile tests require the explicit --run-mobile switch")

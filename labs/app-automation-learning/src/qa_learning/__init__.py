@@ -1,0 +1,1 @@
+"""App automation learning project."""

@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "qa-automation-practice"
 version = "0.1.0"
-description = "Public, reproducible API, Web and mobile automation learning project"
+description = "Public, reproducible API and Web automation learning project"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
@@ -21,11 +21,7 @@ api = [
 web = [
   "pytest-playwright>=0.7,<1",
 ]
-mobile = [
-  "Appium-Python-Client>=5,<6",
-]
 all = [
-  "Appium-Python-Client>=5,<6",
   "jsonschema>=4.23,<5",
   "pytest-playwright>=0.7,<1",
   "requests>=2.32,<3",
@@ -44,12 +40,6 @@ python_files = ["test_*.py", "测试_*.py"]
 markers = [
   "api: API automation tests",
   "web: browser UI automation tests",
-  "mobile: native mobile automation tests",
-  "mock: deterministic offline tests that never control a real device",
-  "contract: reusable behavior contracts shared by fake and real adapters",
-  "device: tests that create a real Appium session and require --run-mobile",
-  "android: tests that require an Android device",
-  "ios: tests that require an iOS device or simulator",
   "external: low-frequency tests against a public learning service",
   "smoke: short critical-path checks",
   "e2e: end-to-end business journeys",

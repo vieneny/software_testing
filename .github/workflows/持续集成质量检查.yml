@@ -18,25 +18,17 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
-          cache-dependency-path: apps/interview-bank/backend/pyproject.toml
-      - uses: actions/setup-node@v6
-        with:
-          node-version: "22"
-          cache: npm
-          cache-dependency-path: apps/interview-bank/frontend/package-lock.json
-      - name: Install interview bank backend
-        run: python -m pip install -e 'apps/interview-bank/backend[dev]'
-      - name: Verify generated catalog and historical coverage
-        run: python apps/interview-bank/scripts/build_bank.py --check
-      - name: Run FastAPI and privacy tests
-        run: pytest -q apps/interview-bank/backend/tests
-      - name: Install and verify Vue frontend
-        working-directory: apps/interview-bank/frontend
+          cache-dependency-path: apps/interview-bank/pyproject.toml
+      - name: Install offline bank checks
+        run: python -m pip install -e 'apps/interview-bank[dev]'
+      - name: Verify generated offline assets
         run: |
-          npm ci
-          npm run test
-          npm run typecheck
-          npm run build
+          python apps/interview-bank/scripts/build_personal_latest.py --check
+          python apps/interview-bank/scripts/build_bank.py --check
+          python apps/interview-bank/scripts/audit_question_quality.py --check
+          python apps/interview-bank/scripts/build_offline.py --check
+      - name: Run offline data and quality tests
+        run: pytest -q apps/interview-bank/tests
 
   automation-framework-offline:
     runs-on: ubuntu-latest
@@ -58,6 +50,27 @@ jobs:
           ruff format --check src tests
       - name: Run offline tests and verify external guards
         run: pytest -q
+
+  app-automation-learning:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: labs/app-automation-learning
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: labs/app-automation-learning/pyproject.toml
+      - name: Install App learning dependencies
+        run: python -m pip install -e '.[all]'
+      - name: Check formatting and static rules
+        run: |
+          ruff check src tests
+          ruff format --check src tests
+      - name: Run deterministic App learning tests
+        run: pytest -q -m "not device"
 
   api-and-ai:
     runs-on: ubuntu-latest

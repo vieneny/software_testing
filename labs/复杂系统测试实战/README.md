@@ -163,7 +163,7 @@ Spring Boot 后端和两个 Compose 文件。Java 检查要求 JDK 21 或更高�
 
 - 功能测试方法继续放在 `docs/01-功能测试/`；
 - API 框架继续放在 `docs/02-接口测试/`；
-- Playwright、Appium 继续放在 `docs/03-UI自动化/` 和 `docs/09-自动化实战/`；
+- Playwright、Appium 继续放在 `docs/03-UI自动化/`；
 - 性能继续放在 `docs/04-性能测试/`；
 - AI 评测与安全继续放在 `docs/06-AI测试/`；
 - 本目录提供统一、复杂、可持续演进的真实练习目标。

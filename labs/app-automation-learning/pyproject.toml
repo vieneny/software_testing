@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "app-automation-learning"
+version = "1.0.0"
+description = "A staged Appium 3 learning project with deterministic mobile flows"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "pytest>=8.3,<10",
+  "python-dotenv>=1.0,<2",
+]
+
+[project.optional-dependencies]
+mobile = ["Appium-Python-Client>=5,<6"]
+dev = ["ruff>=0.12,<1"]
+all = [
+  "Appium-Python-Client>=5,<6",
+  "ruff>=0.12,<1",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-markers"
+testpaths = ["tests"]
+python_files = ["test_*.py", "测试_*.py"]
+markers = [
+  "mobile: mobile automation tests, including deterministic and device-backed checks",
+  "mock: deterministic tests that do not contact Appium or a device",
+  "contract: reusable mobile behavior contracts",
+  "device: creates a real Appium session and requires --run-mobile",
+  "android: requires an Android target",
+  "ios: requires an iOS target",
+  "smoke: short critical-path check",
+  "e2e: multi-screen business journey",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
