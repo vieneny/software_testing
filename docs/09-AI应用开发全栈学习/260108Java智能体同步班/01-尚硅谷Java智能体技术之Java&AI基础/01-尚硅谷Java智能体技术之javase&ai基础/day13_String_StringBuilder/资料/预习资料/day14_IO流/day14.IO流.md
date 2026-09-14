@@ -47,7 +47,7 @@
     将数据从硬盘的文件中读回到内存中 -> 输入  -> 读数据
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251101103749424.png" alt="image-20251101103749424" style="zoom:80%;" />
 
 ## 2.IO流分类
 
@@ -106,7 +106,7 @@
     }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251101110000659.png" alt="image-20251101110000659" style="zoom:80%;" />
 
 ```java
     /**
@@ -277,11 +277,11 @@
     }
 ```
 
-> > 课程配图（未随笔记提交）
+> <img src="image/image-20251101144130381.png" alt="image-20251101144130381" style="zoom:80%;" />
 
 ## 8.字节流实现图片复制分析
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251101145628827.png" alt="image-20251101145628827" style="zoom:80%;" />
 
 ## 9.字节流实现图片复制代码实现
 
@@ -630,7 +630,7 @@ public class Person implements Serializable {
       public static final long serialVersionUID = 1L;
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251103093606203.png" alt="image-20251103093606203" style="zoom:80%;" />
 
 ## 2.打印流
 

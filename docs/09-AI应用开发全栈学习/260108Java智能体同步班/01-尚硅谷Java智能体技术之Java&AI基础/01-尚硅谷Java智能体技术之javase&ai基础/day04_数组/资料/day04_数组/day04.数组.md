@@ -173,7 +173,7 @@ public class Demo02Array {
   我们操作元素,都是根据索引来操作的 -> 存,取
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260113095029357.png" alt="image-20260113095029357" style="zoom:80%;" />
 
 ## 3.存储元素
 
@@ -225,7 +225,7 @@ public class Demo04Array {
 
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260113102428005.png" alt="image-20260113102428005" style="zoom:80%;" />
 
 > arr1[0] = arr2[1] -> 将arr2这个数组的1索引上的元素取出来放到arr1这个数组的0索引上
 
@@ -272,7 +272,7 @@ public class Demo06Array {
 }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260113105144572.png" alt="image-20260113105144572" style="zoom:80%;" />
 
 ### 6.2.空指针异常_NullPointerException
 
@@ -291,7 +291,7 @@ public class Demo07Array {
 }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260113110130045.png" alt="image-20260113110130045" style="zoom:80%;" />
 
 > 以上两个问题,不需要练习,只需要知道以上两个问题出现的原因即可
 >
@@ -346,7 +346,7 @@ public class Demo01GetMax {
 }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260113113253919.png" alt="image-20260113113253919" style="zoom:80%;" />
 
 ## 2.练习
 
@@ -445,7 +445,7 @@ public class Demo03Print {
 >
 > ```
 >
-> > 课程配图（未随笔记提交）
+> <img src="image/image-20260113141225199.png" alt="image-20260113141225199" style="zoom:80%;" />
 
 ## 5.练习
 
@@ -526,13 +526,13 @@ public class Demo04Search {
   寄存器(PC Register):和CPU有关
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260113153400246.png" alt="image-20260113153400246" style="zoom:80%;" />
 
 
 
 ## 1.一个数组内存图
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260113154041436.png" alt="image-20260113154041436" style="zoom:80%;" />
 
 ## 2.两个数组内存图
 
@@ -540,7 +540,7 @@ public class Demo04Search {
 创建两个数组的时候产生了不同的空间,修改一个空间中的数据不会影响另外一个空间的数据
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260113154657418.png" alt="image-20260113154657418" style="zoom:80%;" />
 
 ## 3.两个数组指向同一片内存空间
 
@@ -548,7 +548,7 @@ public class Demo04Search {
 arr2不是重新创建出来的,而是arr直接赋值过去的,那么此时会将arr的地址值给arr2,那么arr和arr2的地址值是一样的,所以arr和arr2指向了同一片空间,操作同一个数组,所以修改arr2的元素会影响到arr这个数组
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260113161905731.png" alt="image-20260113161905731" style="zoom:80%;" />
 
 # 第五章.数组复杂操作_数组扩容
 
@@ -577,4 +577,4 @@ public class Demo04Array {
 }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260113162438223.png" alt="image-20260113162438223" style="zoom:80%;" />

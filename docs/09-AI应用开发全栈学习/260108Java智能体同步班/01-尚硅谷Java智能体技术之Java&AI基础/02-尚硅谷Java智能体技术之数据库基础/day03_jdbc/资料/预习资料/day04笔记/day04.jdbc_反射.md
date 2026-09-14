@@ -182,7 +182,7 @@ public class JDBCUtils {
 2.解决:我们搞一个容器(连接池),在这个容器中创建多条Connection对象,来了任务之后从连接池中获取Connection对象去使用,用完还回去,达到一个循环利用的效果
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251117091422093.png" alt="image-20251117091422093" style="zoom:80%;" />
 
 ## 1.连接池之Druid(德鲁伊)
 
@@ -312,7 +312,7 @@ public class Demo02Druid {
    获取class对象
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/1755070316108.png" alt="1755070316108" style="zoom:80%;" />
 
 ## 2.反射之获取Class对象
 

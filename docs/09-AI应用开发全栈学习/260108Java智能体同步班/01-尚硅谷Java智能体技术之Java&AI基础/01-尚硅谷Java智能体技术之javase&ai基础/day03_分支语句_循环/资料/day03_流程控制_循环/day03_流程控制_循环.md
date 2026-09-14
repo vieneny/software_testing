@@ -41,7 +41,7 @@
     变量名.next() 键盘录入一个String型的字符串
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260112090958572.png" alt="image-20260112090958572" style="zoom:80%;" />
 
 ```java
 public class Demo01Scanner {
@@ -679,7 +679,7 @@ public class Demo09ElseIf {
   次数.fori -> 回车
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260112141711641.png" alt="image-20260112141711641" style="zoom:80%;" />
 
 ```java
 public class Demo01For {
@@ -691,7 +691,7 @@ public class Demo01For {
 }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260112142053928.png" alt="image-20260112142053928" style="zoom:80%;" />
 
 ### 1.1.练习1
 
@@ -722,7 +722,7 @@ public class Demo02For {
 }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260112143423941.png" alt="image-20260112143423941" style="zoom:80%;" />
 
 ### 1.2.练习2
 

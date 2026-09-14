@@ -224,7 +224,7 @@ public class Demo05Method {
 
 ```
 
-> > 课程配图（未随笔记提交）
+> <img src="image/image-20260116092746692.png" alt="image-20260116092746692" style="zoom:80%;" />
 >
 > 1.方法运行:压栈
 >
@@ -277,7 +277,7 @@ public class Demo06Method {
 
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260116093542077.png" alt="image-20260116093542077" style="zoom:80%;" />
 
 
 
@@ -289,7 +289,7 @@ public class Demo06Method {
 如果基本类型做方法参数传递,传递的是值,不是变量本身
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260116094235832.png" alt="image-20260116094235832" style="zoom:80%;" />
 
 ## 2.引用类型做方法参数传递
 
@@ -297,7 +297,7 @@ public class Demo06Method {
 如果引用类型做方法参数传递,传递的是地址值
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260116094837902.png" alt="image-20260116094837902" style="zoom:80%;" />
 
 # 第四章.方法的重载(Overload)
 
@@ -357,13 +357,13 @@ public static void OPEN(){}
 public static void open(int i,int j){}
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260116103346294.png" alt="image-20260116103346294" style="zoom:80%;" />
 
 ```java
 使用场景:在同一个类中,功能一样,但是实现细节不一样,可以考虑用重载的方法
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260116103525633.png" alt="image-20260116103525633" style="zoom:80%;" />
 
 # 第五章.可变参数
 
@@ -381,7 +381,7 @@ public static void open(int i,int j){}
   b.参数列表中只能有一个可变参数,而且需要放到参数列表的最后
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260116105602809.png" alt="image-20260116105602809" style="zoom:80%;" />
 
 ```java
 public class Demo01Var {
@@ -476,7 +476,7 @@ public class Demo01DiGui {
 }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260116113918233.png" alt="image-20260116113918233" style="zoom:80%;" />
 
 ### 1.用递归输出3到1
 
@@ -496,7 +496,7 @@ public class Demo02DiGui {
 }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260116114431341.png" alt="image-20260116114431341" style="zoom:80%;" />
 
 ### 2.求n!
 
@@ -529,7 +529,7 @@ public class Demo03DiGui {
 
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260116141931403.png" alt="image-20260116141931403" style="zoom:80%;" />
 
 ### 示例三：计算斐波那契数列（Fibonacci）的第n个值
 
@@ -542,7 +542,7 @@ public class Demo03DiGui {
 
 规律：一个数等于前两个数之和，比如: 1 1 2 3 5 8 13 21 34 55....
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260116143447181.png" alt="image-20260116143447181" style="zoom:80%;" />
 
 ```java
 1.分析:假如定义给方法method代表生兔子,参数代表月份
@@ -745,4 +745,4 @@ public class Demo02Object {
 }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260116162804254.png" alt="image-20260116162804254" style="zoom:80%;" />

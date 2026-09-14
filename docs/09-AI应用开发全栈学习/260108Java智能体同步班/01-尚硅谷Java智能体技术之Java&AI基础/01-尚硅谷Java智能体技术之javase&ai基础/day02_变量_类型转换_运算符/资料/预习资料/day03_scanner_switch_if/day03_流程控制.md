@@ -69,7 +69,7 @@
     对象名.next() 键盘录入一个String型的字符串
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1748049699811.png" alt="1748049699811" style="zoom:80%;" />
 
 ```java
 public class Demo01Scanner {
@@ -771,7 +771,7 @@ public class Demo10If {
   e.再比较,直到比较为false,循环结束
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1748075601554.png" alt="1748075601554" style="zoom:80%;" />
 
 ```java
 public class Demo01For {
@@ -813,7 +813,7 @@ public class Demo02For {
 }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1748075977961.png" alt="1748075977961" style="zoom:80%;" />
 
 ### 1.2.练习2
 

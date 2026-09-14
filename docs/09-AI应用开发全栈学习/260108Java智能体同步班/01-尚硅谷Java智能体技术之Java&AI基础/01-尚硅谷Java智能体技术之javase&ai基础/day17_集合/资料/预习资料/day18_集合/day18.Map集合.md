@@ -38,7 +38,7 @@
 
 # 第一章.Map集合
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251110092627198.png" alt="image-20251110092627198" style="zoom:80%;" />
 
 ## 1.Map的介绍
 
@@ -148,7 +148,7 @@ Set<K> keySet()->将Map中的key获取出来,转存到Set集合中
 
 ### 3.2.方式2:同时获取key和value
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251110102234614.png" alt="image-20251110102234614" style="zoom:80%;" />
 
 ```java
 Set<Map.Entry<K,V>> entrySet()->获取Map集合中的键值对,转存到Set集合中
@@ -218,7 +218,7 @@ public class Person {
 
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251110104253071.png" alt="image-20251110104253071" style="zoom:80%;" />
 
 ```java
 @Test
@@ -796,7 +796,7 @@ public void test01(){
   e.如果在同一个索引下删除元素,元素个数小于等于6了,红黑树会自动转回链表
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1744099603792.png" alt="1744099603792" style="zoom:80%;" />
 
 > 1.问题:哈希表中有数组的存在,但是为啥说没有索引呢?
 >
@@ -808,8 +808,8 @@ public void test01(){
 >
 > 原因:HashMap的链表是单向链表
 >
-> > 课程配图（未随笔记提交）
+> <img src="image/1754987223185.png" alt="1754987223185" style="zoom:80%;" />
 >
 > ​        LinkedHashMap链表是双向链表
 >
-> > 课程配图（未随笔记提交）
+> <img src="image/1754987257465.png" alt="1754987257465" style="zoom:80%;" />

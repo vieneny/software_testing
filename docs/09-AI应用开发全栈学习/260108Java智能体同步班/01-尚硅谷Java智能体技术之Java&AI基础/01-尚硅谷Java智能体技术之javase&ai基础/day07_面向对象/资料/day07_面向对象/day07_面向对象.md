@@ -95,7 +95,7 @@ public class Demo01Object {
 }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260117090736679.png" alt="image-20260117090736679" style="zoom:80%;" />
 
 ## 2.一个对象的内存图
 
@@ -127,17 +127,17 @@ public class Demo01Object {
 
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260117092945313.png" alt="image-20260117092945313" style="zoom:80%;" />
 
 ## 3.两个对象的内存图
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260117093923964.png" alt="image-20260117093923964" style="zoom:80%;" />
 
 > 我们new了两次对象,在堆内存中开辟了两个不同的空间,修改一个空间中的数据不会影响到另外一个空间的数据
 
 ## 4.两个对象指向同一片空间内存图
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260117094713050.png" alt="image-20260117094713050" style="zoom:80%;" />
 
 > phone2是phone1给的,会将phone1的地址值给phone2,此时phone1和phone2地址值是一样的,操作同一个空间中的数据,所以修改一个对象的数据会影响另外一个对象
 
@@ -296,7 +296,7 @@ public class Person {
 }
 ```
 
- > 课程配图（未随笔记提交）
+ <img src="image/image-20260117104158860.png" alt="image-20260117104158860" style="zoom:80%;" />
 
 > 一个类中如果有私有属性,get/set方法基本就是配套提供的
 
@@ -336,7 +336,7 @@ public class Person {
 
 ```
 
- > 课程配图（未随笔记提交）
+ <img src="image/image-20260117112653450.png" alt="image-20260117112653450" style="zoom:80%;" />
 
 ```java
 public class Person {
@@ -375,7 +375,7 @@ public class Person {
 }
 ```
 
- > 课程配图（未随笔记提交）
+ <img src="image/image-20260117113109031.png" alt="image-20260117113109031" style="zoom:80%;" />
 
 >  问题:属性如果没有被私有化,我们能不能提供get/set方法呢?
 >
@@ -506,7 +506,7 @@ public class Demo01Object {
 
 ```
 
- > 课程配图（未随笔记提交）
+ <img src="image/image-20260117141056407.png" alt="image-20260117141056407" style="zoom:80%;" />
 
 >  问题:有参构造既可以new对象,还可以为属性赋值,那么有了有参构造,我们能不能不写setxxx方法了呢?
 >
@@ -586,19 +586,19 @@ public class Student {
 >
 >   alt+fn+insert
 >
-> > 课程配图（未随笔记提交）
+> <img src="image/1753518579737.png" alt="1753518579737" style="zoom:80%;" />
 
 > 1.无参构造
 >
-> > 课程配图（未随笔记提交）
+> <img src="image/1753518625332.png" alt="1753518625332" style="zoom:80%;" />
 >
 > 2.有参构造
 >
-> > 课程配图（未随笔记提交）
+> <img src="image/1753518677071.png" alt="1753518677071" style="zoom:80%;" />
 >
 > 3.get/set方法
 >
-> > 课程配图（未随笔记提交）
+> <img src="image/1753518749546.png" alt="1753518749546" style="zoom:80%;" />
 >
 >
 >
@@ -644,7 +644,7 @@ public class Test01 {
 
 ## 1.static关键字的介绍和使用
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260117152735010.png" alt="image-20260117152735010" style="zoom:80%;" />
 
 ```java
 1.概述:static是静态关键字

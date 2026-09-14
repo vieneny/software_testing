@@ -45,7 +45,7 @@
   b.输入(Input):将数据从硬盘上读到内存中
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260127085003513.png" alt="image-20260127085003513" style="zoom:80%;" />
 
 ## 2.IO流分类
 
@@ -92,7 +92,7 @@
     }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260127091430743.png" alt="image-20260127091430743" style="zoom:80%;" />
 
 ```java
     /**
@@ -243,11 +243,11 @@
     }
 ```
 
-> > 课程配图（未随笔记提交）
+> <img src="image/image-20260127104346825.png" alt="image-20260127104346825" style="zoom:80%;" />
 
 ## 8.字节流实现图片复制分析
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260127111529404.png" alt="image-20260127111529404" style="zoom:80%;" />
 
 ## 9.字节流实现图片复制代码实现
 
@@ -478,7 +478,7 @@ try(IO流对象1;IO流对象2){
 
 # 第三章.序列化流&打印流
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260127144606084.png" alt="image-20260127144606084" style="zoom:80%;" />
 
 ## 1.序列化流
 
@@ -583,7 +583,7 @@ private static void writer() throws Exception {
     static final long serialVersionUID = 42L;
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260127154719633.png" alt="image-20260127154719633" style="zoom:80%;" />
 
 ### 1.4.反序列化多个对象操作
 

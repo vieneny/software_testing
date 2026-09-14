@@ -331,7 +331,7 @@ SELECT DATEDIFF('2026-2-10',NOW());
 
 我们现在默认使用的都是root用户，超级管理员，拥有全部的权限。但是，一个公司里面的数据库服务器上面可能同时运行着很多个项目的数据库。所以，我们应该根据不同的项目建立不同的用户，分配不同的权限来管理和维护数据库。
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260206102646174.png" alt="image-20260206102646174" style="zoom:80%;" />
 
 ## 2.1 创建用户
 
@@ -359,7 +359,7 @@ CREATE USER 'user2'@'%' IDENTIFIED BY '123';
 ## 2.2 授权用户
 
 用户创建之后，基本没什么权限！需要给用户授权
-> 课程配图（未随笔记提交）：课堂配图
+![](img/DCL02.png)
 
 **授权格式**：
 
@@ -384,7 +384,7 @@ d.'用户名'@'主机名':给哪个用户分配权限
    GRANT CREATE,ALTER,DROP,INSERT,UPDATE,DELETE,SELECT ON test.* TO 'user1'@'localhost';
    ```
 
-   > 课程配图（未随笔记提交）：课堂配图
+   ![](img/DCL03.png)
 
 2. 给user2用户分配对所有数据库操作的权限
 
@@ -392,7 +392,7 @@ d.'用户名'@'主机名':给哪个用户分配权限
    GRANT ALL ON *.* TO 'user2'@'%';
    ```
 
-   > 课程配图（未随笔记提交）：课堂配图
+   ![](img/DCL04.png)
 
 ## 2.3 撤销授权
 
@@ -408,7 +408,7 @@ REVOKE  权限1, 权限2... ON 数据库.表名 FROM '用户名'@'主机名';
   REVOKE ALL ON test.* FROM 'user1'@'localhost';
   ```
 
-  > 课程配图（未随笔记提交）：课堂配图
+  ![](img/DCL05.png)
 
 ## 2.4 查看权限
 
@@ -424,7 +424,7 @@ SHOW GRANTS FOR '用户名'@'主机名';
   SHOW GRANTS FOR 'user1'@'localhost';
   ```
 
-  > 课程配图（未随笔记提交）：课堂配图
+  ![](img/DCL06.png)
 
 ## 2.5 删除用户
 
@@ -440,7 +440,7 @@ DROP USER '用户名'@'主机名';
    DROP USER 'user2'@'%';
   ```
 
-  > 课程配图（未随笔记提交）：课堂配图
+  ![](img/DCL07.png)
 
 ```mysql
 /*
@@ -498,7 +498,7 @@ mysqladmin -uroot -p password root
 输入老密码
    ```
 
-   > 课程配图（未随笔记提交）：课堂配图
+   ![](img/DCL08.png)
 
 ### 2.6.2 修改普通用户密码
 
@@ -514,7 +514,7 @@ set password for '用户名'@'主机名' = password('新密码');
 set password for 'user1'@'localhost' = password('666666');
    ```
 
-   > 课程配图（未随笔记提交）：课堂配图
+   ![](img/DCL09.png)
 
 # 第三章.JDBC
 
@@ -524,7 +524,7 @@ set password for 'user1'@'localhost' = password('666666');
 1.概述:Java Database Connectivity(java数据库连接),他是java连接数据库,操作数据库的一套标准
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260206104331483.png" alt="image-20260206104331483" style="zoom:80%;" />
 
 ## 2.JDBC准备(导入jdbc依赖)
 
@@ -983,7 +983,7 @@ public class Demo04JDBC {
 }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260206153208422.png" alt="image-20260206153208422" style="zoom:80%;" />
 
 > 密码输入:222' or '1' = '1  以上程序不行了->sql注入
 
@@ -1005,7 +1005,7 @@ public class Demo04JDBC {
   ResultSet executeQuery() 针对于查询,返回的是结果集
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260206154043865.png" alt="image-20260206154043865" style="zoom:80%;" />
 
 ## 2.使用预处理对象(PreparedStatement)实现增删改查操作
 

@@ -83,7 +83,7 @@ public class Test {
 
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251024105012589.png" alt="image-20251024105012589" style="zoom:80%;" />
 
 ## 2.一个对象的内存图
 
@@ -114,17 +114,17 @@ public class Test01 {
 }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251024112659389.png" alt="image-20251024112659389" style="zoom:80%;" />
 
 ## 3.两个对象的内存图
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251024115555265.png" alt="image-20251024115555265" style="zoom:80%;" />
 
 > 咱们new了两次,开辟两个不同的空间,修改一个对象中的数据不会影响另外一个对象
 
 ## 4.两个对象指向同一片空间内存图
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251024140657021.png" alt="image-20251024140657021" style="zoom:80%;" />
 
 > phone2是phone1直接赋值的,所以两个对象的地址值是一样的,操作的是同一片空间中的数据
 
@@ -279,7 +279,7 @@ public class Test01 {
 
 ```
 
- > 课程配图（未随笔记提交）
+ <img src="image/image-20251024145705814.png" alt="image-20251024145705814" style="zoom:80%;" />
 
 ## 2.this的介绍
 
@@ -317,7 +317,7 @@ public class Test01 {
 
 ```
 
- > 课程配图（未随笔记提交）
+ <img src="image/image-20251024153003154.png" alt="image-20251024153003154" style="zoom:80%;" />
 
 ```java
  public class Phone {
@@ -360,7 +360,7 @@ public class Test01 {
 }
 ```
 
- > 课程配图（未随笔记提交）
+ <img src="image/image-20251024153315925.png" alt="image-20251024153315925" style="zoom:80%;" />
 
 >  问题:属性如果没有被私有化,我们能不能提供get/set方法呢?
 >
@@ -667,19 +667,19 @@ public class Person {
 >
 >   alt+fn+insert
 >
-> > 课程配图（未随笔记提交）
+> <img src="image/1753518579737.png" alt="1753518579737" style="zoom:80%;" />
 
 > 1.无参构造
 >
-> > 课程配图（未随笔记提交）
+> <img src="image/1753518625332.png" alt="1753518625332" style="zoom:80%;" />
 >
 > 2.有参构造
 >
-> > 课程配图（未随笔记提交）
+> <img src="image/1753518677071.png" alt="1753518677071" style="zoom:80%;" />
 >
 > 3.get/set方法
 >
-> > 课程配图（未随笔记提交）
+> <img src="image/1753518749546.png" alt="1753518749546" style="zoom:80%;" />
 >
 >
 >

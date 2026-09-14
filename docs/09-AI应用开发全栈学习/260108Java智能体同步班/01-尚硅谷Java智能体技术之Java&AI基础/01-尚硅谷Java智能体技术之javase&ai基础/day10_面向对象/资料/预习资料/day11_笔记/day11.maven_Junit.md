@@ -175,11 +175,11 @@ public class Test02 {
   b.右键,点debug运行
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251031102527289.png" alt="image-20251031102527289" style="zoom:80%;" />
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251031102958033.png" alt="image-20251031102958033" style="zoom:80%;" />
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251031105700988.png" alt="image-20251031105700988" style="zoom:80%;" />
 
 # 第三章.Record和密封类
 
@@ -299,7 +299,7 @@ non-sealed class Bird implements Flyable{
 2.什么是API文档:根据API生成的文档
 ```
 
-> 课程配图（未随笔记提交）> 课程配图（未随笔记提交）：1754099875917
+<img src="image/1754099812028.png" alt="1754099812028" style="zoom:80%;" />![1754099875917](image/1754099875917.png)
 
 # 第五章.Object类
 
@@ -401,7 +401,7 @@ public class Test01 {
   b.如果重写了equals方法,会调用重写的equals方法,比较对象的内容
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251031141119958.png" alt="image-20251031141119958" style="zoom:80%;" />
 
 ```java
 public class Person {
@@ -510,7 +510,7 @@ public class Person {
 
 ### 1.1从构建的角度说明
 
-> 课程配图（未随笔记提交）
+<img src="image/1753781974881.png" alt="1753781974881" style="zoom:80%;" />
 
 
 
@@ -533,7 +533,7 @@ public class Person {
 我们导入主要jar包,里面会自动包含其他的依赖jar包
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/1753782016742.png" alt="1753782016742" style="zoom:80%;" />
 
 ## 2.Maven的介绍
 
@@ -573,9 +573,9 @@ https://maven.apache.org/docs/history.html
   # 输出版本信息即可，如果错误，请仔细检查环境变量即可！
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/1753834292160.png" alt="1753834292160" style="zoom:80%;" />
 
-> 课程配图（未随笔记提交）
+<img src="image/1753834345192.png" alt="1753834345192" style="zoom:80%;" />
 
 ### 3.3.仓库配置
 
@@ -585,7 +585,7 @@ https://maven.apache.org/docs/history.html
 | 中央仓库 | 就是远程仓库，仓库中jar由专业团队（maven团队）统一维护。中央仓库的地址：http://repo1.maven.org/maven2/ |
 | 远程仓库 | 在公司内部架设一台私服，其它公司架设一台仓库，对外公开。-> 比如阿里仓库 |
 
-> 课程配图（未随笔记提交）
+<img src="image/1753834615151.png" alt="1753834615151" style="zoom:80%;" />
 
 ```java
 1.打开maven里面的conf文件夹中的setting.xml
@@ -649,13 +649,13 @@ File / Settings /  Build /  Build tools / Maven
 
 ### 4.2.配置本地maven
 
-> 课程配图（未随笔记提交）
+<img src="image/1753835606617.png" alt="1753835606617" style="zoom:80%;" />
 
 ## 5.创建maven项目
 
-> 课程配图（未随笔记提交）
+<img src="image/1753836044434.png" alt="1753836044434" style="zoom:80%;" />
 
-> 课程配图（未随笔记提交）
+<img src="image/1753841334104.png" alt="1753841334104" style="zoom:80%;" />
 
 ## 6.导入依赖
 
@@ -682,7 +682,7 @@ https://mvnrepository.com/
 第一次导入本地仓库没有的依赖,会报错,需要刷新一下,才能去远程仓库中自动下载
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/1753841183574.png" alt="1753841183574" style="zoom:80%;" />
 
 ```java
 public class Demo01Hutool {
@@ -741,7 +741,7 @@ Lombok能以注解形式来简化java代码，提高开发效率。开发中经�
 
 Lombok能通过注解的方式，在编译时自动为属性生成构造器、getter/setter、equals、hashcode、toString方法。出现的神奇就是在源码中没有getter和setter方法，但是在编译生成的字节码文件中有getter和setter方法。这样就省去了手动重建这些代码的麻烦，使代码看起来更简洁些。
 
-> 课程配图（未随笔记提交）
+<img src="img/1730851674383.png" alt="1730851674383" style="zoom:80%;" />
 
 ## 2.lombok常用注解
 
@@ -773,7 +773,7 @@ Lombok能通过注解的方式，在编译时自动为属性生成构造器、ge
 - 作用：生成get/set，toString，hashCode，equals，无参构造方法
 - 注解只能写在类上。
 
-> 课程配图（未随笔记提交）
+<img src="img/1749284882052.png" alt="1749284882052" style="zoom:80%;" />
 
 #  第八章.单元测试
 
@@ -813,7 +813,7 @@ public class Test01 {
 }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251029162710301.png" alt="image-20251029162710301" style="zoom:80%;" />
 
 ## 3.Junit的注意事项
 

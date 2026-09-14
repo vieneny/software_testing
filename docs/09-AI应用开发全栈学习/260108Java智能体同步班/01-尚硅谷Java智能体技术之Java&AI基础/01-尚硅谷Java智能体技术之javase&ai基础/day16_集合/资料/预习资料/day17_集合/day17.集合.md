@@ -159,7 +159,7 @@ public ArrayList(int initialCapacity) {
 > 我们都是调用某个查询方法,将数据从数据库中查询出来放到集合中保存
 > ```
 >
-> > 课程配图（未随笔记提交）
+> <img src="image/image-20251108092102206.png" alt="image-20251108092102206" style="zoom:80%;" />
 
 # 第二章.LinkedList集合
 
@@ -254,7 +254,7 @@ public void test3() {
     }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251108100030681.png" alt="image-20251108100030681" style="zoom:80%;" />
 
 ## 1.2 LinkedList中add方法源码分析
 
@@ -457,7 +457,7 @@ public class Person implements Comparable<Person>{
     }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251108112753059.png" alt="image-20251108112753059" style="zoom:80%;" />
 
 ## 2.泛型的定义
 
@@ -742,7 +742,7 @@ public class Demo04FanXing {
 加入红黑树的目的:提高查询效率
 ```
 
-> 课程配图（未随笔记提交）：课堂配图
+![](img/1706192470943.png)
 
 ```java
 1. 每一个节点或是红色的,或者是黑色的
@@ -756,7 +756,7 @@ public class Demo04FanXing {
 5. 对每一个节点,从该节点到其所有后代叶节点的简单路径上,均包含相同数目的黑色节点
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1706189862423.png" alt="1706189862423" style="zoom:80%;" />
 
 https://www.cs.usfca.edu/~galles/visualization/RedBlack
 
@@ -775,7 +775,7 @@ https://www.cs.usfca.edu/~galles/visualization/RedBlack
   TreeSet
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251108144413079.png" alt="image-20251108144413079" style="zoom:80%;" />
 
 ## 2.HashSet集合的介绍和使用
 
@@ -919,7 +919,7 @@ public class Person {
     }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251108153328943.png" alt="image-20251108153328943" style="zoom:80%;" />
 
 > 如果先更要获取对象内容的哈希值,就重写hashCode方法
 >

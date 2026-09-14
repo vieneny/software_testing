@@ -78,9 +78,9 @@ public class Demo01Exception {
 
 ## 2.异常出现的过程
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260124092244107.png" alt="image-20260124092244107" style="zoom:80%;" />
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260124092356609.png" alt="image-20260124092356609" style="zoom:80%;" />
 
 ## 3.创建异常对象(了解)
 
@@ -117,7 +117,7 @@ public class Demo03Exception {
 
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260124093022879.png" alt="image-20260124093022879" style="zoom:80%;" />
 
 ## 4.异常处理方式(重点)
 
@@ -150,7 +150,7 @@ public class Demo04Exception {
 
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260124093823171.png" alt="image-20260124093823171" style="zoom:80%;" />
 
 ### 2 异常处理方式一_throws多个异常
 
@@ -285,7 +285,7 @@ public class Demo06Exception {
 >
 > 3.怎么处理: alt+回车
 >
-> > 课程配图（未随笔记提交）
+> <img src="image/image-20251031162644316.png" alt="image-20251031162644316" style="zoom:80%;" />
 
 ## 5.finally关键字
 
@@ -373,7 +373,7 @@ public class Demo09Exception {
 2.如果方法之间是递进关系(调用),我们可以先throws,但是到了最后需要用try...catch做一个统一的异常处理
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251031164929875.png" alt="image-20251031164929875" style="zoom:80%;" />
 
 ## 8.打印异常信息的三个方法
 
@@ -615,7 +615,7 @@ Date(long time) -> 根据指定的时间来创建Date对象 -> 传递毫秒值 -
     }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/1704694983109.png" alt="1704694983109" style="zoom:80%;" />
 
 
 
@@ -883,7 +883,7 @@ LocalDate withDayOfMonth(int day):设置月中的天数
   c.LocalDateTime类中的方法:static LocalDateTime parse(CharSequence text,DateTimeFormatter formatter)-> 将符合规则的字符串转成日期对象
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260124162955230.png" alt="image-20260124162955230" style="zoom:80%;" />
 
 ```java
     @Test
@@ -996,7 +996,7 @@ public void test02(){
     }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/1754469007263.png" alt="1754469007263" style="zoom:80%;" />
 
 > ```java
 > @Test
@@ -1011,7 +1011,7 @@ public void test02(){
 > }
 > ```
 >
-> > 课程配图（未随笔记提交）
+> <img src="image/1754469158048.png" alt="1754469158048" style="zoom:80%;" />
 
 >
 >
@@ -1023,7 +1023,7 @@ public void test02(){
 > }
 > ```
 >
-> > 课程配图（未随笔记提交）
+> <img src="image/image-20251104154244865.png" alt="image-20251104154244865" style="zoom:80%;" />
 
 ## 3.基本类型和String之间的转换
 
@@ -1095,4 +1095,4 @@ public void test02(){
 > }
 > ```
 >
-> > 课程配图（未随笔记提交）
+> <img src="image/1754471942930.png" alt="1754471942930" style="zoom:80%;" />

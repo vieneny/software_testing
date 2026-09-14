@@ -10,11 +10,11 @@
 
 > Linux常见的目录结构，不同版本的Linux目录结构可能略有不同
 
-> 课程配图（未随笔记提交）：课堂配图
+![](image/m3_3xSqMZd5DF.png)
 
 > Centos7的文件目录结构
 
-> 课程配图（未随笔记提交）：课堂配图
+![](image/m1_SOazlwnZeT.png)
 
 > Linux根目录下的常见目录及作用
 
@@ -82,7 +82,7 @@ Device(设备)的缩写,类似windows的设备管理器，把所有的硬件用�
 
 linux系统会自动识别一些设备，例如U盘、光驱等等，当识别后，linux会把识别的设备挂载到这个目录下。CentOS6 就在/media下,CentOS7换目录了/
 
-> 课程配图（未随笔记提交）：课堂配图
+![](image/m3_dsz1PMmPxe.png)
 
 16\.    /mnt：★
 

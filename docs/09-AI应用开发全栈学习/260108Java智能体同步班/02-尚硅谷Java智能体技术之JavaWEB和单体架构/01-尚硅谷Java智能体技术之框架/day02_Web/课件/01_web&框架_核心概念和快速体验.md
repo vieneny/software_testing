@@ -6,7 +6,7 @@
 
 Web 项目是**通过网络实现 “用户设备” 与 “远程服务端” 数据交互的应用**！
 
-> 课程配图（未随笔记提交）
+<img src="assets/1766455582379.png" alt="1766455582379" style="zoom:50%;" />
 
 涵盖两类场景：
 
@@ -26,11 +26,11 @@ Web 项目的核心是 “客户端（用户侧）” 与 “服务端（远程�
 
 2. **交互流程（以 “淘宝查商品” 为例）**
 
-   > 课程配图（未随笔记提交）
+   <img src="assets/image-20251223101100020.png" alt="image-20251223101100020" style="zoom:67%;" />
 
 ### 1.3 资源分类：静态 vs 动态
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251223101733789.png" alt="image-20251223101733789" style="zoom:50%;" />
 
 服务端给客户端返回的内容分为两类：
 
@@ -52,7 +52,7 @@ Web 项目的核心是 “客户端（用户侧）” 与 “服务端（远程�
 
 通信流程：客户端发 “HTTP 请求”（说明 “要什么资源 + 怎么要”）→ 服务端回 “HTTP 响应”（说明 “请求是否成功 + 返回内容”）。
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251223101622460.png" alt="image-20251223101622460" style="zoom:50%;" />
 
 ### 1.6 运行容器：服务器软件
 
@@ -68,7 +68,7 @@ Web 项目的核心是 “客户端（用户侧）” 与 “服务端（远程�
 
 ### 1.7 Web 与框架学习路线
 
-> 课程配图（未随笔记提交）：image-20251223102733935
+![image-20251223102733935](assets/image-20251223102733935.png)
 
 **第一步：Spring Boot**
 
@@ -114,7 +114,7 @@ Web 项目的核心是 “客户端（用户侧）” 与 “服务端（远程�
 
 项目列表：https://spring.io/projects
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20250521085000323.png" alt="image-20250521085000323" style="zoom:50%;" />
 
 通俗解释 Spring 就好比 Java 程序员的 “万能工具箱”+“智能管家”：
 
@@ -127,7 +127,7 @@ Web 项目的核心是 “客户端（用户侧）” 与 “服务端（远程�
 
 若把 Spring 家族比作「大家族企业」，Spring Framework 就是「总部大楼 + 核心制度」—— 所有子项目（Spring Boot、Spring Security 等）都依赖它运转：
 
-> 课程配图（未随笔记提交）
+<img src="assets/1765161111028.png" alt="1765161111028" style="zoom: 110%;" />
 
 总结 Spring Framework：
 
@@ -152,7 +152,7 @@ Spring Boot 是基于 Spring Framework 的「快速开发工具」，核心是�
 
 ### 2.4 框架关系总结
 
-> 课程配图（未随笔记提交）：未命名绘图.drawio-1765169505883.png)
+![未命名绘图.drawio ](assets/%E6%9C%AA%E5%91%BD%E5%90%8D%E7%BB%98%E5%9B%BE.drawio%20%282%29-1765169505883.png)
 
 这是 Spring 技术栈的「分层支撑结构」（从下到上是「基础→核心→工具→应用」的依赖关系）：
 
@@ -186,7 +186,7 @@ Spring Boot 是基于 Spring Framework 的「快速开发工具」，核心是�
 
 通过一个极简的 Web 小案例，完整体验基于 Spring Boot 的 Java Web 项目「创建 → 编写 → 启动 → 访问」全流程。
 
-> 课程配图（未随笔记提交）
+<img src="assets/%E6%A1%88%E4%BE%8B1.drawio.png" alt="案例1.drawio" style="zoom:80%;" />
 
 **具体需求**
 
@@ -202,17 +202,17 @@ Spring Boot 是基于 Spring Framework 的「快速开发工具」，核心是�
 
 **步骤 1：初始化 Boot 工程**
 
-> 课程配图（未随笔记提交）
+<img src="assets/1765176714614.png" alt="1765176714614" style="zoom:50%;" />
 
 ⚠️ **注意**：通过向导创建 Spring Boot 工程需联网！若创建速度慢，可将 Server URL 改为阿里云镜像地址：`https://start.aliyun.com`
 
 **步骤 2：选择 Spring Boot 版本与场景启动器（依赖）**
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251208150653997.png" alt="image-20251208150653997" style="zoom: 50%;" />
 
 💡 提示：向导生成的项目会包含部分暂时无用的文件，可直接删除以简化项目结构：
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251208151512798.png" alt="image-20251208151512798" style="zoom:67%;" />
 
 **步骤 3：项目 POM 依赖解读**
 
@@ -315,13 +315,13 @@ public class HelloController {
 
 直接点击主启动类的 `main` 方法运行即可：
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251208163354869.png" alt="image-20251208163354869" style="zoom: 50%;" />
 
 #### 3.2.4 客户端浏览器访问
 
 在浏览器地址栏输入：`http://localhost:8080/hello`，即可看到返回结果：
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251208163937565.png" alt="image-20251208163937565" style="zoom:67%;" />
 
 ### 3.3 核心知识点总结
 

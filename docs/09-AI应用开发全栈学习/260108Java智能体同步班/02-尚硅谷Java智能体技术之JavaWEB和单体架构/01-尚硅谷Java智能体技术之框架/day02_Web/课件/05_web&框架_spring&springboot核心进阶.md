@@ -40,11 +40,11 @@ AOP（ Aspect Oriented Programming 面向切面编程）是对 OOP（ Object Ori
 
 代理模式，是二十三种设计模式中的一种，属于结构型模式。它的作用就是通过提供一个代理类，让我们在调用目标方法的时候，不再是直接对目标方法进行调用，而是通过代理类<span style="color:blue;font-weight:bold;">间接</span>调用。让不属于目标方法核心逻辑的代码从目标方法中剥离出来——<span style="color:blue;font-weight:bold;">解耦</span>。调用目标方法时先调用代理对象的方法，减少对目标方法的调用和打扰，同时让附加功能能够集中在一起也有利于统一维护。
 
-> 课程配图（未随笔记提交）
+<img src="assets/img004-1748047077240-6.png" alt="./images" style="zoom:67%;" />
 
 使用代理后：
 
-> 课程配图（未随笔记提交）
+<img src="assets/img005.png" alt="./images" style="zoom:67%;" />
 
 ###### ② 生活中的代理
 
@@ -284,7 +284,7 @@ AOP 则恰恰解决这一痛点，它利用**横切技术**，将这些分散在
 
   AOP把软件系统分为两个部分：核心关注点和横切关注点。业务处理的主要流程是核心关注点，与之关系不大的部分是横切关注点。横切关注点的一个特点是，他们经常发生在核心关注点的多处，而各处基本相似，比如权限认证、日志、事务、异常等。AOP的作用在于分离系统中的各种关注点，将核心关注点和横切关注点分离开来。
 
-  > 课程配图（未随笔记提交）
+  <img src="assets/aopimg007-1716953098743.png" style="zoom:50%;" />
 
 * 通知(增强)
 
@@ -300,7 +300,7 @@ AOP 则恰恰解决这一痛点，它利用**横切技术**，将这些分散在
 
   * 环绕通知：使用try...catch...finally结构围绕整个被代理的目标方法，包括上面四种通知对应的所有位置
 
-    > 课程配图（未随笔记提交）
+    <img src="assets/aopimg008-1716952988246.png" style="zoom: 67%;" />
 
 * 连接点 joinpoint
 
@@ -308,7 +308,7 @@ AOP 则恰恰解决这一痛点，它利用**横切技术**，将这些分散在
 
   指那些被拦截到的点。在 Spring 中，可以被动态代理拦截目标类的方法
 
-  > 课程配图（未随笔记提交）
+  <img src="assets/apoimg010.png" style="zoom: 50%;" />
 
 * 切入点 pointcut
   定位连接点的方式，或者可以理解成被选中的连接点！
@@ -316,7 +316,7 @@ AOP 则恰恰解决这一痛点，它利用**横切技术**，将这些分散在
 
 * 切面 aspect
   切入点和通知的结合。是一个类。
-  > 课程配图（未随笔记提交）
+  <img src="assets/aopimg009.png" style="zoom: 67%;" />
 
 * 目标 target
   被代理的目标对象
@@ -335,7 +335,7 @@ AOP 则恰恰解决这一痛点，它利用**横切技术**，将这些分散在
 
 注意：AspectJ：早期的 AOP 实现框架，Spring AOP 借用了 AspectJ 中的 AOP 注解。
 
-> 课程配图（未随笔记提交）
+<img src="assets/aopimg006-1716953659294.png" style="zoom:67%;" />
 
 #### 1.1.4  AOP快速体验
 
@@ -544,7 +544,7 @@ public void printLogBeforeCore(JoinPoint joinPoint) {
 
 ###### ② 方法返回值
 
-> 课程配图（未随笔记提交）
+<img src="assets/img026.png" alt="images" style="zoom:67%;" />
 
 
 
@@ -571,7 +571,7 @@ public void printLogAfterCoreSuccess(JoinPoint joinPoint, Object targetMethodRet
 
 ###### ③ 目标方法抛出的异常
 
-> 课程配图（未随笔记提交）
+<img src="assets/img027.png" alt="images" style="zoom:67%;" />
 
 在异常通知中，通过@AfterThrowing注解的throwing属性获取目标方法抛出的异常对象
 
@@ -611,13 +611,13 @@ public void printLogAfterCoreException(JoinPoint joinPoint, Throwable targetMeth
 
 ###### ① 切入点表达式的作用
 
-> 课程配图（未随笔记提交）
+<img src="assets/img028.png" alt="images" style="zoom:80%;" />
 
 
 
 ###### ② 表达式总体结构
 
-> 课程配图（未随笔记提交）
+<img src="assets/apoimg011-1716953835995.png" style="zoom: 50%;" />
 
 第一位：execution( ) 固定开头
 
@@ -809,7 +809,7 @@ public Object manageTransaction(
 - @Order(较小的数)：优先级高
 - @Order(较大的数)：优先级低
 
-> 课程配图（未随笔记提交）
+<img src="assets/img012.png" alt="images" style="zoom:50%;" />
 
 
 
@@ -817,13 +817,13 @@ public Object manageTransaction(
 
 实际开发时，如果有多个切面嵌套的情况，要慎重考虑。例如：如果事务切面优先级高，那么在缓存中命中数据的情况下，事务切面的操作都浪费了。
 
-> 课程配图（未随笔记提交）
+<img src="assets/img013.png" alt="images" style="zoom:50%;" />
 
 
 
 此时应该将缓存切面的优先级提高，在事务操作之前先检查缓存中是否存在目标数据。
 
-> 课程配图（未随笔记提交）
+<img src="assets/img014.png" alt="images" style="zoom:50%;" />
 
 ### 1.2 案例12： 实现业务方法访问时间统计
 
@@ -1314,7 +1314,7 @@ Spring Boot 工程的依赖管理核心是「继承父工程 + 引入场景启�
 
 主启动类是 Spring Boot 工程的「唯一入口」，负责启动 Spring 容器、加载自动配置逻辑，核心特征如下：
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20250607092526081.png" alt="image-20250607092526081.png" style="zoom:67%;" />
 
 **类结构（核心注解 + 启动方法）**：
 
@@ -1341,7 +1341,7 @@ public class Module33DemoMainType {
 
 `resources`是 Spring Boot 工程的核心资源目录，存放配置文件、静态资源、模板文件等，各子目录有明确分工，遵循 “约定大于配置” 原则：
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20250607093020174.png" alt="image-20250607093020174.png" style="zoom:67%;" />
 
 | 目录 / 文件                   | 核心作用                                                     |
 | ----------------------------- | ------------------------------------------------------------ |
@@ -1411,11 +1411,11 @@ Spring Boot 的核心优势之一是「自动化依赖版本管理」，彻底�
 
 通过 IDEA 的依赖图标可快速识别：该依赖的版本由父工程管理（图标标识 “继承自父工程”）：
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20250607094454229.png" alt="image-20250607094454229.png" style="zoom:100%;" />
 
 点击该图标可进入`spring-boot-dependencies`的 pom 文件，其继承关系如下：
 
-> 课程配图（未随笔记提交）：image-20250607094838321
+![image-20250607094838321](assets/image-20250607094838321.png)
 
 **核心流程**：
 
@@ -1769,7 +1769,7 @@ management.server.port=8081
 management.endpoints.web.base-path=/monitor
 ```
 
-> 课程配图（未随笔记提交）：image-20250607163814077
+![image-20250607163814077](assets/image-20250607163814077.png)
 
 
 
@@ -1818,7 +1818,7 @@ management.endpoints.web.base-path=/monitor
 
 System.out对象是一个输出流对象，所以控制台输出信息本质上是 I/O 操作。而 I/O 操作是项目运行过程中两大性能瓶颈之一。
 
-> 课程配图（未随笔记提交）：image
+![image](assets/image.png)
 
 
 
@@ -2320,7 +2320,7 @@ public @interface SpringBootApplication {
 
 3、导入场景后哪些**自动配置能生效**？
 
-> 课程配图（未随笔记提交）：img
+![img](assets/1679970508234-3c6b8ecc-6372-4eb5-8c67-563054d1a72d.png)
 
 
 
@@ -2401,7 +2401,7 @@ public @interface SpringBootApplication {
 
 注意：starter 中不写 Spring Boot 的主启动类！！！
 
-> 课程配图（未随笔记提交）：image-20250917205740627
+![image-20250917205740627](assets/image-20250917205740627.png)
 
 - org.springframework.boot.autoconfigure.AutoConfiguration.imports：用于声明自动配置类
 - spring-configuration-metadata.json：可选功能，提供 IDE 自动补全支持
@@ -2444,7 +2444,7 @@ public @interface SpringBootApplication {
 
 属性组件
 
-> 课程配图（未随笔记提交）：image-20250608134034115
+![image-20250608134034115](assets/image-20250608134034115.png)
 
 ```java
 @ConfigurationProperties(prefix = "atguigu")
@@ -2464,7 +2464,7 @@ public class AgeProperties {
 
 业务组件
 
-> 课程配图（未随笔记提交）：image-20250608135818489
+![image-20250608135818489](assets/image-20250608135818489.png)
 
 ```java
 public class AgeService {
@@ -2496,7 +2496,7 @@ public class AgeService {
 
 ###### ③ 自动配置类
 
-> 课程配图（未随笔记提交）：image-20250608141044828
+![image-20250608141044828](assets/image-20250608141044828.png)
 
 ```java
 package com.atguigu.starter.config;
@@ -2548,7 +2548,7 @@ public class AgeAutoConfiguration {
 
 ###### ① xxx.imports
 
-> 课程配图（未随笔记提交）：image-20250608153654278
+![image-20250608153654278](assets/image-20250608153654278.png)
 
 - 功能：让 Spring Boot 加载我们创建的自动配置类
 - 文件名：org.springframework.boot.autoconfigure.AutoConfiguration.imports
@@ -2563,7 +2563,7 @@ com.atguigu.starter.config.AgeAutoConfiguration
 
 ###### ② 元数据配置（可选）
 
-> 课程配图（未随笔记提交）：image-20250608153843592
+![image-20250608153843592](assets/image-20250608153843592.png)
 
 - 功能：这里的配置添加之后，可以让 IDE 在用户配置属性时提供自动补全提示
 - 文件名：spring-configuration-metadata.json
@@ -2586,7 +2586,7 @@ com.atguigu.starter.config.AgeAutoConfiguration
 
 ##### 2.7.4.5 打包安装
 
-> 课程配图（未随笔记提交）：image-20250608144006921
+![image-20250608144006921](assets/image-20250608144006921.png)
 
 starter开发完成：
 
@@ -2603,7 +2603,7 @@ starter开发完成：
 - 这是一个 starter 之外的另一个 Maven 工程
 - 使用 starter 需要 Spring Boot 环境
 
-> 课程配图（未随笔记提交）：image-20250608144111230
+![image-20250608144111230](assets/image-20250608144111230.png)
 
 ```xml
 <dependency>
@@ -2617,7 +2617,7 @@ starter开发完成：
 
 ###### ② 配置属性
 
-> 课程配图（未随笔记提交）：image-20250608144434062
+![image-20250608144434062](assets/image-20250608144434062.png)
 
 ```properties
 atguigu.birthday=2020-10-25 23:14:26
@@ -2627,7 +2627,7 @@ atguigu.birthday=2020-10-25 23:14:26
 
 ###### ③ 调用业务组件方法
 
-> 课程配图（未随笔记提交）：image-20250608154726049
+![image-20250608154726049](assets/image-20250608154726049.png)
 
 ```java
 @Resource
@@ -2739,7 +2739,7 @@ Spring Bean 的生命周期指 Bean 从**创建→初始化→销毁**的完整�
 
 #### 3.2.2 Bean 生命周期核心阶段
 
-> 课程配图（未随笔记提交）：1708393029821
+![1708393029821](assets/1708393029821.png)
 
 Spring Bean 基础生命周期从容器创建 Bean 实例开始，到 Bean 销毁结束，核心阶段如下：
 
@@ -2838,7 +2838,7 @@ public class TestLifecycle {
 
 #### 3.2.4 生命周期扩展接口
 
-> 课程配图（未随笔记提交）
+<img src="assets/1708401424614.png" alt="1708401424614" style="zoom:97%;" />
 
 Spring 提供扩展接口，允许自定义干预 Bean 生命周期，以下是核心接口的注解版实现：
 
@@ -2911,7 +2911,7 @@ public class MyBeanPostProcessor implements BeanPostProcessor {
 
 当两个 Bean（如 A 和 B）在自动装配环节互相依赖对方完成属性注入时，就形成了循环依赖：
 
-> 课程配图（未随笔记提交）：image-20250527084331355
+![image-20250527084331355](assets/image-20250527084331355.png)
 
 若通过**构造器注入**实现依赖（`public A(B b)` / `public B(A a)`），循环依赖无法解决（先有 A 还是先有 B 的死循环）；
 
@@ -2968,7 +2968,7 @@ Spring AOP 基于**动态代理**实现，且核心增强逻辑嵌入在 Bean �
 
 
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251222141203645.png" alt="image-20251222141203645" style="zoom: 80%;" />
 
 ② 关键细节
 
@@ -3336,7 +3336,7 @@ Spring MVC 通过核心组件分工协作，实现 HTTP 请求到业务方法的
 
 Spring MVC 的请求处理流程是典型的 “前端控制器 + 责任链” 模式，核心步骤如下：
 
-> 课程配图（未随笔记提交）：课堂配图
+![](assets/image_IOG0UTDH---17663856035828.png)
 
 关键步骤拆解（通俗易懂）
 

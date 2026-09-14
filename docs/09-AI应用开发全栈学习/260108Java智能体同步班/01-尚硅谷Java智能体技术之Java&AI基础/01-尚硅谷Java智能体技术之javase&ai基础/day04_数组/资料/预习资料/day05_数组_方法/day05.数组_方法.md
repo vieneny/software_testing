@@ -167,25 +167,25 @@ public class Demo01Arrays {
 
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/1753103231795.png" alt="1753103231795" style="zoom:80%;" />
 
 ## 2.Hutool工具
 
 官网：https://www.hutool.cn/
 
-> 课程配图（未随笔记提交）：image-20250702111429497
+> 课程配图缺失：源资料未附此图（image-20250702111429497）。
 
 
 
 ### 2.1.引入jar
 
-> 课程配图（未随笔记提交）
+<img src="image/1753103335969.png" alt="1753103335969" style="zoom:80%;" />
 
-> 课程配图（未随笔记提交）
+<img src="image/1753103355673.png" alt="1753103355673" style="zoom:80%;" />
 
-> 课程配图（未随笔记提交）
+<img src="image/1753103373505.png" alt="1753103373505" style="zoom:80%;" />
 
-> 课程配图（未随笔记提交）
+<img src="image/1753103383583.png" alt="1753103383583" style="zoom:80%;" />
 
 ### 2.2.ArrayUtil工具类
 
@@ -246,7 +246,7 @@ public class HuToolTest {
   c.简化静态初始化:数据类型[][] 数组名 = {{元素1,元素2...},{元素1,元素2...}...}
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1748315900570.png" alt="1748315900570" style="zoom:80%;" />
 
 ```java
 public class Demo01Array {
@@ -262,7 +262,7 @@ public class Demo01Array {
 
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1748316650936.png" alt="1748316650936" style="zoom:80%;" />
 
 ## 2.2获取二维数组长度
 
@@ -403,7 +403,7 @@ public class Demo05Array {
   }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1748325996587.png" alt="1748325996587" style="zoom:80%;" />
 
 ## 1.无参无返回值方法定义和调用
 
@@ -439,9 +439,9 @@ public class Demo01Method {
 }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1748326923044.png" alt="1748326923044" style="zoom:80%;" />
 
-> > 课程配图（未随笔记提交）
+> <img src="img/1736148904539.png" alt="1736148904539" style="zoom:80%;" />
 
 注意事项:
 
@@ -475,7 +475,7 @@ public class Demo01Method {
   f.return 结果:此方法运行完毕之后返回的结果
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1748327753025.png" alt="1748327753025" style="zoom:80%;" />
 
 ## 3.有参数无返回值的方法定义和执行流程
 
@@ -508,7 +508,7 @@ public class Demo02Method {
 }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1748328488078.png" alt="1748328488078" style="zoom:80%;" />
 
 ## 4.无参数有返回值定义以及执行流程
 
@@ -549,7 +549,7 @@ public class Demo03Method {
 
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1748331405393.png" alt="1748331405393" style="zoom:80%;" />
 
 ## 5.有参数有返回值定义以及执行流程
 
@@ -584,7 +584,7 @@ public class Demo04Method {
 }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1748332048616.png" alt="1748332048616" style="zoom:80%;" />
 
 ## 6.形参和实参的区别
 
@@ -637,7 +637,7 @@ public class Demo05Method {
 >   com.atguigu.utils -> 专门放工具类
 > ```
 >
-> > 课程配图（未随笔记提交）
+> <img src="img/1748335830588.png" alt="1748335830588" style="zoom:80%;" />
 
 ## 8.方法注意事项终极版
 

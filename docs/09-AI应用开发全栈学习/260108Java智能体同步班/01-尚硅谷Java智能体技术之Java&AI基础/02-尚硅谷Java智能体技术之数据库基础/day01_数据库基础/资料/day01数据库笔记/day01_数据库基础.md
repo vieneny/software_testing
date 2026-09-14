@@ -49,7 +49,7 @@
 2.作用:保证数据库中的数据的一个统一性,安全性
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260203093250183.png" alt="image-20260203093250183" style="zoom:80%;" />
 
 ## 3.数据库表
 
@@ -74,7 +74,7 @@
   第二行: User user2 = new User(2,"jack","222")
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260203093928246.png" alt="image-20260203093928246" style="zoom:80%;" />
 
 ### 4.1.javabean在开发中如何跟表联系起来的->添加数据
 
@@ -82,7 +82,7 @@
 将页面中的数据封装成javabean对象,将这一个javabean对象传递到dao层,然后将javabean封装好的数据获取出来,放到sql语句中进行添加
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1744508169718.png" alt="1744508169718" style="zoom:80%;" />
 
 ### 4.2.javabean在开发中如何跟表联系起来的->查询数据
 
@@ -90,41 +90,41 @@
 将数据库中查询出来的数据封装成多个javabean对象,然后将多个javabean对象放到一个集合中,最终返回给页面进行展示
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1744508271847.png" alt="1744508271847" style="zoom:80%;" />
 
 # 第二章.mysql8安装
 
 ## 1.MySQL数据库安装
 
-> 课程配图（未随笔记提交）：课堂配图
+![](img/2.png)
 
-> 课程配图（未随笔记提交）：课堂配图
+![](img/3.png)
 
-> 课程配图（未随笔记提交）：课堂配图
+![](img/4.png)
 
-> 课程配图（未随笔记提交）：课堂配图
-
-
-
-> 课程配图（未随笔记提交）：课堂配图
-
-> 课程配图（未随笔记提交）：课堂配图
+![](img/5.png)
 
 
 
-> 课程配图（未随笔记提交）：课堂配图
+![](img/6.png)
 
-> 课程配图（未随笔记提交）：课堂配图
+![](img/7.png)
+
+
+
+![](img/8.png)
+
+![](img/9.png)
 
 > ​                     一定要选择传统密码
 
-> 课程配图（未随笔记提交）：课堂配图
+![](img/10.png)
 
-> 课程配图（未随笔记提交）：课堂配图
+![](img/11.png)
 
-> 课程配图（未随笔记提交）：课堂配图
+![](img/12.png)
 
-> 课程配图（未随笔记提交）：课堂配图
+![](img/13.png)
 
 
 
@@ -222,7 +222,7 @@ show variables like 'character_%';
 show variables like 'collation_%';
 ```
 
-> 课程配图（未随笔记提交）：image-20210913231100322
+![image-20210913231100322](img/image-20210913231100322.png)
 
 
 
@@ -234,20 +234,20 @@ show variables like 'collation_%';
 
 ### 6.1.SQLyog
 
-> 课程配图（未随笔记提交）：image-20210913231743884
+![image-20210913231743884](img/image-20210913231743884.png)
 
-> 课程配图（未随笔记提交）
+<img src="img/image-20220402094150194.png" alt="image-20220402094150194" style="zoom:80%;" />
 
 ```java
 通过黑窗口先登录数据库
 处理无法连接：ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '你的密码';
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1684723765667.png" alt="1684723765667" style="zoom:80%;" />
 
 ### 6.2.Navicat
 
-> 课程配图（未随笔记提交）：image-20210913231808531
+![image-20210913231808531](img/image-20210913231808531.png)
 
 # 第三章.sql语言
 
@@ -320,7 +320,7 @@ CREATE DATABASE `bj20260108`;
 
 > 库名,表名,列名建议用``包裹
 >
-> > 课程配图（未随笔记提交）
+> <img src="image/image-20260203103610540.png" alt="image-20260203103610540" style="zoom:80%;" />
 
 
 
@@ -346,7 +346,7 @@ SHOW DATABASES;
 DROP DATABASE `bj20260108`;
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260203104234589.png" alt="image-20260203104234589" style="zoom:80%;" />
 
 ### 1.4 使用数据库(切换数据库)
 
@@ -380,7 +380,7 @@ CREATE TABLE `products`(
 )
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260203111847127.png" alt="image-20260203111847127" style="zoom:80%;" />
 
 ### 2.3 查看表(了解)
 
@@ -619,7 +619,7 @@ CREATE TABLE category(
 );
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260203145428372.png" alt="image-20260203145428372" style="zoom:80%;" />
 
 ### 1.3.添加方式3:通过修改表结构的方式
 
@@ -734,7 +734,7 @@ TRUNCATE TABLE `user`;
 2.truncate:摧毁表结构,主键自增长列,会重新编号
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260203154937162.png" alt="image-20260203154937162" style="zoom:80%;" />
 
 ## 3.非空约束
 

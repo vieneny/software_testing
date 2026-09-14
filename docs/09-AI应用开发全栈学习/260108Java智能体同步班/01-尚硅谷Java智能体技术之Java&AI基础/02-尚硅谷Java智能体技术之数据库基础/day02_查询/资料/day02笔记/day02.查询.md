@@ -398,7 +398,7 @@ SELECT pname,SUM(price) `newprice` FROM product WHERE price>=2000 GROUP BY pname
 SELECT pname,SUM(price) `newprice` FROM product GROUP BY pname HAVING newprice>=2000;
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260204104037408.png" alt="image-20260204104037408" style="zoom:80%;" />
 
 ## 6.分页查询
 
@@ -443,7 +443,7 @@ SELECT * FROM product LIMIT 10,5;
 SELECT * FROM product LIMIT 15,5;
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1732506843896.png" alt="1732506843896" style="zoom:80%;" />
 
 # 第二章.数据库的备份与还原
 
@@ -470,11 +470,11 @@ mysql  -uroot  -p密码 数据库名 < 文件路径
 
 ### 2.1.利用点击去备份
 
-> 课程配图（未随笔记提交）
+<img src="img/1680058707816.png" alt="1680058707816" style="zoom:80%;" />
 
 ### 2.2.利用点击去还原
 
-> 课程配图（未随笔记提交）：1680058782201
+![1680058782201](img/1680058782201.png)
 
 # 第三章.数据库三范式
 
@@ -488,7 +488,7 @@ mysql  -uroot  -p密码 数据库名 < 文件路径
 
 第一范式的合理遵循需要根据系统的实际需求来定。比如某些数据库系统中需要用到“地址”这个属性，本来直接将“地址”属性设计成一个数据库表的字段就行。但是如果系统经常会访问“地址”属性中的“城市”部分，那么就非要将“地址”这个属性重新拆分为省份、城市、详细地址等多个部分进行存储，这样在对地址中某一部分操作的时候将非常方便。这样设计才算满足了数据库的第一范式，如下表所示。
 
-> 课程配图（未随笔记提交）：课堂配图
+![](img/tu_11.png)
 
 如果不遵守第一范式，查询出数据还需要进一步处理（查询不方便）。遵守第一范式，需要什么字段的数据就查询什么数据（方便查询）
 
@@ -525,7 +525,7 @@ mysql  -uroot  -p密码 数据库名 < 文件路径
 
 例如，"人员信息表","身份证表",一个人只能有一个身份证号,反过来一个身份证号只能对应一个人
 
-> 课程配图（未随笔记提交）
+<img src="img/1727048556779.png" alt="1727048556779" style="zoom:80%;" />
 
 ## 4.2.一对多
 
@@ -533,7 +533,7 @@ mysql  -uroot  -p密码 数据库名 < 文件路径
 
 例如，“商品分类表”和“商品信息表”。一个商品分类对应多个商品,反过来一个商品只属于一个分类,形成了一对多
 
-> 课程配图（未随笔记提交）
+<img src="img/1727048576499.png" alt="1727048576499" style="zoom:80%;" />
 
 ## 4.3.多对多
 
@@ -541,7 +541,7 @@ mysql  -uroot  -p密码 数据库名 < 文件路径
 
 例如，选课系统的“学生信息表”和“课程信息表”是多对多关系。一个学生可以选择多门课，一门课程可以被多个学生选择，即“学生信息表”中一条记录可以与“课程信息表”多条记录对应，反过来“课程信息表”的一条记录也可以与“学生信息表”中多条记录对应。它们之间借助第三张“选课信息表”实现关联关系，而“学生信息表”与“选课信息表”是一对多关系，“课程信息表”与“选课信息表”也是一对多关系。“选课信息表”中“学号”字段与“学生信息表”中“学号”字段意义相同。“课程信息表”中“课程编号”字段与“课程信息表”中“课程编号”字段意义相同。
 
-> 课程配图（未随笔记提交）
+<img src="img/1727048600042.png" alt="1727048600042" style="zoom:80%;" />
 
 > 总结:
 >
@@ -587,7 +587,7 @@ mysql  -uroot  -p密码 数据库名 < 文件路径
   在从表中添加一列数据,这一列的数据保存的是主表的主键
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260204152508938.png" alt="image-20260204152508938" style="zoom:80%;" />
 
 ```mysql
     #商品分类表->主表
@@ -627,7 +627,7 @@ mysql  -uroot  -p密码 数据库名 < 文件路径
 ALTER TABLE products ADD CONSTRAINT cp FOREIGN KEY products(category_id) REFERENCES category(cid);
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260204153402407.png" alt="image-20260204153402407" style="zoom:80%;" />
 
 ## 2.多对多的表创建外键约束
 
@@ -645,7 +645,7 @@ ALTER TABLE products ADD CONSTRAINT cp FOREIGN KEY products(category_id) REFEREN
    中间表:从表
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260204153838221.png" alt="image-20260204153838221" style="zoom:80%;" />
 
 ```mysql
 # 订单表 -> 主表
@@ -684,7 +684,7 @@ ALTER TABLE orderitem ADD CONSTRAINT po FOREIGN KEY orderitem(pid) REFERENCES pr
 ALTER TABLE orderitem ADD CONSTRAINT oo FOREIGN KEY orderitem(oid) REFERENCES orders(oid);
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260204154208344.png" alt="image-20260204154208344" style="zoom:80%;" />
 
 > 在开发的时候,我们不用先建立外键约束,我们该怎么查就怎么查 ,原因是:
 >
@@ -745,11 +745,11 @@ SELECT * FROM category,products;
 SELECT * FROM category,products WHERE category.`cid` = products.`category_id`;
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260204161427771.png" alt="image-20260204161427771" style="zoom:80%;" />
 
 
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260204161839771.png" alt="image-20260204161839771" style="zoom:80%;" />
 
 ## 2.内连接查询
 
@@ -819,7 +819,7 @@ SELECT * FROM category c RIGHT JOIN products p ON c.`cid` = p.`category_id`;
 SELECT * FROM category c JOIN products p ON c.`cid` = p.`category_id`;
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260204164333332.png" alt="image-20260204164333332" style="zoom:80%;" />
 
 ## 4.union联合查询实现全外连接查询（了解）
 
@@ -911,7 +911,7 @@ SELECT * FROM (SELECT * FROM category WHERE cname IN ('化妆品','家电')) c,p
 
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260204171526604.png" alt="image-20260204171526604" style="zoom:80%;" />
 
 # 第七章.sql练习
 

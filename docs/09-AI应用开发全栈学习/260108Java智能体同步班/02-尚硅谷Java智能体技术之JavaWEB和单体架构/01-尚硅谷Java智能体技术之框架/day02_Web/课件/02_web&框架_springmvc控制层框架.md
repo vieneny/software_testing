@@ -14,7 +14,7 @@
 
 HTTP 是一个基于 TCP/IP 通信协议来传递数据的（HTML 文件、图片文件、查询结果等）。
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251209093840895.png" alt="image-20251209093840895" style="zoom:67%;" />
 
 #### 1.1.2 版本说明
 
@@ -198,7 +198,7 @@ SpringMVC 是 Spring 为表述层开发提供的一整套完备的解决方案�
 - 内部组件化程度高，可插拔式组件<span style="color:blue;font-weight:bold;">即插即用</span>，想要什么功能配置相应组件即可
 - <span style="color:blue;font-weight:bold;">性能卓著</span>，尤其适合现代大型、超大型互联网项目要求
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251208182830703.png" alt="image-20251208182830703" style="zoom:67%;" />
 
 作用总结：**1. 配置动态资源地址（URL） 2. 简化前端传递的参数  3. 简化后台响应的数据**
 
@@ -210,7 +210,7 @@ SpringMVC 是 Spring 为表述层开发提供的一整套完备的解决方案�
 
 通过 IDEA 的 SpringBoot 创建向导新建工程（需勾选 Web 场景），截图参考：
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20250527170030803.png" alt="image-20250527170030803" style="zoom:67%;" />
 
 若手动创建工程，需在`pom.xml`中导入 Web 场景依赖：
 
@@ -241,7 +241,7 @@ public class Demo01HelloWorld {
 
 在控制器类中添加处理指定 URL 请求的方法：
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20250527170802069.png" alt="image-20250527170802069" style="zoom:67%;" />
 
 ```java
 // @ResponseBody：将方法返回值直接作为响应体返回（而非跳转页面）
@@ -257,14 +257,14 @@ public String sayHello() {
 
 1. 运行 SpringBoot 主启动类，查看启动日志（确认项目正常启动）：
 
-   > 课程配图（未随笔记提交）
+   <img src="assets/image-20250527171112663.png" alt="image-20250527171112663" style="zoom:67%;" />
 
 2. 访问测试：
 
    - 直接访问`localhost:8080`报 404 是正常现象（未配置默认欢迎页如 index.html）；
    - 手动输入目标 URL：`http://localhost:8080/demo01/hello/world`，可看到响应结果：
 
-   > 课程配图（未随笔记提交）：image-20250527171326068
+   ![image-20250527171326068](assets/image-20250527171326068.png)
 
 ##### 2.1.2.5 配置补充
 
@@ -295,7 +295,7 @@ server.servlet.context-path=/demo
 
 **功能目标**：根据用户名（模糊匹配）、手机号（精确匹配）、用户状态（精确匹配）等可选条件，查询符合条件的用户列表；参数通过 URL 请求参数（QueryString）传递，返回 JSON 格式的用户列表数据。
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251223110708681.png" alt="image-20251223110708681" style="zoom:30%;" />
 
 **接口信息**
 
@@ -344,7 +344,7 @@ server.servlet.context-path=/demo
 
 **功能目标**：根据用户 ID 精准查询单个用户的完整信息；用户 ID 作为 URL 路径的动态参数传递，返回 JSON 格式的用户详情对象。
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251223110754327.png" alt="image-20251223110754327" style="zoom:43%;" />
 
 **接口信息**
 
@@ -405,7 +405,7 @@ CREATE TABLE sys_user (
 
 通过 IDEA 的 SpringBoot 工程创建向导搭建项目（勾选 Web、Lombok 场景），截图参考：
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251209143906787.png" alt="image-20251209143906787" style="zoom: 50%;" />
 
 ##### 2.2.3.2 编写用户实体类
 
@@ -1111,7 +1111,7 @@ public String testMultiPathVariable(
 
 ##### 需求 1：新增用户信息接口
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251223112619629.png" alt="image-20251223112619629" style="zoom:50%;" />
 
 **功能目标**：实现用户信息新增功能，用户核心信息通过请求体（JSON 格式）传递，接口返回新增后的完整用户数据（含自动生成的 ID、创建 / 更新时间）。
 
@@ -1162,7 +1162,7 @@ public String testMultiPathVariable(
 
 ##### 需求 2：根据 ID 更新用户信息接口
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251223112650954.png" alt="image-20251223112650954" style="zoom:50%;" />
 
 **功能目标**：实现用户信息部分更新功能，用户 ID 通过 URL 路径参数传递（定位待更新资源），待更新字段通过请求体（JSON 格式）传递（支持部分字段更新，不传则不更新），返回更新后的完整用户数据。
 
@@ -1215,7 +1215,7 @@ public String testMultiPathVariable(
 
 ##### 需求 3：根据 ID 删除用户信息接口
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251223112723094.png" alt="image-20251223112723094" style="zoom:50%;" />
 
 **功能目标**：实现用户信息删除功能，用户 ID 通过 URL 路径参数传递（定位待删除资源），返回 JSON 格式的删除状态提示。
 
@@ -1260,7 +1260,7 @@ JSON 全称 `JavaScript Object Notation`（JavaScript 对象表示法），但�
 
 图解参考：
 
-> 课程配图（未随笔记提交）
+<img src="assets/qh.drawio.png" alt="qh.drawio" style="zoom:67%;" />
 
 ##### 2.3.2.1 JSON 基础语法规则
 
@@ -1326,7 +1326,7 @@ JSON 最核心的组成单位是「键值对」（键：值），就像给数据
 
 Postman 是前后端接口开发 / 测试的常用工具，可模拟前端向服务器发送各类请求（如 POST 传递 JSON 数据），快速验证接口功能是否符合预期。
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251210141348789.png" alt="image-20251210141348789" style="zoom: 50%;" />
 
 ##### 2.3.3.2 接口实战实现
 
@@ -1527,7 +1527,7 @@ public String getRequestInfo(HttpServletRequest request) throws Exception {
 - 核心优势：代码解耦度高、维护成本低，支持多端适配（同一套后端接口可对接网页、APP、小程序），适合中大型项目或需要快速迭代的产品；
 - 典型流程：用户在前端输入账号密码 → 前端调用后端`/login`接口（传递 JSON 格式参数）→ 后端验证后返回 JSON 格式结果 → 前端根据结果展示 “登录成功” 或 “登录失败” 页面。
 
-> 课程配图（未随笔记提交）
+<img src="assets/1708669666546.png" alt="1708669666546" style="zoom: 33%;" />
 
 #### 3.1.2 混合 Web 开发模式
 
@@ -1541,7 +1541,7 @@ public String getRequestInfo(HttpServletRequest request) throws Exception {
 - 核心局限：代码耦合度高（修改页面可能需要改动后端代码），扩展性差，难以适配多端，中大型项目的维护难度会随代码量增加显著上升；
 - 典型流程：用户访问`/user/list`地址 → 后端查询用户数据 → 将数据存入 Request 域 → 通过 JSP 标签（如`${user.name}`）将数据嵌入页面 → 返回完整 HTML 页面给浏览器。
 
-> 课程配图（未随笔记提交）
+<img src="assets/1708670089111.png" alt="1708670089111" style="zoom:50%;" />
 
 #### 3.1.3 前后端分离 vs 混合 Web 开发模式
 
@@ -1721,7 +1721,7 @@ Step3：测试验证
 
 在转发 / 重定向的跳转场景中，普通局部变量无法跨方法、跨请求传递数据（比如登录成功后的 “操作提示”、查询到的 “用户列表”），共享域是服务器提供的**全局数据存储容器**，专门解决跳转过程中的动态数据传递问题，让后端能把数据传递到前端页面渲染。
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251223113725142.png" alt="image-20251223113725142" style="zoom:50%;" />
 
 **分类（按作用域从小到大划分）**
 
@@ -2058,7 +2058,7 @@ SpringBoot 内置静态资源映射规则，默认扫描 `classpath`（项目 `r
 <body>
     <h3>✅ 这是默认静态目录的HTML页面</h3>
     <!-- 访问同目录下的图片 -->
-    > 课程配图（未随笔记提交）
+    <img src="avatar.png" alt="测试图片" width="200">
 </body>
 </html>
 ```
@@ -2173,11 +2173,11 @@ public class UserController {
 
 ##### 3.4.4.2 导入静态页面
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251211115101119.png" alt="image-20251211115101119" style="zoom:67%;" />
 
 添加到resources/static文件夹中：
 
-> 课程配图（未随笔记提交）：image-20251211115203789
+![image-20251211115203789](assets/image-20251211115203789.png)
 
 ##### 3.4.4.3 项目根地址和端口号配置
 
@@ -2400,13 +2400,13 @@ public class Result {
 
 ##### 3.4.3.1 导入第二期前端页面资源(解析统一结果格式)
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251211145738414.png" alt="image-20251211145738414" style="zoom:67%;" />
 
 ##### 3.4.3.2 修controller类添加统一结果类处理
 
 ###### 步骤1：导入统一结果类
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251211141233147.png" alt="image-20251211141233147" style="zoom:67%;" />
 
 ###### 步骤2：修改实现controller
 
@@ -2692,7 +2692,7 @@ public class UserHandlerDemo {
 
 ### 4.1 RESTFul风格简介
 
-> 课程配图（未随笔记提交）
+<img src="assets/image_e-dNiN_-8D.png" style="zoom:67%;" />
 
 RESTful（Representational State Transfer，表述性状态转移）是一套**设计 HTTP API 的标准化架构风格**，核心是基于 HTTP 协议的原生特性（请求方法、状态码）来设计接口，而非自定义规则。
 
@@ -2700,7 +2700,7 @@ RESTful（Representational State Transfer，表述性状态转移）是一套**�
 
 它的核心应用场景包括：前后端分离项目的 API 设计、移动端与服务端的交互、微服务之间的通信等。遵循 RESTful 原则的接口具备**易理解、可扩展、松耦合、跨平台**的特点，是现代 Web 服务开发的主流规范。
 
-> 课程配图（未随笔记提交）
+<img src="assets/image_xHIbi73wr9.png" style="zoom:50%;" />
 
 学习 RESTful 设计原则的核心价值：让你设计的 HTTP 接口更符合行业标准，兼具规范性和可读性！
 
@@ -3044,7 +3044,7 @@ public Result getUserList(
 
 访问`http://localhost:8080/user/list`，前端会收到包含 Java 堆栈信息的原始报错（如下图），不仅不友好，还暴露了后端代码细节：
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251211175650586.png" alt="image-20251211175650586" style="zoom: 33%;" />
 
 ##### 5.1.2.3 添加全局异常处理（解决问题）
 
@@ -3078,7 +3078,7 @@ public class GlobalExceptionHandler {
 
 再次访问`http://localhost:8080/user/list`，前端仅收到标准化的 JSON 响应，无任何原始报错信息（如下图），体验更友好、更安全：
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251211180426178.png" alt="image-20251211180426178" style="zoom:33%;" />
 
 #### 5.1.3 核心总结
 
@@ -3206,7 +3206,7 @@ public Result saveUser(
 
 **测试保存数据接口**
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251212094551180.png" alt="image-20251212094551180" style="zoom:50%;" />
 
 测试数据：
 
@@ -3231,7 +3231,7 @@ public Result saveUser(
 
 **类比生活场景**：登录保护就像公司的门禁系统 —— 只有刷了工牌（完成登录认证）的员工，才能进入办公区（访问核心资源）；没工牌的陌生人（未登录用户），会被门禁拦下，无法进入，避免无关人员触碰公司核心资料。
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251212114451774.png" alt="image-20251212114451774" style="zoom: 50%;" />
 
 **核心价值：**
 
@@ -3249,7 +3249,7 @@ public Result saveUser(
 4. 登录保护，就是保护敏感数据不被非认证者直接访问
 5. 资源分类：认证资源和匿名资源【不同项目不同分析】
 
-> 课程配图（未随笔记提交）
+<img src="assets/%E7%99%BB%E5%BD%95%E9%AA%8C%E8%AF%81%E9%80%BB%E8%BE%91.drawio.png" alt="登录验证逻辑.drawio" style="zoom:67%;" />
 
 #### 5.3.2 案例实现：登录保护和校验（非拦截器版本）
 
@@ -3303,7 +3303,7 @@ public class SysUserLoginDto {
 
 > 扩展登录页面和用户页面处理501状态码
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20251212150123562.png" alt="image-20251212150123562" style="zoom: 50%;" />
 
 ##### 5.3.2.4 设置login.html为程序首页
 
@@ -3368,7 +3368,7 @@ public class LoginController {
 
 > 思路：在需要保护的方法中，
 
-> 课程配图（未随笔记提交）
+<img src="assets/%E7%99%BB%E5%BD%95%E6%A0%A1%E9%AA%8C%E6%80%9D%E8%B7%AF.drawio.png" alt="登录校验思路.drawio" style="zoom:1000%;" />
 
 ```java
 @RequestMapping("user")
@@ -3523,7 +3523,7 @@ public class UserController {
 2. 让所有需要登录的接口（如 /user/**）自动触发这套校验逻辑，无需在接口内重复编写；
 3. 对无需校验的接口（如登录 / 退出、静态资源）精准配置放行规则，不影响正常访问。
 
-> 课程配图（未随笔记提交）
+<img src="assets/%E6%8B%A6%E6%88%AA%E5%99%A8%E5%89%8D%E7%BD%AE%E6%A6%82%E5%BF%B5.drawio.png" alt="拦截器前置概念.drawio"  />
 
 要实现上述优化思路，就需要用到 **JavaEE过滤器（Filter） || SpringMVC拦截器（HandlerInterceptor）**。
 
@@ -3535,13 +3535,13 @@ public class UserController {
 
 为了提高乘车效率，在乘客进入站台前统一检票：
 
-> 课程配图（未随笔记提交）
+<img src="assets/img008-1748570161743-4.png" alt="./images" style="zoom:67%;" />
 
 程序中的场景
 
 在程序中，使用拦截器在请求到达具体 handler 方法前，统一执行检测。
 
-> 课程配图（未随笔记提交）
+<img src="assets/img009-17655252578174.png" alt="./images" style="zoom:67%;" />
 
 ##### 5.3.2.2 拦截器（HandlerInterceptor） VS 过滤器 (Filter)
 

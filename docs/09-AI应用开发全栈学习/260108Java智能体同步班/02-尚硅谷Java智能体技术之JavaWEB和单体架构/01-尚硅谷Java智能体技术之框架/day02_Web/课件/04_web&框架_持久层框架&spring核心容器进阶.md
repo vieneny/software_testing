@@ -127,7 +127,7 @@ public class HelloControllerTest {
 
 官网：https://mybatis.org/mybatis-3/zh_CN/index.html
 
-> 课程配图（未随笔记提交）：MyBatis logo
+![MyBatis logo](assets/mybatis-logo-17665432654743-17665432679126.png)
 
 MyBatis 最初是 Apache 的一个开源项目 iBatis。2010 年 6 月，该项目从 Apache Software Foundation 迁移到 Google Code，随后 iBatis 3.x 正式更名为 MyBatis。它是一个基于 Java 的持久层框架，最大特点是轻量级。相对于 Hibernate 省略了大量不常用的功能，整体轻巧又高效！
 
@@ -259,7 +259,7 @@ public class Tiger {
 
 MyBatis 的核心是`Mapper接口`（定义数据操作方法）+`Mapper配置文件`（编写 SQL 语句），二者通过`namespace`关联，实现 “接口调用 = 执行 SQL” 的解耦设计。
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20250604092539343.png" alt="image-20250604092539343" style="zoom: 90%;" />
 
 ##### ① Mapper 接口（定义数据操作方法）
 
@@ -313,7 +313,7 @@ public interface TigerMapper {
 
 Mapper 配置文件存放于`resources/mapper`目录下，通过`namespace`绑定 Mapper 接口全类名，每个 SQL 标签对应接口中的一个方法：
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20250603210215285.png" alt="image-20250603210215285" style="zoom:67%;" />
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -460,17 +460,17 @@ public class MyBatisTest {
 
 指定 Mapper 接口所在的包为打印日志的范围：
 
-> 课程配图（未随笔记提交）：image-20250604111251368
+![image-20250604111251368](assets/image-20250604111251368.png)
 
 ```properties
 logging.level.com.atguigu.mybatis.mapper=debug
 ```
 
-> 课程配图（未随笔记提交）：image-20250603213438837
+![image-20250603213438837](assets/image-20250603213438837.png)
 
 #### 2.2.8 HelloWorld解析
 
-> 课程配图（未随笔记提交）：image-20250603213904033
+![image-20250603213904033](assets/image-20250603213904033.png)
 
 ## 3. MyBatis 核心传入参数与返回数据
 
@@ -480,7 +480,7 @@ logging.level.com.atguigu.mybatis.mapper=debug
 
 MyBatis 会将 SQL 语句中的 #{} 转换为问号占位符
 
-> 课程配图（未随笔记提交）：image-20250604112753366
+![image-20250604112753366](assets/image-20250604112753366.png)
 
 
 
@@ -488,7 +488,7 @@ MyBatis 会将 SQL 语句中的 #{} 转换为问号占位符
 
 ${} 形式传参，底层 MyBatis 做的是字符串拼接操作
 
-> 课程配图（未随笔记提交）：image-20250604113759993
+![image-20250604113759993](assets/image-20250604113759993.png)
 
 
 
@@ -504,7 +504,7 @@ ${} 形式传参，底层 MyBatis 做的是字符串拼接操作
 
 #### 3.2.1 MyBatis 总体机制概括
 
-> 课程配图（未随笔记提交）
+<img src="assets/img005-176585643979118.png" alt="./images" style="zoom: 50%;" />
 
 
 
@@ -596,7 +596,7 @@ int insertEmployee(Employee employee);
 
 ③ 对应关系
 
-> 课程配图（未随笔记提交）
+<img src="assets/img006-176585643980419.png" alt="./images" style="zoom:50%;" />
 
 ④ 结论
 
@@ -613,7 +613,7 @@ MyBatis 会根据 #{} 中传入的数据，加工成 getXxx() 方法，通过反
 >
 > 注意：这里我们说的版本，是 MyBatis 核心包的版本，而不是 mybatis-spring-boot-starter 的版本
 
-> 课程配图（未随笔记提交）：image-20250917102946354
+![image-20250917102946354](assets/image-20250917102946354.png)
 
 ① Mapper接口中抽象方法的声明
 
@@ -631,7 +631,7 @@ int updateEmployee(@Param("empId") Integer empId,@Param("empSalary") Double empS
 
 ③ 对应关系
 
-> 课程配图（未随笔记提交）
+<img src="assets/img007-176585643980420.png" alt="./images" style="zoom:67%;" />
 
 #### 3.2.6 Map类型参数
 
@@ -1521,7 +1521,7 @@ public interface OrderMapper {
 
 对应关系可以参考下图：
 
-> 课程配图（未随笔记提交）
+<img src="assets/img018.png" alt="./images" style="zoom:67%;" />
 
 ##### ③ JUnit 测试程序
 
@@ -1586,7 +1586,7 @@ public interface CustomerMapper {
 
 对应关系可以参考下图：
 
-> 课程配图（未随笔记提交）
+<img src="assets/img019.png" alt="./images" style="zoom:67%;" />
 
 ##### ③ JUnit 测试
 
@@ -1668,7 +1668,7 @@ order = Order{orderId=3, orderName='o3'}
 
 ##### ④ 各个要素之间的对应关系
 
-> 课程配图（未随笔记提交）：./images
+![./images](assets/img001-1.png)
 
 #### 6.2.4 关联关系-分步查询(延迟加载)
 
@@ -1682,7 +1682,7 @@ order = Order{orderId=3, orderName='o3'}
 
 ##### ① 配置
 
-> 课程配图（未随笔记提交）：./images
+![./images](assets/img020.png)
 
 ##### ② 较低版本
 
@@ -1712,7 +1712,7 @@ order = Order{orderId=3, orderName='o3'}
 
 ##### ④ Spring Boot 中的配置
 
-> 课程配图（未随笔记提交）：image-20250604111107504
+![image-20250604111107504](assets/image-20250604111107504-176587168814630.png)
 
 ```properties
 mybatis.configuration.lazy-loading-enabled=true
@@ -1804,7 +1804,7 @@ mybatis.mapper-locations=classpath:mapper/*.xml
 
 我们的愿景是成为 MyBatis 最好的搭档，就像 **魂斗罗** 中的 1P、2P，基友搭配，效率翻倍。
 
-> 课程配图（未随笔记提交）
+<img src="assets/relationship-with-mybatis.webp" alt="Relationship Between MyBatis and MyBatis-Plus" style="zoom: 50%;" />
 
 - **无侵入**：只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑
 - **损耗小**：启动即会自动注入基本 CRUD，性能基本无损耗，直接面向对象操作
@@ -3170,7 +3170,7 @@ Spring IoC 容器管理对象的核心方式是**注解扫描**（如`@Component
 
 而第三方 jar 包中的类（如 Druid 数据源、QueryRunner、RedisTemplate 等）是 “只读文件”，我们无法修改其源码添加注解，此时注解扫描的方式就失效了。
 
-> 课程配图（未随笔记提交）
+<img src="assets/image-20250523192116448.png" alt="image-20250523192116448" style="zoom:80%;" />
 
 **核心问题**：如何把第三方类的对象纳入 Spring IoC 容器管理？
 
@@ -3635,26 +3635,26 @@ MyBatis-Plus 提供了一个 IDEA 插件——`MyBatisX`，使用它可根据数
 
    在 IDEA 插件市场搜索`MyBatisX`，进行在线安装
 
-   > 课程配图（未随笔记提交）
+   <img src="assets/MyBatisX%E6%8F%92%E4%BB%B6.png" style="zoom: 50%;" />
 
 2. **配置数据库连接**
 
    在 IDEA 中配置数据库连接
 
-   > 课程配图（未随笔记提交）
+   <img src="assets/IDEA%E6%95%B0%E6%8D%AE%E8%BF%9E%E6%8E%A5.png" style="zoom: 60%;" />
 
 3. **生成代码**
 
    首先将之前编写的`User`、`UserMapper`、`UserService`、`UserServiceImpl`全部删除，然后按照下图指示使用插件生成代码
 
-   > 课程配图（未随笔记提交）
+   <img src="assets/%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81.png" style="zoom:67%;" />
 
    配置实体类相关信息
 
-   > 课程配图（未随笔记提交）
+   <img src="assets/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90-%E5%AE%9E%E4%BD%93%E7%B1%BB%E9%85%8D%E7%BD%AE.png" style="zoom: 50%;" />
 
    配置代码模版信息
 
-   > 课程配图（未随笔记提交）
+   <img src="assets/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E7%89%88%E9%85%8D%E7%BD%AE.png" style="zoom: 50%;" />
 
    点击Finish然后查看生成的代码。

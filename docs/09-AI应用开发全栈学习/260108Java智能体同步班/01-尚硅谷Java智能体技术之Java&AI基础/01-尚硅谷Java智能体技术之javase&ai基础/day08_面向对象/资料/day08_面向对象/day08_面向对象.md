@@ -36,17 +36,17 @@
     b.第二行数据 -> User user2 = new User(2,"jack","222")
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260119090907542.png" alt="image-20260119090907542" style="zoom:80%;" />
 
 ### 1.1.javabean在开发中的实际运用_添加功能
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251025094007621.png" alt="image-20251025094007621" style="zoom:80%;" />
 
 > 封装页面上发送过来的数据,一层一层传递到dao层,在dao层中调用javabean对象中的getxxx方法,将属性值获取出来,放到sql语句中
 
 ### 1.2.javabean在实际开发中运用_查询功能
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251025095448752.png" alt="image-20251025095448752" style="zoom:80%;" />
 
 > 封装从数据库中查询出来的数据,然后一层一层返回给页面上进行展示
 
@@ -56,7 +56,7 @@
 需求:定义一个数组,存3个Person对象,遍历数组,将Person对象中的属性值获取出来
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260119093707477.png" alt="image-20260119093707477" style="zoom:80%;" />
 
 ```java
 public class Person {
@@ -153,7 +153,7 @@ public class Test01 {
      但是用了就比不用强,所以建议使用
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260119104354594.png" alt="image-20260119104354594" style="zoom:80%;" />
 
 ## 2.继承如何使用
 
@@ -478,7 +478,7 @@ public class Zi extends Fu{
 1.在子类中对父类中的方法进行升级改造
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260119142705633.png" alt="image-20260119142705633" style="zoom:80%;" />
 
 ```java
 public class OldPhone {

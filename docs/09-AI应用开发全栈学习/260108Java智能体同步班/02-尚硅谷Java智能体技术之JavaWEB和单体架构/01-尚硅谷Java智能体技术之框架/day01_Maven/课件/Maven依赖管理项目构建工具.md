@@ -29,11 +29,11 @@
 2. **构建管理**
    项目构建是指将源代码、配置文件、资源文件等转化为可运行或可部署的应用程序/库的过程。Maven 通过标准化的构建生命周期，统一管理编译、测试、打包、部署等流程；同时依靠插件机制支持扩展与定制。触发构建通常只需要简单的命令操作。
 
-> 课程配图（未随笔记提交）
+<img src="image/image_GT6G45QGRH.png" style="zoom:80%;" />
 
 ### 1.3 Maven 软件工作原理模型图
 
-> 课程配图（未随笔记提交）：课堂配图
+![](image/image_LSexLMPtFF.png)
 
 ## 2、Maven 项目定位属性和结构强化
 
@@ -41,7 +41,7 @@
 
 GAVP 是 Maven 给项目的「唯一身份标识」（类似人的“姓 + 名”），核心目的是：**让项目在 Maven 仓库中可被精准找到，方便后期项目间相互引用依赖。**
 
-> 课程配图（未随笔记提交）
+<img src="image/1764559661990.png" alt="1764559661990" style="zoom:50%;" />
 
 其中 GroupId、ArtifactId、Version（GAV）是必填项，Packaging（P）是可选项且有默认值。
 
@@ -114,7 +114,7 @@ Maven 依赖管理是 Maven 最重要的功能之一。它能够帮助开发人�
 
 通过定义 POM 文件，Maven 能自动解析项目的依赖关系，并通过 Maven **仓库自动**下载与管理依赖，从而避免手动下载、手动拷贝、版本难控等问题。
 
-> 课程配图（未随笔记提交）：依赖管理
+![依赖管理](image/%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86.png)
 
 Maven 的依赖管理能力使得依赖使用更加智能和方便，简化开发过程，并提升软件质量与可维护性。
 
@@ -193,7 +193,7 @@ Maven 的依赖管理能力使得依赖使用更加智能和方便，简化开�
 
 3. **本地仓库缓存损坏 / 占位文件未清理**：下载中断导致 `.lastUpdated` 等缓存影响刷新
 
-> 课程配图（未随笔记提交）
+<img src="image/image_fROsDreI3b.png" style="zoom:80%;" />
 
 ​	解决方案：
 
@@ -201,7 +201,7 @@ Maven 的依赖管理能力使得依赖使用更加智能和方便，简化开�
 2. 确认依赖版本与 `pom.xml` 配置正确
 3. 清除本地 Maven 仓库缓存（`lastUpdated` 文件）：只要存在该缓存文件，即使刷新也不会重新下载。根据依赖的 GAV 逐级定位到对应目录，删除其中相关文件后再刷新即可
 
-> 课程配图（未随笔记提交）
+<img src="image/maven%E5%88%B7%E6%96%B0%E6%97%A0%E6%95%88.png" alt="maven刷新无效" style="zoom:80%;" />
 
 ### 3.4 Maven 依赖传递特性
 
@@ -227,11 +227,11 @@ Maven 的依赖管理能力使得依赖使用更加智能和方便，简化开�
 
 分析：Jackson 需要三个依赖。
 
-> 课程配图（未随笔记提交）
+<img src="image/image_e1q3DS86cN.png" style="zoom: 67%;" />
 
 依赖传递关系：`jackson-databind` 会依赖另外两个依赖。
 
-> 课程配图（未随笔记提交）：课堂配图
+![](image/image_5o4rF-DTQC.png)
 
 最佳导入方式：直接导入 `jackson-databind`，依赖会自动传递。
 
@@ -248,7 +248,7 @@ Maven 的依赖管理能力使得依赖使用更加智能和方便，简化开�
 
 当直接引用或者间接引用出现了相同的 jar 包时，一个项目会出现重复 jar 包，这就算作冲突。依赖冲突会带来重复依赖，并且会终止依赖传递。
 
-> 课程配图（未随笔记提交）
+<img src="image/image_M5ZFnUt-IH.png" style="zoom:80%;" />
 
 Maven 具备自动解决依赖冲突的能力，会按规则选择其中一个版本，同时也提供了手动方式（一般不推荐频繁使用）。
 
@@ -297,7 +297,7 @@ Maven 具备自动解决依赖冲突的能力，会按规则选择其中一个�
 
 常见构建工具包括 `Maven`、`Gradle`、`Ant` 等。
 
-> 课程配图（未随笔记提交）：课堂配图
+![](image/image_IKTAEw9FuU.png)
 
 ### 4.2 命令方式项目构建
 
@@ -326,7 +326,7 @@ mvn test
 
 ### 4.3 可视化方式项目构建
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251201160230369.png" alt="image-20251201160230369" style="zoom:60%;" />
 
 ### 4.4 构建插件、命令、生命周期命令之间关系
 
@@ -462,7 +462,7 @@ mvn test
 
    Maven 继承是指在 Maven 项目中，让一个项目从另一个项目中继承配置信息的机制。继承可以让多个项目共享同一份**配置信息**，简化管理与维护工作。
 
-   > 课程配图（未随笔记提交）
+   <img src="image/image_gwH0JhEm_p.png" style="zoom:50%;" />
 
 2. **继承作用**
    - 统一版本：大型项目拆多个模块后，父工程集中管理依赖版本，所有子模块直接复用，避免各模块版本不一致导致冲突
@@ -597,7 +597,7 @@ mvn test
 4. **聚合演示**
    通过触发父工程构建命令，引发所有子模块构建（产生反应堆）：
 
-   > 课程配图（未随笔记提交）
+   <img src="image/image_SoPELm6plB.png" style="zoom: 50%;" />
 
 ## 6、Maven 仓库之间的关系和优先级
 
@@ -623,13 +623,13 @@ Maven 仓库主要分为三类：本地仓库（Local Repository）、中央仓�
 
 ### 6.2 仓库关系和流程图解
 
-> 课程配图（未随笔记提交）
+<img src="image/%E4%BB%93%E5%BA%93%E5%85%B3%E7%B3%BB.png" alt="仓库关系" style="zoom:80%;" />
 
 ## 7、Maven 实战案例：分布式 Maven 工程架构
 
 ### 7.1 项目需求和结构分析
 
-> 课程配图（未随笔记提交）
+<img src="image/image.png" alt="img" style="zoom:50%;" />
 
 需求案例：搭建一个电商平台项目。该平台包括用户服务、订单服务、通用工具模块等。本案例不写业务代码，重点在于：**实现分布式项目创建与依赖管理**。
 
@@ -666,7 +666,7 @@ Maven 仓库主要分为三类：本地仓库（Local Repository）、中央仓�
 
 1. 创建父工程
 
-   > 课程配图（未随笔记提交）
+   <img src="image/image-176458153519922.png" alt="img" style="zoom:40%;" />
 
 2. `pom.xml` 配置
 
@@ -748,9 +748,9 @@ Maven 仓库主要分为三类：本地仓库（Local Repository）、中央仓�
 
 1. 创建通用模块
 
-   > 课程配图（未随笔记提交）
+   <img src="image/image-17645815061034.png" alt="img" style="zoom:50%;" />
 
-   > 课程配图（未随笔记提交）
+   <img src="image/image-17645815061045.png" alt="img" style="zoom:50%;" />
 
 2. `pom.xml` 配置
 
@@ -789,9 +789,9 @@ Maven 仓库主要分为三类：本地仓库（Local Repository）、中央仓�
 
 1. 创建模块
 
-   > 课程配图（未随笔记提交）
+   <img src="image/image-17645815061046.png" alt="img" style="zoom:50%;" />
 
-   > 课程配图（未随笔记提交）
+   <img src="image/image-17645815061047.png" alt="img" style="zoom:50%;" />
 
 2. `pom.xml` 配置
 
@@ -835,9 +835,9 @@ Maven 仓库主要分为三类：本地仓库（Local Repository）、中央仓�
 
 1. 创建模块
 
-   > 课程配图（未随笔记提交）
+   <img src="image/image-17645815061048.png" alt="img" style="zoom:50%;" />
 
-   > 课程配图（未随笔记提交）
+   <img src="image/image-17645815061049.png" alt="img" style="zoom:50%;" />
 
 2. `pom.xml`
 

@@ -36,7 +36,7 @@
 
 # 第一章.抽象
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260120094930283.png" alt="image-20260120094930283" style="zoom:80%;" />
 
 ## 1.抽象的介绍
 
@@ -247,7 +247,7 @@ public class Test01 {
 
 ## 1.接口的介绍
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260120112300450.png" alt="image-20260120112300450" style="zoom:80%;" />
 
 ## 2.接口的定义以及使用
 
@@ -652,7 +652,7 @@ public class Test01 {
   c.类不能多继承,接口可以
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260120154108647.png" alt="image-20260120154108647" style="zoom:80%;" />
 
 # 第四章.final关键字
 

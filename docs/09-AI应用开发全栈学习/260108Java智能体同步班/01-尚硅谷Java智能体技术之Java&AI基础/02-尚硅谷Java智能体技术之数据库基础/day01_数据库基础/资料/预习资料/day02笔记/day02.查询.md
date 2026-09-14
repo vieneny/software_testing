@@ -318,7 +318,7 @@ SELECT pname,SUM(price) `newprice` FROM product WHERE price>=2000 GROUP BY pname
 SELECT pname,SUM(price) `newprice` FROM product GROUP BY pname HAVING newprice>=2000;
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1688441655752.png" alt="1688441655752" style="zoom:80%;" />
 
 ## 6.分页查询
 
@@ -359,7 +359,7 @@ SELECT * FROM product LIMIT 10,5;
 SELECT * FROM product LIMIT 15,5;
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1688442432604.png" alt="1688442432604" style="zoom:80%;" />
 
 # 第二章.数据库的备份与还原
 
@@ -386,11 +386,11 @@ mysql  -uroot  -p密码 数据库名 < 文件路径
 
 ### 2.1.利用点击去备份
 
-> 课程配图（未随笔记提交）> 课程配图（未随笔记提交）：1680058782201
+<img src="img/1680058707816.png" alt="1680058707816" style="zoom:80%;" />![1680058782201](img/1680058782201.png)
 
 ### 2.2.利用点击去还原
 
-> 课程配图（未随笔记提交）：1680058782201
+![1680058782201](img/1680058782201.png)
 
 # 第三章.数据库三范式
 
@@ -404,7 +404,7 @@ mysql  -uroot  -p密码 数据库名 < 文件路径
 
 第一范式的合理遵循需要根据系统的实际需求来定。比如某些数据库系统中需要用到“地址”这个属性，本来直接将“地址”属性设计成一个数据库表的字段就行。但是如果系统经常会访问“地址”属性中的“城市”部分，那么就非要将“地址”这个属性重新拆分为省份、城市、详细地址等多个部分进行存储，这样在对地址中某一部分操作的时候将非常方便。这样设计才算满足了数据库的第一范式，如下表所示。
 
-> 课程配图（未随笔记提交）：课堂配图
+![](img/tu_11.png)
 
 如果不遵守第一范式，查询出数据还需要进一步处理（查询不方便）。遵守第一范式，需要什么字段的数据就查询什么数据（方便查询）
 
@@ -449,7 +449,7 @@ mysql  -uroot  -p密码 数据库名 < 文件路径
 
 ## 1.一对多的表创建外键约束
 
-> 课程配图（未随笔记提交）
+<img src="img/1688453346989.png" alt="1688453346989" style="zoom:80%;" />
 
 ```mysql
     CREATE TABLE category (
@@ -468,11 +468,11 @@ mysql  -uroot  -p密码 数据库名 < 文件路径
       ALTER TABLE products ADD CONSTRAINT cp1 FOREIGN KEY products(category_id) REFERENCES category(cid);
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1688453749574.png" alt="1688453749574" style="zoom:80%;" />
 
 ## 2.多对多的表创建外键约束
 
-> 课程配图（未随笔记提交）
+<img src="img/1688455090782.png" alt="1688455090782" style="zoom:80%;" />
 
 ```mysql
 # 订单表 -> 主表
@@ -548,7 +548,7 @@ SELECT * FROM category,products WHERE category.cid = products.category_id;
 SELECT * FROM category c,products p WHERE c.cid = p.category_id;
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1688456747594.png" alt="1688456747594" style="zoom:80%;" />
 
 ## 2.内连接查询
 
@@ -608,11 +608,11 @@ SELECT * FROM category c JOIN products p ON c.`cid` = p.`category_id`;
 
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1688459267518.png" alt="1688459267518" style="zoom:80%;" />
 
-> 课程配图（未随笔记提交）
+<img src="img/1688459326094.png" alt="1688459326094" style="zoom:80%;" />
 
-> 课程配图（未随笔记提交）
+<img src="img/1688459357327.png" alt="1688459357327" style="zoom:80%;" />
 
 ## 4.union联合查询实现全外连接查询（了解）
 
@@ -696,7 +696,7 @@ SELECT * FROM category WHERE cname IN ('家电','化妆品');
 SELECT * FROM (SELECT * FROM category WHERE cname IN ('家电','化妆品')) c,products p WHERE c.`cid` = p.`category_id`
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1688460727440.png" alt="1688460727440" style="zoom:80%;" />
 
 # 第七章.mysql函数
 

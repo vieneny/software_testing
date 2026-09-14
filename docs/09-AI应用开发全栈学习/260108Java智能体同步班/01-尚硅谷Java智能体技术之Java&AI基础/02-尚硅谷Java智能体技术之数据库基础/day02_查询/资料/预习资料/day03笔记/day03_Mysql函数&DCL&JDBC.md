@@ -308,7 +308,7 @@ SELECT DATEDIFF('2023-10-1',NOW());
 
 我们现在默认使用的都是root用户，超级管理员，拥有全部的权限。但是，一个公司里面的数据库服务器上面可能同时运行着很多个项目的数据库。所以，我们应该根据不同的项目建立不同的用户，分配不同的权限来管理和维护数据库。
 
-> 课程配图（未随笔记提交）
+<img src="img/1688520549279.png" alt="1688520549279" style="zoom:80%;" />
 
 ## 2.1 创建用户
 
@@ -336,7 +336,7 @@ CREATE USER 'user2'@'%' IDENTIFIED BY '123';
 ## 2.2 授权用户
 
 用户创建之后，基本没什么权限！需要给用户授权
-> 课程配图（未随笔记提交）：课堂配图
+![](img/DCL02.png)
 
 **授权格式**：
 
@@ -361,7 +361,7 @@ d.'用户名'@'主机名':给哪个用户分配权限
    GRANT CREATE,ALTER,DROP,INSERT,UPDATE,DELETE,SELECT ON test.* TO 'user1'@'localhost';
    ```
 
-   > 课程配图（未随笔记提交）：课堂配图
+   ![](img/DCL03.png)
 
 2. 给user2用户分配对所有数据库操作的权限
 
@@ -369,7 +369,7 @@ d.'用户名'@'主机名':给哪个用户分配权限
    GRANT ALL ON *.* TO 'user2'@'%';
    ```
 
-   > 课程配图（未随笔记提交）：课堂配图
+   ![](img/DCL04.png)
 
 ## 2.3 撤销授权
 
@@ -385,7 +385,7 @@ REVOKE  权限1, 权限2... ON 数据库.表名 FROM '用户名'@'主机名';
   REVOKE ALL ON test.* FROM 'user1'@'localhost';
   ```
 
-  > 课程配图（未随笔记提交）：课堂配图
+  ![](img/DCL05.png)
 
 ## 2.4 查看权限
 
@@ -401,7 +401,7 @@ SHOW GRANTS FOR '用户名'@'主机名';
   SHOW GRANTS FOR 'user1'@'localhost';
   ```
 
-  > 课程配图（未随笔记提交）：课堂配图
+  ![](img/DCL06.png)
 
 ## 2.5 删除用户
 
@@ -417,7 +417,7 @@ DROP USER '用户名'@'主机名';
    DROP USER 'user2'@'%';
   ```
 
-  > 课程配图（未随笔记提交）：课堂配图
+  ![](img/DCL07.png)
 
 ```mysql
 /*
@@ -475,7 +475,7 @@ mysqladmin -uroot -p password root
 输入老密码
    ```
 
-   > 课程配图（未随笔记提交）：课堂配图
+   ![](img/DCL08.png)
 
 ### 2.6.2 修改普通用户密码
 
@@ -491,7 +491,7 @@ set password for '用户名'@'主机名' = password('新密码');
 set password for 'user1'@'localhost' = password('666666');
    ```
 
-   > 课程配图（未随笔记提交）：课堂配图
+   ![](img/DCL09.png)
 
 # 第三章.JDBC
 
@@ -504,7 +504,7 @@ set password for 'user1'@'localhost' = password('666666');
   JDBC这个标准中有很多的接口,接口中有很多方法
 ```
 
-> 课程配图（未随笔记提交）
+<img src="img/1688522238684.png" alt="1688522238684" style="zoom:80%;" />
 
 ## 2.JDBC准备(导入jar包)
 
@@ -594,7 +594,7 @@ Class.forName("com.mysql.cj.jdbc.Driver");
         System.out.println(connection);
 ```
 
-> > 课程配图（未随笔记提交）
+> <img src="img/1688525158215.png" alt="1688525158215" style="zoom:80%;" />
 >
 
 ## 6.JDBC实现增删改操作
@@ -1005,7 +1005,7 @@ public class Demo03JDBC {
 
 # 第四章.PreparedStatement预处理对象
 
-> 课程配图（未随笔记提交）
+<img src="img/1688539216383.png" alt="1688539216383" style="zoom:80%;" />
 
 ## 1.sql注入的问题以及解决方式(预处理对象)
 

@@ -37,7 +37,7 @@
 
 ## 1.数组翻转
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260114090159722.png" alt="image-20260114090159722" style="zoom:80%;" />
 
 ```java
 1.概述:数组中对称位置上的元素互换
@@ -67,7 +67,7 @@ public class Demo01ArrayReverse {
 1.概述:相邻两个元素比较大小,大的往后走,小的往前走->升序
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260114091930654.png" alt="image-20260114091930654" style="zoom:80%;" />
 
 ```java
 public class Demo02Bubble {
@@ -145,7 +145,7 @@ public class Demo02Bubble {
 2.前提:数组元素是有序的 -> 默认是升序
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260114104553032.png" alt="image-20260114104553032" style="zoom:80%;" />
 
 ```java
 public class Demo03BinarySearch {
@@ -250,7 +250,7 @@ public class Demo05Arrays {
 
 官网：https://www.hutool.cn/
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251021112459290.png" alt="image-20251021112459290" style="zoom:80%;" />
 
 
 
@@ -264,7 +264,7 @@ public class Demo05Arrays {
   c.对着lib包右键->add as library-> level选项中选择module,此时name选项会变成空的,不要管 -> ok
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260114115232583.png" alt="image-20260114115232583" style="zoom:80%;" />
 
 ### 2.2.ArrayUtil工具类
 
@@ -330,7 +330,7 @@ public class Demo01TwoArray {
 }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260114141750990.png" alt="image-20260114141750990" style="zoom:80%;" />
 
 ## 2.2获取二维数组长度
 
@@ -378,7 +378,7 @@ public class Demo03TwoArray {
 }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260114142540127.png" alt="image-20260114142540127" style="zoom:80%;" />
 
 ## 2.4二维数组中存储元素
 
@@ -473,7 +473,7 @@ public class Demo05TwoArray {
   有参有返回值方法
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260114144701351.png" alt="image-20260114144701351" style="zoom:80%;" />
 
 ## 1.无参无返回值方法定义和调用
 
@@ -518,9 +518,9 @@ public class Demo01Method {
 
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260114152021657.png" alt="image-20260114152021657" style="zoom:80%;" />
 
-> > 课程配图（未随笔记提交）
+> <img src="image/image-20260114152214779.png" alt="image-20260114152214779" style="zoom:80%;" />
 
 > 注意事项:
 >
@@ -577,7 +577,7 @@ public class Demo02Method {
 }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260114154025178.png" alt="image-20260114154025178" style="zoom:80%;" />
 
 ## 4.无参数有返回值定义以及执行流程
 
@@ -615,7 +615,7 @@ public class Demo03Method {
 }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260114155527184.png" alt="image-20260114155527184" style="zoom:80%;" />
 
 ## 5.有参数有返回值定义以及执行流程
 
@@ -649,7 +649,7 @@ public class Demo04Method {
 }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260114161927792.png" alt="image-20260114161927792" style="zoom:80%;" />
 
 ## 6.形参和实参的区别
 
@@ -700,4 +700,4 @@ public class Demo05Method {
 }
 ```
 
-> > 课程配图（未随笔记提交）
+> <img src="image/image-20260114165407906.png" alt="image-20260114165407906" style="zoom:80%;" />

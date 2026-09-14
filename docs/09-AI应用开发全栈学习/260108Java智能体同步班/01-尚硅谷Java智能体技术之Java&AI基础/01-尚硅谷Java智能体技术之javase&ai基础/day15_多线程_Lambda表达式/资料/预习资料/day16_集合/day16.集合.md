@@ -101,7 +101,7 @@ public class Demo01Supplier {
 
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251105162759527.png" alt="image-20251105162759527" style="zoom:80%;" />
 
 ## 2.Consumer
 
@@ -186,7 +186,7 @@ public class Demo04Predicate {
 1.概述:Stream流中的流,不是IO流的流,可以理解为"流水线"的流
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251107090956337.png" alt="image-20251107090956337" style="zoom:80%;" />
 
 ```java
 public class Demo01Stream {
@@ -738,7 +738,7 @@ public class Demo05MethodCite {
     map.put(1,"张三") -> key,value -> 跟key和value这种数据格式叫做键值对
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251107115818505.png" alt="image-20251107115818505" style="zoom:80%;" />
 
 # 第五章.Collection接口
 
@@ -849,11 +849,11 @@ public class Demo05MethodCite {
 >     }
 > ```
 >
-> > 课程配图（未随笔记提交）
+> <img src="image/image-20251107144038293.png" alt="image-20251107144038293" style="zoom:80%;" />
 
 ## 2.迭代器迭代过程
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251107144402150.png" alt="image-20251107144402150" style="zoom:80%;" />
 
 ## 3.迭代器底层原理
 
@@ -863,13 +863,13 @@ public class Demo05MethodCite {
 2.如果迭代的是ArrayList集合,Iterator接口指向的就是ArrayList底层的内部类Itr
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251107144725221.png" alt="image-20251107144725221" style="zoom:80%;" />
 
 > ```java
 > 如果迭代HashSet集合,Iterator指向的是keyIterator对象
 >    ```
 >
->    > 课程配图（未随笔记提交）
+>    <img src="image/image-20251107145407811.png" alt="image-20251107145407811" style="zoom:80%;" />
 
 ## 4.并发修改异常
 
@@ -896,7 +896,7 @@ public class Demo05MethodCite {
     }
 ```
 
-> > 课程配图（未随笔记提交）
+> <img src="image/image-20251107151433745.png" alt="image-20251107151433745" style="zoom:80%;" />
 >
 > 结论:在使用迭代器的过程中不要随意修改集合长度
 
@@ -966,9 +966,9 @@ public boolean add(E e) {
 随着应用程序变得越来越复杂和数据越来越丰富，几百万、几十亿甚至几百亿的数据就会出现，而对这么大对数据进行搜索、插入或者排序等的操作就越来越慢，数据结构就是用来解决这些问题的。
 ```
 
-> 课程配图（未随笔记提交）：课堂配图
+![](img/1572588929059.png)
 
-> 课程配图（未随笔记提交）：课堂配图
+![](img/1563432696340.png)
 
 
 
@@ -979,7 +979,7 @@ public boolean add(E e) {
 * 树形结构：数据结构中的元素存在一对多的相互关系；
 * 图形结构：数据结构中的元素存在多对多的相互关系。
 
-> 课程配图（未随笔记提交）：课堂配图
+![](img/1572589085415.png)
 
 数据的物理结构/存储结构：是描述数据具体在内存中的存储（如：顺序结构、链式结构、索引结构、哈希结构）等，一种数据逻辑结构可表示成一种或多种物理存储结构。
 
@@ -1027,7 +1027,7 @@ public boolean add(E e) {
   集合底层如果是单向链表,无法保证元素有序
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251107161845151.png" alt="image-20251107161845151" style="zoom:80%;" />
 
 ### 4.2双向链表
 
@@ -1043,7 +1043,7 @@ public boolean add(E e) {
   集合底层如果是双向链表,可以保证元素有序
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251107162416143.png" alt="image-20251107162416143" style="zoom:80%;" />
 
 # 第八章.List接口
 
@@ -1155,4 +1155,4 @@ public boolean add(E e) {
     }
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20251107154431050.png" alt="image-20251107154431050" style="zoom:80%;" />

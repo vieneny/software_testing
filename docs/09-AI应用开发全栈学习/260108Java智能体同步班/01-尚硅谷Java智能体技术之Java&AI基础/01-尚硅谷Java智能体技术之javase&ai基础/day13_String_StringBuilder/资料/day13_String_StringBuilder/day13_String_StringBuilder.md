@@ -97,9 +97,9 @@
     String s2 = "abc"
 ```
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260126091139206.png" alt="image-20260126091139206" style="zoom:80%;" />
 
-> 课程配图（未随笔记提交）
+<img src="image/image-20260126091933005.png" alt="image-20260126091933005" style="zoom:80%;" />
 
 ## 2.String的实现原理
 
