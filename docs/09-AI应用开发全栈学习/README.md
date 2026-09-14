@@ -2,6 +2,8 @@
 
 这是一块独立、连续的课程学习区。课程笔记按源目录原样保留在 [`260108Java智能体同步班`](260108Java智能体同步班/) 下，不拆分到 Java、接口、微服务或其他阶段，便于按课程顺序离线学习和复盘。
 
+在线查看： [GitHub 课程目录](https://github.com/vieneny/software_testing/tree/master/docs/09-AI%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E5%85%A8%E6%A0%88%E5%AD%A6%E4%B9%A0/260108Java%E6%99%BA%E8%83%BD%E4%BD%93%E5%90%8C%E6%AD%A5%E7%8F%AD) · [Gitee 课程目录](https://gitee.com/a251376784/software_testing/tree/master/docs/09-AI%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E5%85%A8%E6%A0%88%E5%AD%A6%E4%B9%A0/260108Java%E6%99%BA%E8%83%BD%E4%BD%93%E5%90%8C%E6%AD%A5%E7%8F%AD)
+
 ## 学习目标
 
 完成前三个课程模块后，能够：
